@@ -1,4 +1,4 @@
-package org.smal2.presenter.view;
+package org.smal2.presentation.view;
 
 import org.smal2.common.ICommand;
 import org.smal2.service.user.RegisterUserRequest;

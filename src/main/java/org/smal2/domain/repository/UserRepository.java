@@ -2,7 +2,7 @@ package org.smal2.domain.repository;
 
 import java.util.List;
 
-import org.smal2.domain.User;
+import org.smal2.domain.entity.User;
 import org.smal2.persistence.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

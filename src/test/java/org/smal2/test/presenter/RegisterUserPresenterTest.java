@@ -3,23 +3,27 @@ package org.smal2.test.presenter;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import org.smal2.domain.User;
+import org.smal2.domain.entity.User;
 import org.smal2.domain.repository.UserRepository;
-import org.smal2.presenter.RegisterUserPresenter;
-import org.smal2.presenter.view.IRegisterUserView;
+import org.smal2.presentation.presenter.RegisterUserPresenter;
+import org.smal2.presentation.view.IRegisterUserView;
 import org.smal2.service.user.RegisterUserRequest;
 import org.smal2.service.user.UserService;
 import org.smal2.service.user.UserType;
 import org.smal2.test.presenter.mock.RegisterUserViewMock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:testContext.xml")
+@DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 public class RegisterUserPresenterTest {
 
 	@Autowired
@@ -27,6 +31,13 @@ public class RegisterUserPresenterTest {
 
 	@Autowired
 	private UserService userService;
+
+	@Before
+	public void before() {
+		userRepository.insert(new User("0001", "Jhon", new Date()));
+		userRepository.insert(new User("0002", "Jack", new Date()));
+		userRepository.insert(new User("0003", "Joe", new Date()));
+	}
 
 	@Test
 	public void mustAutowireTestDependencies() {
@@ -37,14 +48,11 @@ public class RegisterUserPresenterTest {
 	@Test
 	public void registerUserMustSaveUser() {
 		// Arrange
-		userRepository.insert(new User("0001", "Jhon", new Date()));
-		userRepository.insert(new User("0002", "Jack", new Date()));
-		userRepository.insert(new User("0003", "Joe", new Date()));
+		IRegisterUserView view = new RegisterUserViewMock();
+		Date birthDate = new GregorianCalendar(2001, 01, 01).getTime();
 
 		// Act
-		IRegisterUserView view = new RegisterUserViewMock();
 		new RegisterUserPresenter(view, userService);
-		Date birthDate = new GregorianCalendar(2001, 01, 01).getTime();
 		view.setRequest(new RegisterUserRequest("0004", "Jessy", birthDate,
 				UserType.STUDENT));
 		view.getCommand().execute();

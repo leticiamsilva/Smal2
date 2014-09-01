@@ -1,4 +1,4 @@
-package org.smal2.domain;
+package org.smal2.domain.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package org.smal2.infrastructure.persistenceJPA;
+package org.smal2.infrastructure.persistence.jpa;
 
 import java.util.List;
 import java.util.logging.Logger;

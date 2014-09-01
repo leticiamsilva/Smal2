@@ -1,9 +1,9 @@
-package org.smal2.infrastructure.viewJsonOverHTTP;
+package org.smal2.infrastructure.presentation.view.http;
 
 import org.smal2.common.ICommand;
-import org.smal2.infrastructure.viewJsonOverHTTP.JSONResponse;
-import org.smal2.presenter.RegisterUserPresenter;
-import org.smal2.presenter.view.IRegisterUserView;
+import org.smal2.infrastructure.presentation.view.http.JSONResponse;
+import org.smal2.presentation.presenter.RegisterUserPresenter;
+import org.smal2.presentation.view.IRegisterUserView;
 import org.smal2.service.user.RegisterUserRequest;
 import org.smal2.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

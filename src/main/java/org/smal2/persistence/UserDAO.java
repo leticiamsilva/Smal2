@@ -2,7 +2,7 @@ package org.smal2.persistence;
 
 import java.util.List;
 
-import org.smal2.domain.User;
+import org.smal2.domain.entity.User;
 
 public interface UserDAO {
 	void create(User entity);

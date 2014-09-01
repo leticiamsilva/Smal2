@@ -1,4 +1,4 @@
-package org.smal2.infrastructure.persistenceJPA;
+package org.smal2.infrastructure.persistence.jpa;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

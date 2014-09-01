@@ -1,4 +1,4 @@
-package org.smal2.infrastructure.viewJsonOverHTTP.test;
+package org.smal2.infrastructure.presentation.view.http.test;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
 package org.smal2.test.presenter.mock;
 
 import org.smal2.common.ICommand;
-import org.smal2.presenter.view.IRegisterUserView;
+import org.smal2.presentation.view.IRegisterUserView;
 import org.smal2.service.user.RegisterUserRequest;
 
 public class RegisterUserViewMock implements IRegisterUserView {

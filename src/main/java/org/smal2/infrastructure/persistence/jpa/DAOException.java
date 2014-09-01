@@ -1,4 +1,4 @@
-package org.smal2.infrastructure.persistenceJPA;
+package org.smal2.infrastructure.persistence.jpa;
 
 @SuppressWarnings("serial")
 public class DAOException extends RuntimeException {

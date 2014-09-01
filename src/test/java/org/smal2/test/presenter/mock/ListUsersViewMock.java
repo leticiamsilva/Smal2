@@ -2,7 +2,7 @@ package org.smal2.test.presenter.mock;
 
 import java.util.ArrayList;
 
-import org.smal2.presenter.view.IListUsersView;
+import org.smal2.presentation.view.IListUsersView;
 import org.smal2.service.user.ListUsersResponse;
 import org.smal2.service.user.ListUsersResponseItem;
 
