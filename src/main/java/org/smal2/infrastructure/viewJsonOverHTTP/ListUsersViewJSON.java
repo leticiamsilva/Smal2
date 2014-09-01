@@ -1,8 +1,8 @@
 package org.smal2.infrastructure.viewJsonOverHTTP;
 
 import org.smal2.infrastructure.viewJsonOverHTTP.JSONResponse;
-import org.smal2.presenter.UserListPresenter;
-import org.smal2.presenter.view.I_UserListView;
+import org.smal2.presenter.ListUsersPresenter;
+import org.smal2.presenter.view.I_ListUsersView;
 import org.smal2.service.UserService;
 import org.smal2.service.user.ListUsersResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Component
 @RequestMapping("/user")
-public class UserListViewJSON implements I_UserListView {
+public class ListUsersViewJSON implements I_ListUsersView {
 	@Autowired
 	private UserService userService;
 
@@ -23,7 +23,7 @@ public class UserListViewJSON implements I_UserListView {
 	@ResponseBody
 	public JSONResponse listUsers() {
 		try {
-			new UserListPresenter(this, userService);
+			new ListUsersPresenter(this, userService);
 
 			return new JSONResponse(true, users);
 
