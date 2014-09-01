@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.smal2.domain.repository.UserRepository;
 import org.smal2.persistence.UserDAO;
-import org.smal2.service.UserService;
+import org.smal2.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

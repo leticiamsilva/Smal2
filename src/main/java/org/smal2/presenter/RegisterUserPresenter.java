@@ -2,7 +2,7 @@ package org.smal2.presenter;
 
 import org.smal2.common.I_Command;
 import org.smal2.presenter.view.I_RegisterUserView;
-import org.smal2.service.UserService;
+import org.smal2.service.user.UserService;
 
 public class RegisterUserPresenter {
 

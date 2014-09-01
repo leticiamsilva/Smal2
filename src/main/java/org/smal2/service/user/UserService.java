@@ -1,4 +1,4 @@
-package org.smal2.service;
+package org.smal2.service.user;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +7,6 @@ import org.smal2.domain.Administrator;
 import org.smal2.domain.Technician;
 import org.smal2.domain.User;
 import org.smal2.domain.repository.UserRepository;
-import org.smal2.service.user.ListUsersResponse;
-import org.smal2.service.user.ListUsersResponseItem;
-import org.smal2.service.user.RegisterUserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
