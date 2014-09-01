@@ -14,4 +14,6 @@ public interface UserDAO {
 	void update(User entity);
 
 	void delete(long id);
+
+	User getByRegistration(String registration);
 }

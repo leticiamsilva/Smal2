@@ -9,6 +9,7 @@ import org.smal2.domain.User;
 import org.smal2.domain.repository.UserRepository;
 import org.smal2.service.user.ListUsersResponse;
 import org.smal2.service.user.ListUsersResponseItem;
+import org.smal2.service.user.RegisterUserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -40,5 +41,22 @@ public class UserService {
 		}
 
 		return new ListUsersResponse(users);
+	}
+
+	public void registerUser(RegisterUserRequest request) {
+
+		// TODO [CMP] thinking about to use one class only
+		switch (request.getType()) {
+		case ADMINISTRATOR:
+
+			break;
+
+		default:
+			break;
+		}
+
+		repository
+				.insert(new User(request.getRegistration(), request.getName(),
+						request.getBirthDate()/* , request.getType() */));
 	}
 }

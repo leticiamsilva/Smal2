@@ -32,4 +32,8 @@ public class UserRepository {
 	public void remove(long id) {
 		userDAO.delete(id);
 	}
+
+	public User getByRegistration(String registration) {
+		return userDAO.getByRegistration(registration);
+	}
 }

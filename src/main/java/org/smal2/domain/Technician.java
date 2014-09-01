@@ -1,5 +1,7 @@
 package org.smal2.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -13,8 +15,9 @@ public class Technician extends User {
 	@Column(nullable = false)
 	private String password;
 
-	public Technician(String name, String registration, String password) {
-		super(name, registration);
+	public Technician(String registration, String name, Date birthDate,
+			String password) {
+		super(registration, name, birthDate);
 
 		if (password == null || password.equals("")) {
 			throw new IllegalArgumentException("Password can not be empty.");

@@ -1,14 +1,14 @@
 package org.smal2.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
-//import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-//import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,38 +22,51 @@ public class User {
 	private long id;
 
 	@Column(nullable = false)
+	private String registration;
+
+	@Column(nullable = false)
 	private String name;
 
 	@Column(nullable = false)
-	private String registration;
+	private Date birthDate;
 
 	@SuppressWarnings("unused")
 	private User() {
 	}
 
-	public User(String name, String registration) {
+	public User(String registration, String name, Date birthDate) {
 		super();
 
-		if (name == null || name.equals("")) {
-			throw new IllegalArgumentException("Name can not be empty.");
-		}
 		if (registration == null || registration.equals("")) {
 			throw new IllegalArgumentException("Registration can not be empty.");
 		}
 
+		if (name == null || name.equals("")) {
+			throw new IllegalArgumentException("Name can not be empty.");
+		}
+
+		if (birthDate == null) {
+			throw new IllegalArgumentException("Birth date can not be null.");
+		}
+
 		this.name = name;
 		this.registration = registration;
+		this.birthDate = birthDate;
 	}
 
 	public long getId() {
 		return id;
 	}
 
+	public String getRegistration() {
+		return registration;
+	}
+
 	public String getName() {
 		return name;
 	}
 
-	public String getRegistration() {
-		return registration;
+	public Date getBirthDate() {
+		return birthDate;
 	}
 }

@@ -23,4 +23,14 @@ public class UserDAOJPA extends GenericDAOJPA<User> implements UserDAO {
 	public void delete(long id) {
 		delete(User.class, id);
 	}
+
+	@Override
+	public User getByRegistration(String registration) {
+
+		StringBuilder query = new StringBuilder();
+		query.append("SELECT e FROM user e WHERE e.registration = ?");
+		Object array[] = { registration };
+
+		return super.getEntity(query.toString(), array);
+	}
 }

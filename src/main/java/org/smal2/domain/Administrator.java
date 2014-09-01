@@ -1,5 +1,7 @@
 package org.smal2.domain;
 
+import java.util.Date;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -9,7 +11,8 @@ import javax.persistence.Table;
 @DiscriminatorValue("administrator")
 public class Administrator extends Technician {
 
-	public Administrator(String name, String registration, String password) {
-		super(name, registration, password);
+	public Administrator(String registration, String name, Date birthDate,
+			String password) {
+		super(registration, name, birthDate, password);
 	}
 }

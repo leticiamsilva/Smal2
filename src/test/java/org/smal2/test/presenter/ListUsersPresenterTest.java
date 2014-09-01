@@ -1,5 +1,7 @@
 package org.smal2.test.presenter;
 
+import java.util.Date;
+
 import org.smal2.domain.User;
 import org.smal2.domain.repository.UserRepository;
 import org.smal2.presenter.ListUsersPresenter;
@@ -32,9 +34,9 @@ public class ListUsersPresenterTest {
 	@Test
 	public void listMustReturnAllUsers() {
 		// Arrange
-		userRepository.insert(new User("Jhon", "0001"));
-		userRepository.insert(new User("Jack", "0002"));
-		userRepository.insert(new User("Joe", "0003"));
+		userRepository.insert(new User("0001", "Jhon", new Date()));
+		userRepository.insert(new User("0002", "Jack", new Date()));
+		userRepository.insert(new User("0003", "Joe", new Date()));
 
 		// Act
 		I_ListUsersView view = new ListUsersViewMock();
