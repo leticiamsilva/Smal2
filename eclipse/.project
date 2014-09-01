@@ -37,27 +37,33 @@
 		<link>
 			<name>WebContent</name>
 			<type>2</type>
-			<location>/home/shared/develop/projects/CEFET/smal2/src/main/webapp</location>
+			<locationURI>$%7BSOURCE_LOC%7D/src/main/webapp</locationURI>
 		</link>
 		<link>
 			<name>resources</name>
 			<type>2</type>
-			<location>/home/shared/develop/projects/CEFET/smal2/src/main/resources</location>
+			<locationURI>$%7BSOURCE_LOC%7D/src/main/resources</locationURI>
 		</link>
 		<link>
 			<name>src</name>
 			<type>2</type>
-			<location>/home/shared/develop/projects/CEFET/smal2/src/main/java</location>
+			<locationURI>$%7BSOURCE_LOC%7D/src/main/java</locationURI>
 		</link>
 		<link>
 			<name>test</name>
 			<type>2</type>
-			<location>/home/shared/develop/projects/CEFET/smal2/src/test/java</location>
+			<locationURI>$%7BSOURCE_LOC%7D/src/test/java</locationURI>
 		</link>
 		<link>
 			<name>WebContent/WEB-INF/lib</name>
 			<type>2</type>
-			<location>/home/shared/develop/projects/CEFET/smal2/target/smal2/WEB-INF/lib</location>
+			<locationURI>$%7BSOURCE_LOC%7D/target/smal2/WEB-INF/lib</locationURI>
 		</link>
 	</linkedResources>
+	<variableList>
+		<variable>
+			<name>SOURCE_LOC</name>
+			<value>$%7BPARENT-1-PROJECT_LOC%7D</value>
+		</variable>
+	</variableList>
 </projectDescription>
