@@ -21,21 +21,10 @@
                            http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <!-- Use @Component annotations for bean definitions -->
-    <context:component-scan base-package="org.smal2.domain"/>
-    <context:component-scan base-package="org.smal2.infrastructure"/>
+    <context:component-scan base-package="org.smal2.test.mock"/>
+    <context:component-scan base-package="org.smal2.domain.repository"/>
     <context:component-scan base-package="org.smal2.persistence"/>
+    <context:component-scan base-package="org.smal2.infrastructure.persistenceMemory"/>
     <context:component-scan base-package="org.smal2.presenter"/>
     <context:component-scan base-package="org.smal2.service"/>
-
-    <mvc:annotation-driven/>
-
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="defaultPersistenceUnit"/>
-    </bean>
-
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactory"/>
-    </bean>
-
-    <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>
