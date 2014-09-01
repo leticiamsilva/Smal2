@@ -1,6 +1,6 @@
 package org.smal2.common;
 
-public interface I_Command {
+public interface ICommand {
 
 	void execute();
 }

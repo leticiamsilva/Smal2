@@ -6,7 +6,7 @@ import java.util.GregorianCalendar;
 import org.smal2.domain.User;
 import org.smal2.domain.repository.UserRepository;
 import org.smal2.presenter.RegisterUserPresenter;
-import org.smal2.presenter.view.I_RegisterUserView;
+import org.smal2.presenter.view.IRegisterUserView;
 import org.smal2.service.user.RegisterUserRequest;
 import org.smal2.service.user.UserService;
 import org.smal2.service.user.UserType;
@@ -42,12 +42,12 @@ public class RegisterUserPresenterTest {
 		userRepository.insert(new User("0003", "Joe", new Date()));
 
 		// Act
-		I_RegisterUserView view = new RegisterUserViewMock();
+		IRegisterUserView view = new RegisterUserViewMock();
 		new RegisterUserPresenter(view, userService);
 		Date birthDate = new GregorianCalendar(2001, 01, 01).getTime();
 		view.setRequest(new RegisterUserRequest("0004", "Jessy", birthDate,
 				UserType.STUDENT));
-		view.getRegisterUserCommand().execute();
+		view.getCommand().execute();
 
 		// Assert
 		Assert.assertEquals(4, userRepository.listAll().size());

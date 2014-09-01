@@ -2,11 +2,11 @@ package org.smal2.test.presenter.mock;
 
 import java.util.ArrayList;
 
-import org.smal2.presenter.view.I_ListUsersView;
+import org.smal2.presenter.view.IListUsersView;
 import org.smal2.service.user.ListUsersResponse;
 import org.smal2.service.user.ListUsersResponseItem;
 
-public class ListUsersViewMock implements I_ListUsersView {
+public class ListUsersViewMock implements IListUsersView {
 
 	private ListUsersResponse users;
 
@@ -15,12 +15,12 @@ public class ListUsersViewMock implements I_ListUsersView {
 	}
 
 	@Override
-	public ListUsersResponse getUsers() {
+	public ListUsersResponse getResponse() {
 		return users;
 	}
 
 	@Override
-	public void setUsers(ListUsersResponse users) {
+	public void setResponse(ListUsersResponse users) {
 		this.users.clear();
 		this.users.addAll(users);
 	}

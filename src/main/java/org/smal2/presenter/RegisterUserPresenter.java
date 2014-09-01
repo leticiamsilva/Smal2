@@ -1,21 +1,21 @@
 package org.smal2.presenter;
 
-import org.smal2.common.I_Command;
-import org.smal2.presenter.view.I_RegisterUserView;
+import org.smal2.common.ICommand;
+import org.smal2.presenter.view.IRegisterUserView;
 import org.smal2.service.user.UserService;
 
 public class RegisterUserPresenter {
 
-	private I_RegisterUserView view;
+	private IRegisterUserView view;
 	private UserService userService;
 
-	public RegisterUserPresenter(I_RegisterUserView view,
+	public RegisterUserPresenter(IRegisterUserView view,
 			UserService userService) {
 
 		this.view = view;
 		this.userService = userService;
 
-		this.view.setCommand(new I_Command() {
+		this.view.setCommand(new ICommand() {
 			public void execute() {
 				doRegisterUser();
 			}

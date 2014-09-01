@@ -1,9 +1,9 @@
 package org.smal2.infrastructure.viewJsonOverHTTP;
 
-import org.smal2.common.I_Command;
+import org.smal2.common.ICommand;
 import org.smal2.infrastructure.viewJsonOverHTTP.JSONResponse;
 import org.smal2.presenter.RegisterUserPresenter;
-import org.smal2.presenter.view.I_RegisterUserView;
+import org.smal2.presenter.view.IRegisterUserView;
 import org.smal2.service.user.RegisterUserRequest;
 import org.smal2.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Component
 @RequestMapping("/user")
-public class RegisterUserViewJSON implements I_RegisterUserView {
+public class RegisterUserViewJSON implements IRegisterUserView {
 	@Autowired
 	private UserService userService;
 
 	private RegisterUserRequest request;
-	private I_Command command;
+	private ICommand command;
 	private String response;
 
 	// TODO [CMP]
@@ -59,12 +59,12 @@ public class RegisterUserViewJSON implements I_RegisterUserView {
 	}
 
 	@Override
-	public I_Command getRegisterUserCommand() {
+	public ICommand getCommand() {
 		return command;
 	}
 
 	@Override
-	public void setCommand(I_Command command) {
+	public void setCommand(ICommand command) {
 		this.command = command;
 	}
 

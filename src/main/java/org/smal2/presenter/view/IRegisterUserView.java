@@ -1,17 +1,17 @@
 package org.smal2.presenter.view;
 
-import org.smal2.common.I_Command;
+import org.smal2.common.ICommand;
 import org.smal2.service.user.RegisterUserRequest;
 
-public interface I_RegisterUserView {
+public interface IRegisterUserView {
 
 	RegisterUserRequest getRequest();
 
 	void setRequest(RegisterUserRequest request);
 
-	I_Command getRegisterUserCommand();
+	ICommand getCommand();
 
-	void setCommand(I_Command command);
+	void setCommand(ICommand command);
 
 	String getResponse();
 

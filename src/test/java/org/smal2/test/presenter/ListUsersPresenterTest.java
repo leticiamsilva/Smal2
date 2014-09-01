@@ -5,7 +5,7 @@ import java.util.Date;
 import org.smal2.domain.User;
 import org.smal2.domain.repository.UserRepository;
 import org.smal2.presenter.ListUsersPresenter;
-import org.smal2.presenter.view.I_ListUsersView;
+import org.smal2.presenter.view.IListUsersView;
 import org.smal2.service.user.UserService;
 import org.smal2.test.presenter.mock.ListUsersViewMock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,11 +39,11 @@ public class ListUsersPresenterTest {
 		userRepository.insert(new User("0003", "Joe", new Date()));
 
 		// Act
-		I_ListUsersView view = new ListUsersViewMock();
+		IListUsersView view = new ListUsersViewMock();
 		new ListUsersPresenter(view, userService);
 
 		// Assert
-		Assert.assertEquals(userRepository.listAll().size(), view.getUsers()
+		Assert.assertEquals(userRepository.listAll().size(), view.getResponse()
 				.size());
 	}
 }

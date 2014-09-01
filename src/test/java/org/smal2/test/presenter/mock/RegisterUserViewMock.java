@@ -1,13 +1,13 @@
 package org.smal2.test.presenter.mock;
 
-import org.smal2.common.I_Command;
-import org.smal2.presenter.view.I_RegisterUserView;
+import org.smal2.common.ICommand;
+import org.smal2.presenter.view.IRegisterUserView;
 import org.smal2.service.user.RegisterUserRequest;
 
-public class RegisterUserViewMock implements I_RegisterUserView {
+public class RegisterUserViewMock implements IRegisterUserView {
 
 	private RegisterUserRequest request;
-	private I_Command command;
+	private ICommand command;
 	private String response;
 
 	@Override
@@ -21,12 +21,12 @@ public class RegisterUserViewMock implements I_RegisterUserView {
 	}
 
 	@Override
-	public I_Command getRegisterUserCommand() {
+	public ICommand getCommand() {
 		return command;
 	}
 
 	@Override
-	public void setCommand(I_Command command) {
+	public void setCommand(ICommand command) {
 		this.command = command;
 	}
 
