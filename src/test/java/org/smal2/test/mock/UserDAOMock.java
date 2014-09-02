@@ -2,11 +2,11 @@ package org.smal2.test.mock;
 
 import org.smal2.domain.entity.User;
 import org.smal2.infrastructure.persistence.jpa.DAOException;
-import org.smal2.persistence.UserDAO;
+import org.smal2.persistence.IUserDAO;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserDAOMock extends InMemoryDAO<User, Long> implements UserDAO {
+public class UserDAOMock extends InMemoryDAO<User, Long> implements IUserDAO {
 
 	private static long sequence = 0;
 

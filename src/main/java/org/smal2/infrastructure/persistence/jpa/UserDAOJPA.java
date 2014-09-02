@@ -3,11 +3,11 @@ package org.smal2.infrastructure.persistence.jpa;
 import java.util.List;
 
 import org.smal2.domain.entity.User;
-import org.smal2.persistence.UserDAO;
+import org.smal2.persistence.IUserDAO;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserDAOJPA extends GenericDAOJPA<User> implements UserDAO {
+public class UserDAOJPA extends GenericDAOJPA<User> implements IUserDAO {
 
 	@Override
 	public User read(long id) {

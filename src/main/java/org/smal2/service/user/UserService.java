@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class UserService {
 
 	@Autowired
-	UserRepository repository;
+	private UserRepository repository;
 
 	public ListUsersResponse listUser() {
 

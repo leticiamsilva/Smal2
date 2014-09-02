@@ -3,37 +3,37 @@ package org.smal2.domain.repository;
 import java.util.List;
 
 import org.smal2.domain.entity.User;
-import org.smal2.persistence.UserDAO;
+import org.smal2.persistence.IUserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserRepository {
-
+	
 	@Autowired
-	UserDAO userDAO;
+	private IUserDAO dao;
 
 	public void insert(User user) {
-		userDAO.create(user);
+		dao.create(user);
 	}
 
 	public User get(long id) {
-		return userDAO.read(id);
+		return dao.read(id);
 	}
 
 	public List<User> listAll() {
-		return userDAO.readAll();
+		return dao.readAll();
 	}
 
 	public void save(User entity) {
-		userDAO.update(entity);
+		dao.update(entity);
 	}
 
 	public void remove(long id) {
-		userDAO.delete(id);
+		dao.delete(id);
 	}
 
 	public User getByRegistration(String registration) {
-		return userDAO.getByRegistration(registration);
+		return dao.getByRegistration(registration);
 	}
 }

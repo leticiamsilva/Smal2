@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.smal2.domain.entity.User;
 
-public interface UserDAO {
+public interface IUserDAO {
 	void create(User entity);
 
 	User read(long id);
