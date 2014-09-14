@@ -13,8 +13,8 @@ public class UserRepository {
 	@Autowired
 	private IUserDAO dao;
 
-	public void insert(User user) {
-		dao.create(user);
+	public void insert(User entity) {
+		dao.create(entity);
 	}
 
 	public User get(long id) {

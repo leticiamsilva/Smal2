@@ -13,8 +13,8 @@ public class LaboratoryRepository {
 	@Autowired
 	ILaboratoryDAO dao;
 
-	public void insert(Laboratory laboratory) {
-		dao.create(laboratory);
+	public void insert(Laboratory entity) {
+		dao.create(entity);
 	}
 
 	public Laboratory get(long id) {
