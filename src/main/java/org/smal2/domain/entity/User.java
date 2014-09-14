@@ -30,12 +30,11 @@ public class User {
 	@Column(nullable = false)
 	private Date birthDate;
 
-	@SuppressWarnings("unused")
 	private User() {
 	}
 
 	public User(String registration, String name, Date birthDate) {
-		super();
+		this();
 
 		if (registration == null || registration.equals("")) {
 			throw new IllegalArgumentException("Registration can not be empty.");

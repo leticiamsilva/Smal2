@@ -26,7 +26,7 @@ public class SubTrouble {
 	}
 
 	public SubTrouble(String name, Trouble trouble) {
-		super();
+		this();
 
 		if (name == null || name.equals("")) {
 			throw new IllegalArgumentException("Name can not be empty.");

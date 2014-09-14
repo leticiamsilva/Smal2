@@ -17,12 +17,11 @@ public class Trouble {
 	@Column(nullable = false)
 	private String name;
 
-	@SuppressWarnings("unused")
 	private Trouble() {
 	}
 
 	public Trouble(String name) {
-		super();
+		this();
 
 		if (name == null || name.equals("")) {
 			throw new IllegalArgumentException("Name can not be empty.");

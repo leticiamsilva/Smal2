@@ -47,13 +47,12 @@ public class Ticket {
 	@ManyToOne(optional = false)
 	private Computer computer;
 
-	@SuppressWarnings("unused")
 	private Ticket() {
 	}
 
 	public Ticket(Date openDate, String description, User user,
 			SubTrouble subTrouble, Computer computer) {
-		super();
+		this();
 
 		if (openDate == null) {
 			throw new IllegalArgumentException("Open date can not be null.");

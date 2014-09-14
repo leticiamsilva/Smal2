@@ -26,7 +26,7 @@ public class Computer {
 	}
 
 	public Computer(String assetCode, Position position) {
-		super();
+		this();
 
 		if (assetCode == null || assetCode.equals("")) {
 			throw new IllegalArgumentException("Asset code can not be empty.");

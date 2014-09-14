@@ -25,13 +25,12 @@ public class Laboratory {
 	@OneToMany(mappedBy = "laboratory", fetch = FetchType.LAZY)
 	private List<Position> positions;
 
-	@SuppressWarnings("unused")
 	private Laboratory() {
 		positions = new ArrayList<Position>();
 	}
 
 	public Laboratory(String name) {
-		super();
+		this();
 
 		if (name == null || name.equals("")) {
 			throw new IllegalArgumentException("Name can not be empty.");

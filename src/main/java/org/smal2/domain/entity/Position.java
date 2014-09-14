@@ -31,12 +31,11 @@ public class Position {
 	@OneToOne(mappedBy = "position", optional = true)
 	private Computer computer;
 
-	@SuppressWarnings("unused")
 	private Position() {
 	}
 
 	public Position(int rowNum, int columnNum, Laboratory laboratory) {
-		super();
+		this();
 
 		if (rowNum < 0) {
 			throw new IllegalArgumentException("RowNum invalid.");
