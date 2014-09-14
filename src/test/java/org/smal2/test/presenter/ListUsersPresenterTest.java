@@ -3,11 +3,11 @@ package org.smal2.test.presenter;
 import org.smal2.presentation.presenter.ListUsersPresenter;
 import org.smal2.presentation.view.IListUsersView;
 import org.smal2.test.presenter.mock.ListUsersViewMock;
+import org.smal2.test.service.AUserServiceTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ListUsersPresenterTest extends AUsersPresenterTest {
-
+public class ListUsersPresenterTest extends AUserServiceTest {
 	@Test
 	public void listMustReturnAllUsers() {
 		// Arrange

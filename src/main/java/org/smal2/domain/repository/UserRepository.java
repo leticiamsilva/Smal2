@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserRepository {
-	
+
 	@Autowired
 	private IUserDAO dao;
 
@@ -35,5 +35,9 @@ public class UserRepository {
 
 	public User getByRegistration(String registration) {
 		return dao.getByRegistration(registration);
+	}
+
+	public boolean existRegistration(String registration) {
+		return dao.existRegistration(registration);
 	}
 }

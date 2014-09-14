@@ -11,33 +11,33 @@ import org.springframework.stereotype.Component;
 public class LaboratoryRepository {
 
 	@Autowired
-	ILaboratoryDAO laboratoryDAO;
+	ILaboratoryDAO dao;
 
 	public void insert(Laboratory laboratory) {
-		laboratoryDAO.create(laboratory);
+		dao.create(laboratory);
 	}
 
 	public Laboratory get(long id) {
-		return laboratoryDAO.read(id);
+		return dao.read(id);
 	}
 
 	public List<Laboratory> listAll() {
-		return laboratoryDAO.readAll();
+		return dao.readAll();
 	}
 
 	public void save(Laboratory entity) {
-		laboratoryDAO.update(entity);
+		dao.update(entity);
 	}
 
 	public void remove(long id) {
-		laboratoryDAO.delete(id);
+		dao.delete(id);
 	}
 
 	public Laboratory getByName(String name) {
-		return laboratoryDAO.getByName(name);
+		return dao.getByName(name);
 	}
 
 	public boolean existName(String name) {
-		return laboratoryDAO.existName(name);
+		return dao.existName(name);
 	}
 }

@@ -29,7 +29,7 @@ public class LaboratoryService {
 
 	public void registerLaboratory(String name) {
 
-		if (name == null || name.trim() == "") {
+		if (name == null || name == "") {
 			throw new IllegalArgumentException("Undefined laboratory name.");
 		}
 		

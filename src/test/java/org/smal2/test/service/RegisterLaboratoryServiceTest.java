@@ -18,7 +18,7 @@ public class RegisterLaboratoryServiceTest extends ALaboratoryServiceTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void registerExistentLaboratoryServiceMustThrowException() {
+	public void registerExistentLaboratoryNameMustThrowException() {
 		// Act
 		laboratoryService.registerLaboratory("lab01");
 	}

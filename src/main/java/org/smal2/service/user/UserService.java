@@ -42,6 +42,19 @@ public class UserService {
 
 	public void registerPrivilegedUser(RegisterPrivilegedUserRequest request) {
 
+		if (request == null) {
+			throw new IllegalArgumentException("Undefined request.");
+		}
+
+		if (request.getRegistration() == null || request.getRegistration() == "") {
+			throw new IllegalArgumentException("Undefined user registration.");
+		}
+		
+		if(repository.existRegistration(request.getRegistration()))
+		{
+			throw new IllegalArgumentException("User registration already exist.");
+		}
+
 		// TODO [CMP] thinking about to use one entity class only
 		switch (request.getType()) {
 		case ADMINISTRATOR:

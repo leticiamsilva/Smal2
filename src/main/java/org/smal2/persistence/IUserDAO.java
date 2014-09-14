@@ -16,4 +16,6 @@ public interface IUserDAO {
 	void delete(long id);
 
 	User getByRegistration(String registration);
+
+	boolean existRegistration(String registration);
 }

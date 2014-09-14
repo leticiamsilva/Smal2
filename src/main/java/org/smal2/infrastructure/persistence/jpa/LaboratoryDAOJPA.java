@@ -40,6 +40,6 @@ public class LaboratoryDAOJPA extends GenericDAOJPA<Laboratory> implements
 		query.append("SELECT e FROM laboratory e WHERE e.name = ?");
 		Object array[] = { name };
 
-		return super.getEntities(query.toString(), array).size() == 0;
+		return super.getEntities(query.toString(), array).size() != 0;
 	}
 }

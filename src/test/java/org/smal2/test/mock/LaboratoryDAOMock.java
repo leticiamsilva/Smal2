@@ -25,6 +25,7 @@ public class LaboratoryDAOMock extends AInMemoryDAO<Laboratory, Long> implements
 	public Laboratory getByName(String name) {
 		for (Laboratory laboratory : readAll()) {
 			if (laboratory.getName().equals(name)) {
+
 				return laboratory;
 			}
 		}
@@ -36,6 +37,7 @@ public class LaboratoryDAOMock extends AInMemoryDAO<Laboratory, Long> implements
 	public boolean existName(String name) {
 		for (Laboratory laboratory : readAll()) {
 			if (laboratory.getName().equals(name)) {
+
 				return true;
 			}
 		}

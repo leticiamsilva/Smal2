@@ -8,10 +8,11 @@ import org.smal2.presentation.view.IRegisterPrivilegedUserView;
 import org.smal2.service.user.RegisterPrivilegedUserRequest;
 import org.smal2.service.user.UserType;
 import org.smal2.test.presenter.mock.RegisterPrivilegedUserViewMock;
+import org.smal2.test.service.AUserServiceTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class RegisterPrivilegedUserPresenterTest extends AUsersPresenterTest {
+public class RegisterPrivilegedUserPresenterTest extends AUserServiceTest {
 
 	@Test
 	public void registerAdminMustSaveAdmin() {
@@ -34,16 +35,6 @@ public class RegisterPrivilegedUserPresenterTest extends AUsersPresenterTest {
 		Assert.assertEquals(birthDate, userRepository.getByRegistration("0004")
 				.getBirthDate());
 		// TODO [CMP] gettype
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void registerStudentServiceMustThrowException() {
-		// Arrange
-		Date birthDate = new GregorianCalendar(2001, 01, 01).getTime();
-
-		// Act
-		userService.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
-				"0005", "password", "Jimmy", birthDate, UserType.STUDENT));
 	}
 
 	@Test

@@ -3,10 +3,11 @@ package org.smal2.test.presenter;
 import org.smal2.presentation.presenter.RegisterLaboratoryPresenter;
 import org.smal2.presentation.view.IRegisterLaboratoryView;
 import org.smal2.test.presenter.mock.RegisterLaboratoryViewMock;
+import org.smal2.test.service.ALaboratoryServiceTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class RegisterLaboratoryPresenterTest extends ALaboratoriesPresenterTest {
+public class RegisterLaboratoryPresenterTest extends ALaboratoryServiceTest {
 
 	@Test
 	public void registerLaboratoryMustSaveLaboratory() {

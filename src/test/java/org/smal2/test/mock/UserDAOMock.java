@@ -24,10 +24,23 @@ public class UserDAOMock extends AInMemoryDAO<User, Long> implements IUserDAO {
 	public User getByRegistration(String registration) {
 		for (User user : readAll()) {
 			if (user.getRegistration().equals(registration)) {
+
 				return user;
 			}
 		}
 
 		throw new DAOException("Cannot find specified entity");
+	}
+
+	@Override
+	public boolean existRegistration(String registration) {
+		for (User user : readAll()) {
+			if (user.getRegistration().equals(registration)) {
+
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

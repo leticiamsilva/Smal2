@@ -1,8 +1,10 @@
-package org.smal2.test.presenter;
+package org.smal2.test.service;
 
-import org.smal2.domain.entity.Laboratory;
-import org.smal2.domain.repository.LaboratoryRepository;
-import org.smal2.service.laboratory.LaboratoryService;
+import java.util.Date;
+
+import org.smal2.domain.entity.User;
+import org.smal2.domain.repository.UserRepository;
+import org.smal2.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
@@ -16,24 +18,24 @@ import org.junit.runner.RunWith;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:testContext.xml")
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
-public abstract class ALaboratoriesPresenterTest {
+public abstract class AUserServiceTest {
 
 	@Autowired
-	protected LaboratoryRepository laboratoryRepository;
+	protected UserRepository userRepository;
 
 	@Autowired
-	protected LaboratoryService laboratoryService;
+	protected UserService userService;
 
 	@Before
 	public void before() {
-		laboratoryRepository.insert(new Laboratory("lab01"));
-		laboratoryRepository.insert(new Laboratory("lab02"));
-		laboratoryRepository.insert(new Laboratory("lab03"));
+		userRepository.insert(new User("0001", "Jhon", new Date()));
+		userRepository.insert(new User("0002", "Jack", new Date()));
+		userRepository.insert(new User("0003", "Joe", new Date()));
 	}
 
 	@Test
 	public void mustAutowireTestDependencies() {
-		Assert.assertNotNull(laboratoryRepository);
-		Assert.assertNotNull(laboratoryService);
+		Assert.assertNotNull(userRepository);
+		Assert.assertNotNull(userService);
 	}
 }
