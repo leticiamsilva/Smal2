@@ -8,19 +8,6 @@
     <version>0.1</version>
     <packaging>war</packaging>
 
-    <!-- TODO [CMP] discover how put pom.xml in a subdirectory like maven/pom.xml
-
-    <build>
-        <sourceDirectory>${project.basedir}/../src/main/java</sourceDirectory>
-        <testSourceDirectory>${project.basedir}/../src/test/java</testSourceDirectory>
-
-        <plugins>
-            <plugin>
-                <configuration>
-                    <webXml>${project.basedir}/../src/main/webapp/WEB-INF/web.xml</webXml>
-                    <warSourceDirectory>${project.basedir}/../src/main/webapp</warSourceDirectory>
-    -->
-
     <properties>
 
         <!-- Encoding -->
@@ -32,9 +19,6 @@
 
         <!-- Maven compiler -->
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
-
-        <!-- Tomcat 7 plugin-->
-        <tomcat7-maven-plugin.version>2.2</tomcat7-maven-plugin.version>
 
         <!-- Spring -->
         <spring-core.version>4.0.2.RELEASE</spring-core.version>
@@ -78,27 +62,6 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
-
-            <!-- my plugin
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>${tomcat7-maven-plugin.version}</version>
-                <configuration>
-                    <path>/Smal2</path>
-                </configuration>
-            </plugin>
-            -->
-            <!-- eclipse plugin
-            <plugin>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.3</version>
-                <configuration>
-                    <warSourceDirectory>WebContent</warSourceDirectory>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-            -->
         </plugins>
 
     </build>
