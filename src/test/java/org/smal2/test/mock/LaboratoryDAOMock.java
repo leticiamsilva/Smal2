@@ -6,7 +6,7 @@ import org.smal2.persistence.ILaboratoryDAO;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LaboratoryDAOMock extends InMemoryDAO<Laboratory, Long> implements
+public class LaboratoryDAOMock extends AInMemoryDAO<Laboratory, Long> implements
 		ILaboratoryDAO {
 
 	private static long sequence = 0;

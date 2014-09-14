@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-public abstract class InMemoryDAO<T, K> {
+public abstract class AInMemoryDAO<T, K> {
 
 	private Hashtable<K, T> entities;
 
-	public InMemoryDAO() {
+	public AInMemoryDAO() {
 		entities = new Hashtable<K, T>();
 	}
 

@@ -6,7 +6,7 @@ import org.smal2.persistence.IUserDAO;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserDAOMock extends InMemoryDAO<User, Long> implements IUserDAO {
+public class UserDAOMock extends AInMemoryDAO<User, Long> implements IUserDAO {
 
 	private static long sequence = 0;
 
