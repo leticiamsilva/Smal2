@@ -19,6 +19,16 @@ public class RegisterPrivilegedUserPresenterTest extends AUserServiceTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
+	public void registerNullUserRegistrationMustThrowException() {
+		// Arrange
+		Date birthDate = new GregorianCalendar(2001, 01, 01).getTime();
+
+		// Act
+		userService.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
+				null, "password", "Jimmy", birthDate, UserType.ADMINISTRATOR));
+	}
+
+	@Test(expected = IllegalArgumentException.class)
 	public void registerEmptyUserRegistrationMustThrowException() {
 		// Arrange
 		Date birthDate = new GregorianCalendar(2001, 01, 01).getTime();
