@@ -2,9 +2,9 @@ package org.smal2.infrastructure.presentation.view.http;
 
 import org.smal2.common.ICommand;
 import org.smal2.infrastructure.presentation.view.http.JSONResponse;
-import org.smal2.presentation.presenter.RegisterUserPresenter;
-import org.smal2.presentation.view.IRegisterUserView;
-import org.smal2.service.user.RegisterUserRequest;
+import org.smal2.presentation.presenter.RegisterPrivilegedUserPresenter;
+import org.smal2.presentation.view.IRegisterPrivilegedUserView;
+import org.smal2.service.user.RegisterPrivilegedUserRequest;
 import org.smal2.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Component
 @RequestMapping("/user")
-public class RegisterUserViewJSON implements IRegisterUserView {
+public class RegisterPrivilegedUserViewJSON implements
+		IRegisterPrivilegedUserView {
 	@Autowired
 	private UserService userService;
 
-	private RegisterUserRequest request;
+	private RegisterPrivilegedUserRequest request;
 	private ICommand command;
 	private String response;
 
@@ -36,9 +37,10 @@ public class RegisterUserViewJSON implements IRegisterUserView {
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	@ResponseBody
-	public JSONResponse registerUser(@RequestBody RegisterUserRequest request) {
+	public JSONResponse registerPrivilegedUser(
+			@RequestBody RegisterPrivilegedUserRequest request) {
 		try {
-			new RegisterUserPresenter(this, userService);
+			new RegisterPrivilegedUserPresenter(this, userService);
 			command.execute();
 
 			return new JSONResponse(true, response);
@@ -49,12 +51,12 @@ public class RegisterUserViewJSON implements IRegisterUserView {
 	}
 
 	@Override
-	public RegisterUserRequest getRequest() {
+	public RegisterPrivilegedUserRequest getRequest() {
 		return request;
 	}
 
 	@Override
-	public void setRequest(RegisterUserRequest request) {
+	public void setRequest(RegisterPrivilegedUserRequest request) {
 		this.request = request;
 	}
 

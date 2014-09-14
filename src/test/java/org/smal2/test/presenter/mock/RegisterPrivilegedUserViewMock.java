@@ -1,22 +1,22 @@
 package org.smal2.test.presenter.mock;
 
 import org.smal2.common.ICommand;
-import org.smal2.presentation.view.IRegisterUserView;
-import org.smal2.service.user.RegisterUserRequest;
+import org.smal2.presentation.view.IRegisterPrivilegedUserView;
+import org.smal2.service.user.RegisterPrivilegedUserRequest;
 
-public class RegisterUserViewMock implements IRegisterUserView {
+public class RegisterPrivilegedUserViewMock implements IRegisterPrivilegedUserView {
 
-	private RegisterUserRequest request;
+	private RegisterPrivilegedUserRequest request;
 	private ICommand command;
 	private String response;
 
 	@Override
-	public RegisterUserRequest getRequest() {
+	public RegisterPrivilegedUserRequest getRequest() {
 		return request;
 	}
 
 	@Override
-	public void setRequest(RegisterUserRequest request) {
+	public void setRequest(RegisterPrivilegedUserRequest request) {
 		this.request = request;
 	}
 

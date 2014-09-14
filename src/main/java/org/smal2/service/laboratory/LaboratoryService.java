@@ -20,8 +20,7 @@ public class LaboratoryService {
 		ListLaboratoriesResponseItem item;
 
 		for (Laboratory laboratory : repository.listAll()) {
-			item = new ListLaboratoriesResponseItem(laboratory.getId(),
-					laboratory.getName());
+			item = new ListLaboratoriesResponseItem(laboratory.getName());
 			laboratories.add(item);
 		}
 

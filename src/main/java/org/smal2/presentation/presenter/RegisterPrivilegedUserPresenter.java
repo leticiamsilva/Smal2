@@ -1,15 +1,15 @@
 package org.smal2.presentation.presenter;
 
 import org.smal2.common.ICommand;
-import org.smal2.presentation.view.IRegisterUserView;
+import org.smal2.presentation.view.IRegisterPrivilegedUserView;
 import org.smal2.service.user.UserService;
 
-public class RegisterUserPresenter {
+public class RegisterPrivilegedUserPresenter {
 
-	private IRegisterUserView view;
+	private IRegisterPrivilegedUserView view;
 	private UserService userService;
 
-	public RegisterUserPresenter(IRegisterUserView view,
+	public RegisterPrivilegedUserPresenter(IRegisterPrivilegedUserView view,
 			UserService userService) {
 
 		this.view = view;
@@ -17,14 +17,14 @@ public class RegisterUserPresenter {
 
 		this.view.setCommand(new ICommand() {
 			public void execute() {
-				doRegisterUser();
+				doRegisterPrivilegedUser();
 			}
 		});
 	}
 
-	private void doRegisterUser() {
+	private void doRegisterPrivilegedUser() {
 		try {
-			userService.registerUser(view.getRequest());
+			userService.registerPrivilegedUser(view.getRequest());
 			view.setResponse("User registred successfully.");
 		} catch (Exception ex) {
 			view.setResponse("User register error:\n" + ex.getMessage());

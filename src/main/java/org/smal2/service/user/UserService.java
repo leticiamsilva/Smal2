@@ -32,28 +32,32 @@ public class UserService {
 				type = 0;
 			}
 
-			item = new ListUsersResponseItem(user.getId(),
-					user.getRegistration(), user.getName(), type);
+			item = new ListUsersResponseItem(user.getRegistration(),
+					user.getName(), type);
 			users.add(item);
 		}
 
 		return new ListUsersResponse(users);
 	}
 
-	public void registerUser(RegisterUserRequest request) {
+	public void registerPrivilegedUser(RegisterPrivilegedUserRequest request) {
 
-		// TODO [CMP] thinking about to use one class only
+		// TODO [CMP] thinking about to use one entity class only
 		switch (request.getType()) {
 		case ADMINISTRATOR:
+			repository.insert(new Administrator(request.getRegistration(),
+					request.getName(), request.getBirthDate(), request
+							.getPassword()));
+			break;
 
+		case TECHNICHAN:
+			repository.insert(new Technician(request.getRegistration(), request
+					.getName(), request.getBirthDate(), request.getPassword()));
 			break;
 
 		default:
-			break;
+			throw new IllegalArgumentException(
+					"User type must be administrator or technichan.");
 		}
-
-		repository
-				.insert(new User(request.getRegistration(), request.getName(),
-						request.getBirthDate()/* , request.getType() */));
 	}
 }

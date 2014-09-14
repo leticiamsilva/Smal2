@@ -5,12 +5,12 @@ import java.util.GregorianCalendar;
 
 import org.smal2.domain.entity.User;
 import org.smal2.domain.repository.UserRepository;
-import org.smal2.presentation.presenter.RegisterUserPresenter;
-import org.smal2.presentation.view.IRegisterUserView;
-import org.smal2.service.user.RegisterUserRequest;
+import org.smal2.presentation.presenter.RegisterPrivilegedUserPresenter;
+import org.smal2.presentation.view.IRegisterPrivilegedUserView;
+import org.smal2.service.user.RegisterPrivilegedUserRequest;
 import org.smal2.service.user.UserService;
 import org.smal2.service.user.UserType;
-import org.smal2.test.presenter.mock.RegisterUserViewMock;
+import org.smal2.test.presenter.mock.RegisterPrivilegedUserViewMock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
@@ -24,7 +24,7 @@ import org.junit.runner.RunWith;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:testContext.xml")
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
-public class RegisterUserPresenterTest {
+public class RegisterPrivilegedUserPresenterTest {
 
 	@Autowired
 	private UserRepository userRepository;
@@ -46,15 +46,15 @@ public class RegisterUserPresenterTest {
 	}
 
 	@Test
-	public void registerUserMustSaveUser() {
+	public void registerAdminMustSaveAdmin() {
 		// Arrange
-		IRegisterUserView view = new RegisterUserViewMock();
+		IRegisterPrivilegedUserView view = new RegisterPrivilegedUserViewMock();
 		Date birthDate = new GregorianCalendar(2001, 01, 01).getTime();
 
 		// Act
-		new RegisterUserPresenter(view, userService);
-		view.setRequest(new RegisterUserRequest("0004", "Jessy", birthDate,
-				UserType.STUDENT));
+		new RegisterPrivilegedUserPresenter(view, userService);
+		view.setRequest(new RegisterPrivilegedUserRequest("0004", "password",
+				"Jessy", birthDate, UserType.ADMINISTRATOR));
 		view.getCommand().execute();
 
 		// Assert
@@ -66,5 +66,31 @@ public class RegisterUserPresenterTest {
 		Assert.assertEquals(birthDate, userRepository.getByRegistration("0004")
 				.getBirthDate());
 		// TODO [CMP] gettype
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void registerStudentServiceMustThrowException() {
+		// Arrange
+		Date birthDate = new GregorianCalendar(2001, 01, 01).getTime();
+
+		// Act
+		userService.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
+				"0005", "password", "Jimmy", birthDate, UserType.STUDENT));
+	}
+
+	@Test
+	public void registerStudentServiceMustShowError() {
+		// Arrange
+		IRegisterPrivilegedUserView view = new RegisterPrivilegedUserViewMock();
+		Date birthDate = new GregorianCalendar(2001, 01, 01).getTime();
+
+		// Act
+		new RegisterPrivilegedUserPresenter(view, userService);
+		view.setRequest(new RegisterPrivilegedUserRequest("0005", "password",
+				"Jimmy", birthDate, UserType.STUDENT));
+		view.getCommand().execute();
+
+		// Assert
+		Assert.assertTrue(view.getResponse().contains("User register error"));
 	}
 }

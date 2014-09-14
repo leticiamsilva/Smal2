@@ -1,16 +1,10 @@
 package org.smal2.service.laboratory;
 
 public class ListLaboratoriesResponseItem {
-	private long id;
 	private String name;
 
-	public ListLaboratoriesResponseItem(long id, String name) {
-		this.id = id;
+	public ListLaboratoriesResponseItem(String name) {
 		this.name = name;
-	}
-
-	public long getId() {
-		return id;
 	}
 
 	public String getName() {
