@@ -26,4 +26,18 @@ public class LaboratoryService {
 
 		return new ListLaboratoriesResponse(laboratories);
 	}
+
+	public void registerLaboratory(String name) {
+
+		if (name == null || name.trim() == "") {
+			throw new IllegalArgumentException("Undefined laboratory name.");
+		}
+		
+		if(repository.existName(name))
+		{
+			throw new IllegalArgumentException("Laboratory name already exist.");
+		}
+		
+		repository.insert(new Laboratory(name));
+	}
 }

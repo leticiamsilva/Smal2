@@ -17,4 +17,6 @@ public interface ILaboratoryDAO {
 	void delete(long id);
 
 	Laboratory getByName(String name);
+
+	boolean existName(String name);
 }

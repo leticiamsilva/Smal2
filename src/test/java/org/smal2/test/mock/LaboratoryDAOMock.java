@@ -31,4 +31,15 @@ public class LaboratoryDAOMock extends InMemoryDAO<Laboratory, Long> implements
 
 		throw new DAOException("Cannot find specified entity");
 	}
+
+	@Override
+	public boolean existName(String name) {
+		for (Laboratory laboratory : readAll()) {
+			if (laboratory.getName().equals(name)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 }

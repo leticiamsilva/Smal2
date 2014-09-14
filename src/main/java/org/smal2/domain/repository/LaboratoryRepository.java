@@ -36,4 +36,8 @@ public class LaboratoryRepository {
 	public Laboratory getByName(String name) {
 		return laboratoryDAO.getByName(name);
 	}
+
+	public boolean existName(String name) {
+		return laboratoryDAO.existName(name);
+	}
 }

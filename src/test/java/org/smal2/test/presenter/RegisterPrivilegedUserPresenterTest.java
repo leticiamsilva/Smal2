@@ -79,7 +79,7 @@ public class RegisterPrivilegedUserPresenterTest {
 	}
 
 	@Test
-	public void registerStudentServiceMustShowError() {
+	public void registerStudentMustShowError() {
 		// Arrange
 		IRegisterPrivilegedUserView view = new RegisterPrivilegedUserViewMock();
 		Date birthDate = new GregorianCalendar(2001, 01, 01).getTime();
