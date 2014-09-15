@@ -9,12 +9,12 @@ import org.smal2.presentation.view.IRegisterPrivilegedUserView;
 import org.smal2.service.user.RegisterPrivilegedUserRequest;
 import org.smal2.service.user.UserType;
 import org.smal2.test.presenter.mock.RegisterPrivilegedUserViewMock;
-import org.smal2.test.service.AUserServiceTest;
+import org.smal2.test.testutils.AUserTest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class RegisterPrivilegedUserPresenterTest extends AUserServiceTest {
+public class RegisterPrivilegedUserPresenterTest extends AUserTest {
 
 	@Before
 	public void before() {

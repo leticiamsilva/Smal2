@@ -5,11 +5,12 @@ import org.smal2.domain.entity.Laboratory;
 import org.smal2.domain.entity.Position;
 import org.smal2.service.computer.ListComputersResponse;
 import org.smal2.service.computer.ListComputersResponseItem;
+import org.smal2.test.testutils.AComputerTest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ListComputersTest extends AComputerServiceTest {
+public class ListComputersTest extends AComputerTest {
 
 	@Before
 	public void before() {

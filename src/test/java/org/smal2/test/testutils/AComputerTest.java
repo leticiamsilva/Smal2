@@ -1,4 +1,4 @@
-package org.smal2.test.service;
+package org.smal2.test.testutils;
 
 import org.smal2.domain.repository.ComputerRepository;
 import org.smal2.domain.repository.LaboratoryRepository;
@@ -17,7 +17,7 @@ import org.junit.runner.RunWith;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:testContext.xml")
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
-public abstract class AComputerServiceTest {
+public abstract class AComputerTest {
 
 	@Autowired
 	protected ComputerRepository computerRepository;

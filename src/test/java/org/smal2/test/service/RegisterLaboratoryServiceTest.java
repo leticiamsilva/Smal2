@@ -4,8 +4,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.smal2.domain.entity.Laboratory;
+import org.smal2.test.testutils.ALaboratoryTest;
 
-public class RegisterLaboratoryServiceTest extends ALaboratoryServiceTest {
+public class RegisterLaboratoryServiceTest extends ALaboratoryTest {
 
 	@Before
 	public void before() {

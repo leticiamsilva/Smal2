@@ -4,12 +4,12 @@ import org.smal2.domain.entity.Laboratory;
 import org.smal2.presentation.presenter.RegisterLaboratoryPresenter;
 import org.smal2.presentation.view.IRegisterLaboratoryView;
 import org.smal2.test.presenter.mock.RegisterLaboratoryViewMock;
-import org.smal2.test.service.ALaboratoryServiceTest;
+import org.smal2.test.testutils.ALaboratoryTest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class RegisterLaboratoryPresenterTest extends ALaboratoryServiceTest {
+public class RegisterLaboratoryPresenterTest extends ALaboratoryTest {
 
 	@Before
 	public void before() {
