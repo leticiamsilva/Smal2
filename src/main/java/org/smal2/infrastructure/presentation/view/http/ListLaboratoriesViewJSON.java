@@ -17,28 +17,32 @@ public class ListLaboratoriesViewJSON implements IListLaboratoriesView {
 	@Autowired
 	private LaboratoryService laboratoryService;
 
-	private ListLaboratoriesResponse laboratories;
-
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ResponseBody
 	public JSONResponse listLaboratories() {
 		try {
 			new ListLaboratoriesPresenter(this, laboratoryService);
 
-			return new JSONResponse(true, laboratories);
+			return new JSONResponse(true, response);
 
 		} catch (Exception ex) {
 			return new JSONResponse(false, "Error:\n" + ex.getMessage());
 		}
 	}
 
+	// IListLaboratoriesView implementation
+
+	private ListLaboratoriesResponse response;
+
 	@Override
 	public ListLaboratoriesResponse getResponse() {
-		return laboratories;
+		return response;
 	}
 
 	@Override
 	public void setResponse(ListLaboratoriesResponse laboratories) {
-		this.laboratories = laboratories;
+		this.response = laboratories;
 	}
+
+	// end IListLaboratoriesView
 }

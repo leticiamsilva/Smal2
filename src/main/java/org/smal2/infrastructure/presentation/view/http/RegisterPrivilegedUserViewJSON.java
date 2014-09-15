@@ -20,26 +20,12 @@ public class RegisterPrivilegedUserViewJSON implements
 	@Autowired
 	private UserService userService;
 
-	private RegisterPrivilegedUserRequest request;
-	private ICommand command;
-	private String response;
-
-	// TODO [CMP]
-	// o problema inicia com os casos de uso que definem várias operaçõe de
-	// sistema,
-	// ie. várias iterações entre usuário e sistema
-	// até agora funciona bem porque só existe uma operação de sistema,
-	// com somente um conjunto de entradas e um conjunto de saidas
-	// (request-response)
-	// porém os casos de uso não prevem entradas e saidas predefinidas para o
-	// caso de uso inteiro
-	// mas por cada operação de sistema
-
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	@ResponseBody
 	public JSONResponse registerPrivilegedUser(
 			@RequestBody RegisterPrivilegedUserRequest request) {
 		try {
+			this.request = request;
 			new RegisterPrivilegedUserPresenter(this, userService);
 			command.execute();
 
@@ -49,6 +35,12 @@ public class RegisterPrivilegedUserViewJSON implements
 			return new JSONResponse(false, "Error:\n" + ex.getMessage());
 		}
 	}
+
+	// IRegisterPrivilegedUserView implementation
+
+	private RegisterPrivilegedUserRequest request;
+	private ICommand command;
+	private String response;
 
 	@Override
 	public RegisterPrivilegedUserRequest getRequest() {
@@ -79,4 +71,6 @@ public class RegisterPrivilegedUserViewJSON implements
 	public void setResponse(String response) {
 		this.response = response;
 	}
+
+	// end IRegisterPrivilegedUserView
 }

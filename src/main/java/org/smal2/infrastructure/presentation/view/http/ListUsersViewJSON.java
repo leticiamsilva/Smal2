@@ -17,28 +17,32 @@ public class ListUsersViewJSON implements IListUsersView {
 	@Autowired
 	private UserService userService;
 
-	private ListUsersResponse users;
-
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ResponseBody
 	public JSONResponse listUsers() {
 		try {
 			new ListUsersPresenter(this, userService);
 
-			return new JSONResponse(true, users);
+			return new JSONResponse(true, response);
 
 		} catch (Exception ex) {
 			return new JSONResponse(false, "Error:\n" + ex.getMessage());
 		}
 	}
 
+	// IListUsersView implementation
+
+	private ListUsersResponse response;
+
 	@Override
 	public ListUsersResponse getResponse() {
-		return users;
+		return response;
 	}
 
 	@Override
 	public void setResponse(ListUsersResponse users) {
-		this.users = users;
+		this.response = users;
 	}
+
+	// end IListUsersView
 }
