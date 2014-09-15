@@ -16,7 +16,42 @@ public class UserService {
 	@Autowired
 	private UserRepository repository;
 
-	public ListUsersResponse listUser() {
+	public void registerPrivilegedUser(RegisterPrivilegedUserRequest request) {
+
+		if (request == null) {
+			throw new IllegalArgumentException("Undefined request.");
+		}
+
+		if (request.getRegistration() == null
+				|| request.getRegistration() == "") {
+			throw new IllegalArgumentException("Undefined user registration.");
+		}
+
+		if (repository.existWithRegistration(request.getRegistration())) {
+			throw new IllegalArgumentException(
+					"User registration already exist.");
+		}
+
+		// TODO [CMP] thinking about to use one entity class only
+		switch (request.getType()) {
+		case ADMINISTRATOR:
+			repository.insert(new Administrator(request.getRegistration(),
+					request.getName(), request.getBirthDate(), request
+							.getPassword()));
+			break;
+
+		case TECHNICHAN:
+			repository.insert(new Technician(request.getRegistration(), request
+					.getName(), request.getBirthDate(), request.getPassword()));
+			break;
+
+		default:
+			throw new IllegalArgumentException(
+					"User type must be administrator or technichan.");
+		}
+	}
+
+	public ListUsersResponse listUsers() {
 
 		List<ListUsersResponseItem> users = new ArrayList<ListUsersResponseItem>();
 		ListUsersResponseItem item;
@@ -38,39 +73,5 @@ public class UserService {
 		}
 
 		return new ListUsersResponse(users);
-	}
-
-	public void registerPrivilegedUser(RegisterPrivilegedUserRequest request) {
-
-		if (request == null) {
-			throw new IllegalArgumentException("Undefined request.");
-		}
-
-		if (request.getRegistration() == null || request.getRegistration() == "") {
-			throw new IllegalArgumentException("Undefined user registration.");
-		}
-		
-		if(repository.existWithRegistration(request.getRegistration()))
-		{
-			throw new IllegalArgumentException("User registration already exist.");
-		}
-
-		// TODO [CMP] thinking about to use one entity class only
-		switch (request.getType()) {
-		case ADMINISTRATOR:
-			repository.insert(new Administrator(request.getRegistration(),
-					request.getName(), request.getBirthDate(), request
-							.getPassword()));
-			break;
-
-		case TECHNICHAN:
-			repository.insert(new Technician(request.getRegistration(), request
-					.getName(), request.getBirthDate(), request.getPassword()));
-			break;
-
-		default:
-			throw new IllegalArgumentException(
-					"User type must be administrator or technichan.");
-		}
 	}
 }

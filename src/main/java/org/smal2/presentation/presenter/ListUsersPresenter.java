@@ -7,6 +7,6 @@ public class ListUsersPresenter {
 
 	public ListUsersPresenter(IListUsersView view, UserService userService) {
 
-		view.setResponse(userService.listUser());
+		view.setResponse(userService.listUsers());
 	}
 }

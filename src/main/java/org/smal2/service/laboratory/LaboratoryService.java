@@ -14,6 +14,19 @@ public class LaboratoryService {
 	@Autowired
 	private LaboratoryRepository repository;
 
+	public void registerLaboratory(String name) {
+
+		if (name == null || name == "") {
+			throw new IllegalArgumentException("Undefined laboratory name.");
+		}
+
+		if (repository.existWithName(name)) {
+			throw new IllegalArgumentException("Laboratory name already exist.");
+		}
+
+		repository.insert(new Laboratory(name));
+	}
+
 	public ListLaboratoriesResponse listLaboratories() {
 
 		List<ListLaboratoriesResponseItem> laboratories = new ArrayList<ListLaboratoriesResponseItem>();
@@ -25,19 +38,5 @@ public class LaboratoryService {
 		}
 
 		return new ListLaboratoriesResponse(laboratories);
-	}
-
-	public void registerLaboratory(String name) {
-
-		if (name == null || name == "") {
-			throw new IllegalArgumentException("Undefined laboratory name.");
-		}
-		
-		if(repository.existWithName(name))
-		{
-			throw new IllegalArgumentException("Laboratory name already exist.");
-		}
-		
-		repository.insert(new Laboratory(name));
 	}
 }

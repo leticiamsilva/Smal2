@@ -1,11 +1,16 @@
 package org.smal2.service.computer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.smal2.domain.entity.Computer;
 import org.smal2.domain.entity.Laboratory;
 import org.smal2.domain.entity.Position;
 import org.smal2.domain.repository.ComputerRepository;
 import org.smal2.domain.repository.LaboratoryRepository;
 import org.smal2.domain.repository.PositionRepository;
+import org.smal2.service.computer.ListComputersResponse;
+import org.smal2.service.computer.ListComputersResponseItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -70,5 +75,30 @@ public class ComputerService {
 		}
 
 		computerRepository.insert(new Computer(request.getAssetCode(), pos));
+	}
+
+	public ListComputersResponse listComputers(String laboratoryName) {
+
+		if (laboratoryName == null || laboratoryName == "") {
+			throw new IllegalArgumentException("Undefined request.");
+		}
+
+		if (!laboratoryRepository.existWithName(laboratoryName)) {
+			throw new IllegalArgumentException("Laboratory must exist.");
+		}
+
+		List<ListComputersResponseItem> computers = new ArrayList<ListComputersResponseItem>();
+		ListComputersResponseItem item;
+
+		for (Computer computer : computerRepository.listAll()) {
+			if (computer.getPosition().getLaboratory().getName() == laboratoryName) {
+				item = new ListComputersResponseItem(computer.getAssetCode(),
+						computer.getPosition().getRowNum(), computer
+								.getPosition().getColumnNum());
+				computers.add(item);
+			}
+		}
+
+		return new ListComputersResponse(computers);
 	}
 }

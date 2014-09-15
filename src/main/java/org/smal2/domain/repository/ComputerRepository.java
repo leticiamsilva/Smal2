@@ -44,5 +44,4 @@ public class ComputerRepository {
 	public boolean existWithPosition(long id) {
 		return dao.existWithPosition(id);
 	}
-
 }
