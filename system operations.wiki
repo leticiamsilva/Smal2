@@ -16,15 +16,18 @@
 
 == session verification ==
 
-all service are without authentication
-a layer should be added between view (json) and services to handle authentication
+* all service are without authentication
+* a layer should be added between view (json) and services to handle authentication
 
 
 
 == Error result ==
 
-the presenters are hiding exceptions, so the json response will be ever successful!
-
+* the presenters are hiding exceptions, so the json response will be ever successful!
+* http://localhost:8080/smal2/rest/user/register
+* http://localhost:8080/smal2/rest/laboratory/register
+* http://localhost:8080/smal2/rest/computer/list
+* http://localhost:8080/smal2/rest/computer/register
 
 
 = System operations =
