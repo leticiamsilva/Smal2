@@ -21,7 +21,6 @@ public class SubTrouble {
 	@ManyToOne(optional = false)
 	private Trouble trouble;
 
-	@SuppressWarnings("unused")
 	private SubTrouble() {
 	}
 

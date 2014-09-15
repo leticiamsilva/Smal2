@@ -17,11 +17,10 @@ public class Computer {
 
 	@Column(nullable = false)
 	private String assetCode;
-	
+
 	@OneToOne(optional = false)
 	private Position position;
 
-	@SuppressWarnings("unused")
 	private Computer() {
 	}
 
@@ -50,17 +49,5 @@ public class Computer {
 
 	public Position getPosition() {
 		return position;
-	}
-
-	// from
-	// http://en.wikibooks.org/wiki/Java_Persistence/OneToMany#Getters_and_Setters
-	public void setPosition(Position position) {
-		if (this.position != position) {
-			this.position = position;
-		}
-
-		if (position.getComputer() != this) {
-			position.setMaquina(this);
-		}
 	}
 }
