@@ -25,6 +25,7 @@ public class ListComputersViewJSON implements IListComputersView {
 		try {
 			this.request = request;
 			new ListComputersPresenter(this, computerService);
+			command.execute();
 
 			return new JSONResponse(true, response);
 

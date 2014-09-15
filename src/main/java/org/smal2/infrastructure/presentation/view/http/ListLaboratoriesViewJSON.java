@@ -1,5 +1,6 @@
 package org.smal2.infrastructure.presentation.view.http;
 
+import org.smal2.common.ICommand;
 import org.smal2.infrastructure.presentation.view.http.util.JSONResponse;
 import org.smal2.presentation.presenter.ListLaboratoriesPresenter;
 import org.smal2.presentation.view.IListLaboratoriesView;
@@ -22,6 +23,7 @@ public class ListLaboratoriesViewJSON implements IListLaboratoriesView {
 	public JSONResponse listLaboratories() {
 		try {
 			new ListLaboratoriesPresenter(this, laboratoryService);
+			command.execute();
 
 			return new JSONResponse(true, response);
 
@@ -32,7 +34,18 @@ public class ListLaboratoriesViewJSON implements IListLaboratoriesView {
 
 	// IListLaboratoriesView implementation
 
+	private ICommand command;
 	private ListLaboratoriesResponse response;
+
+	@Override
+	public ICommand getCommand() {
+		return command;
+	}
+
+	@Override
+	public void setCommand(ICommand command) {
+		this.command = command;
+	}
 
 	@Override
 	public ListLaboratoriesResponse getResponse() {

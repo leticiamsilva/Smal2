@@ -27,6 +27,7 @@ public class ListUsersPresenterTest extends AUserTest {
 
 		// Act
 		new ListUsersPresenter(view, userService);
+		view.getCommand().execute();
 
 		// Assert
 		Assert.assertEquals(userRepository.listAll().size(), view.getResponse()

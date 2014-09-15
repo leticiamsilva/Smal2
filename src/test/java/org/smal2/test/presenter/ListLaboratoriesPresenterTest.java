@@ -25,6 +25,7 @@ public class ListLaboratoriesPresenterTest extends ALaboratoryTest {
 
 		// Act
 		new ListLaboratoriesPresenter(view, laboratoryService);
+		view.getCommand().execute();
 
 		// Assert
 		Assert.assertEquals(laboratoryRepository.listAll().size(), view

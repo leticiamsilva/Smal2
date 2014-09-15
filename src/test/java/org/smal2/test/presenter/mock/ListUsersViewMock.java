@@ -1,27 +1,31 @@
 package org.smal2.test.presenter.mock;
 
-import java.util.ArrayList;
-
+import org.smal2.common.ICommand;
 import org.smal2.presentation.view.IListUsersView;
 import org.smal2.service.user.ListUsersResponse;
-import org.smal2.service.user.ListUsersResponseItem;
 
 public class ListUsersViewMock implements IListUsersView {
 
-	private ListUsersResponse users;
+	private ICommand command;
+	private ListUsersResponse response;
 
-	public ListUsersViewMock() {
-		users = new ListUsersResponse(new ArrayList<ListUsersResponseItem>());
+	@Override
+	public ICommand getCommand() {
+		return command;
+	}
+
+	@Override
+	public void setCommand(ICommand command) {
+		this.command = command;
 	}
 
 	@Override
 	public ListUsersResponse getResponse() {
-		return users;
+		return response;
 	}
 
 	@Override
-	public void setResponse(ListUsersResponse users) {
-		this.users.clear();
-		this.users.addAll(users);
+	public void setResponse(ListUsersResponse response) {
+		this.response = response;
 	}
 }

@@ -7,13 +7,13 @@ import org.smal2.service.user.UserService;
 public class RegisterPrivilegedUserPresenter {
 
 	private IRegisterPrivilegedUserView view;
-	private UserService userService;
+	private UserService service;
 
 	public RegisterPrivilegedUserPresenter(IRegisterPrivilegedUserView view,
 			UserService userService) {
 
 		this.view = view;
-		this.userService = userService;
+		this.service = userService;
 
 		this.view.setCommand(new ICommand() {
 			public void execute() {
@@ -24,8 +24,7 @@ public class RegisterPrivilegedUserPresenter {
 
 	private void doRegisterPrivilegedUser() {
 		try {
-			view.setResponse(userService.registerPrivilegedUser(view
-					.getRequest()));
+			view.setResponse(service.registerPrivilegedUser(view.getRequest()));
 		} catch (Exception ex) {
 			view.setResponse("User register error:\n" + ex.getMessage());
 		}

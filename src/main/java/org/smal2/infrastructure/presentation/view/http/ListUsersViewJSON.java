@@ -1,5 +1,6 @@
 package org.smal2.infrastructure.presentation.view.http;
 
+import org.smal2.common.ICommand;
 import org.smal2.infrastructure.presentation.view.http.util.JSONResponse;
 import org.smal2.presentation.presenter.ListUsersPresenter;
 import org.smal2.presentation.view.IListUsersView;
@@ -22,6 +23,7 @@ public class ListUsersViewJSON implements IListUsersView {
 	public JSONResponse listUsers() {
 		try {
 			new ListUsersPresenter(this, userService);
+			command.execute();
 
 			return new JSONResponse(true, response);
 
@@ -32,7 +34,18 @@ public class ListUsersViewJSON implements IListUsersView {
 
 	// IListUsersView implementation
 
+	private ICommand command;
 	private ListUsersResponse response;
+
+	@Override
+	public ICommand getCommand() {
+		return command;
+	}
+
+	@Override
+	public void setCommand(ICommand command) {
+		this.command = command;
+	}
 
 	@Override
 	public ListUsersResponse getResponse() {
