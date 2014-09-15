@@ -44,6 +44,8 @@ public class RegisterPrivilegedUserPresenterTest extends AUserTest {
 		Assert.assertEquals(birthDate, userRepository.getByRegistration("0004")
 				.getBirthDate());
 		// TODO [CMP] gettype
+		Assert.assertTrue(view.getResponse().equals(
+				"User registred successfully."));
 	}
 
 	@Test

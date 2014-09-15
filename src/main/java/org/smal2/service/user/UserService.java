@@ -16,7 +16,7 @@ public class UserService {
 	@Autowired
 	private UserRepository repository;
 
-	public void registerPrivilegedUser(RegisterPrivilegedUserRequest request) {
+	public String registerPrivilegedUser(RegisterPrivilegedUserRequest request) {
 
 		if (request == null) {
 			throw new IllegalArgumentException("Undefined request.");
@@ -49,6 +49,8 @@ public class UserService {
 			throw new IllegalArgumentException(
 					"User type must be administrator or technichan.");
 		}
+
+		return "User registred successfully.";
 	}
 
 	public ListUsersResponse listUsers() {

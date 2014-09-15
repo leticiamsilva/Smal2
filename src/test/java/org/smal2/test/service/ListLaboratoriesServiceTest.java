@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ListLaboratoriesTest extends ALaboratoryTest {
+public class ListLaboratoriesServiceTest extends ALaboratoryTest {
 
 	@Before
 	public void before() {

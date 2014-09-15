@@ -11,7 +11,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class RegisterPrivilegedUserPresenterTest extends AUserTest {
+public class RegisterPrivilegedUserServiceTest extends AUserTest {
 
 	@Before
 	public void before() {

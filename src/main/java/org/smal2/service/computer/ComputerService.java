@@ -26,7 +26,7 @@ public class ComputerService {
 	@Autowired
 	PositionRepository positionRepository;
 
-	public void registerComputer(RegisterComputerRequest request) {
+	public String registerComputer(RegisterComputerRequest request) {
 
 		if (request == null) {
 			throw new IllegalArgumentException("Undefined request.");
@@ -75,6 +75,8 @@ public class ComputerService {
 		}
 
 		computerRepository.insert(new Computer(request.getAssetCode(), pos));
+
+		return "Computer registred successfully.";
 	}
 
 	public ListComputersResponse listComputers(String laboratoryName) {

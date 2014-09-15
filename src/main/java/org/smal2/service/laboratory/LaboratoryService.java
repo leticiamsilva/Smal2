@@ -14,7 +14,7 @@ public class LaboratoryService {
 	@Autowired
 	private LaboratoryRepository repository;
 
-	public void registerLaboratory(String name) {
+	public String registerLaboratory(String name) {
 
 		if (name == null || name == "") {
 			throw new IllegalArgumentException("Undefined laboratory name.");
@@ -25,6 +25,8 @@ public class LaboratoryService {
 		}
 
 		repository.insert(new Laboratory(name));
+
+		return "Laboratory registred successfully.";
 	}
 
 	public ListLaboratoriesResponse listLaboratories() {

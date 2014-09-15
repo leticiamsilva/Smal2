@@ -23,8 +23,7 @@ public class RegisterLaboratoryPresenter {
 
 	private void doRegisterLaboratory() {
 		try {
-			service.registerLaboratory(view.getRequest());
-			view.setResponse("Laboratory registred successfully.");
+			view.setResponse(service.registerLaboratory(view.getRequest()));
 		} catch (Exception ex) {
 			view.setResponse("Laboratory register error:\n" + ex.getMessage());
 		}

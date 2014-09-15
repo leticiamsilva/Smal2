@@ -24,8 +24,8 @@ public class RegisterPrivilegedUserPresenter {
 
 	private void doRegisterPrivilegedUser() {
 		try {
-			userService.registerPrivilegedUser(view.getRequest());
-			view.setResponse("User registred successfully.");
+			view.setResponse(userService.registerPrivilegedUser(view
+					.getRequest()));
 		} catch (Exception ex) {
 			view.setResponse("User register error:\n" + ex.getMessage());
 		}

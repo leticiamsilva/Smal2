@@ -12,7 +12,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ListUsersTest extends AUserTest {
+public class ListUsersServiceTest extends AUserTest {
 
 	private Date birthDate1 = new GregorianCalendar(2001, 01, 01).getTime();
 	private Date birthDate2 = new GregorianCalendar(2001, 01, 02).getTime();
