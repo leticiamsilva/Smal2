@@ -28,7 +28,7 @@ public class UserDAOJPA extends GenericDAOJPA<User> implements IUserDAO {
 	public User getByRegistration(String registration) {
 
 		StringBuilder query = new StringBuilder();
-		query.append("SELECT e FROM user e WHERE e.registration = ?");
+		query.append("SELECT e FROM User e WHERE e.registration = ?");
 		Object array[] = { registration };
 
 		return super.getEntity(query.toString(), array);
@@ -38,7 +38,7 @@ public class UserDAOJPA extends GenericDAOJPA<User> implements IUserDAO {
 	public boolean existWithRegistration(String registration) {
 
 		StringBuilder query = new StringBuilder();
-		query.append("SELECT e FROM user e WHERE e.registration = ?");
+		query.append("SELECT e FROM User e WHERE e.registration = ?");
 		Object array[] = { registration };
 
 		return super.hasEntity(query.toString(), array);

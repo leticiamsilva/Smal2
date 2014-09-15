@@ -28,7 +28,7 @@ public class LaboratoryDAOJPA extends GenericDAOJPA<Laboratory> implements
 	@Override
 	public Laboratory getByName(String name) {
 		StringBuilder query = new StringBuilder();
-		query.append("SELECT e FROM laboratory e WHERE e.name = ?");
+		query.append("SELECT e FROM Laboratory e WHERE e.name = ?");
 		Object array[] = { name };
 
 		return super.getEntity(query.toString(), array);
@@ -37,7 +37,7 @@ public class LaboratoryDAOJPA extends GenericDAOJPA<Laboratory> implements
 	@Override
 	public boolean existWithName(String name) {
 		StringBuilder query = new StringBuilder();
-		query.append("SELECT e FROM laboratory e WHERE e.name = ?");
+		query.append("SELECT e FROM Laboratory e WHERE e.name = ?");
 		Object array[] = { name };
 
 		return super.hasEntity(query.toString(), array);
