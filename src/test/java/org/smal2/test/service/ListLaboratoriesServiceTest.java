@@ -3,7 +3,7 @@ package org.smal2.test.service;
 import org.smal2.domain.entity.Laboratory;
 import org.smal2.service.laboratory.ListLaboratoriesResponse;
 import org.smal2.service.laboratory.ListLaboratoriesResponseItem;
-import org.smal2.test.testutils.ALaboratoryTest;
+import org.smal2.test.testutil.ALaboratoryTest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

@@ -7,7 +7,7 @@ import org.smal2.domain.entity.Administrator;
 import org.smal2.domain.entity.User;
 import org.smal2.service.user.ListUsersResponse;
 import org.smal2.service.user.ListUsersResponseItem;
-import org.smal2.test.testutils.AUserTest;
+import org.smal2.test.testutil.AUserTest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

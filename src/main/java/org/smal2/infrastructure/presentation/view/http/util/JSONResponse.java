@@ -1,4 +1,4 @@
-package org.smal2.infrastructure.presentation.view.http;
+package org.smal2.infrastructure.presentation.view.http.util;
 
 public class JSONResponse {
 

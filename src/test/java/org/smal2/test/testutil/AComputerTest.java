@@ -1,4 +1,4 @@
-package org.smal2.test.testutils;
+package org.smal2.test.testutil;
 
 import org.smal2.domain.repository.ComputerRepository;
 import org.smal2.domain.repository.LaboratoryRepository;

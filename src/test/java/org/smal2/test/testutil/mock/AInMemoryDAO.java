@@ -1,4 +1,4 @@
-package org.smal2.test.testutils.mock;
+package org.smal2.test.testutil.mock;
 
 import java.util.ArrayList;
 import java.util.Hashtable;

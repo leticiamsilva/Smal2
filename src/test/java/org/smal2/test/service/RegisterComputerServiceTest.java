@@ -7,7 +7,7 @@ import org.smal2.domain.entity.Computer;
 import org.smal2.domain.entity.Laboratory;
 import org.smal2.domain.entity.Position;
 import org.smal2.service.computer.RegisterComputerRequest;
-import org.smal2.test.testutils.AComputerTest;
+import org.smal2.test.testutil.AComputerTest;
 
 public class RegisterComputerServiceTest extends AComputerTest {
 

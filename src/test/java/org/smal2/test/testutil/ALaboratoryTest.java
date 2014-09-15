@@ -1,7 +1,7 @@
-package org.smal2.test.testutils;
+package org.smal2.test.testutil;
 
-import org.smal2.domain.repository.UserRepository;
-import org.smal2.service.user.UserService;
+import org.smal2.domain.repository.LaboratoryRepository;
+import org.smal2.service.laboratory.LaboratoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
@@ -14,17 +14,17 @@ import org.junit.runner.RunWith;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:testContext.xml")
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
-public abstract class AUserTest {
+public abstract class ALaboratoryTest {
 
 	@Autowired
-	protected UserRepository userRepository;
+	protected LaboratoryRepository laboratoryRepository;
 
 	@Autowired
-	protected UserService userService;
+	protected LaboratoryService laboratoryService;
 
 	@Test
 	public void mustAutowireTestDependencies() {
-		Assert.assertNotNull(userRepository);
-		Assert.assertNotNull(userService);
+		Assert.assertNotNull(laboratoryRepository);
+		Assert.assertNotNull(laboratoryService);
 	}
 }

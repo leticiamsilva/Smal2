@@ -10,7 +10,7 @@ import org.smal2.presentation.presenter.RegisterComputerPresenter;
 import org.smal2.presentation.view.IRegisterComputerView;
 import org.smal2.service.computer.RegisterComputerRequest;
 import org.smal2.test.presenter.mock.RegisterComputerViewMock;
-import org.smal2.test.testutils.AComputerTest;
+import org.smal2.test.testutil.AComputerTest;
 
 public class RegisterComputerPresenterTest extends AComputerTest {
 

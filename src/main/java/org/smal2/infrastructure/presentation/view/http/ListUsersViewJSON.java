@@ -1,6 +1,6 @@
 package org.smal2.infrastructure.presentation.view.http;
 
-import org.smal2.infrastructure.presentation.view.http.JSONResponse;
+import org.smal2.infrastructure.presentation.view.http.util.JSONResponse;
 import org.smal2.presentation.presenter.ListUsersPresenter;
 import org.smal2.presentation.view.IListUsersView;
 import org.smal2.service.user.ListUsersResponse;

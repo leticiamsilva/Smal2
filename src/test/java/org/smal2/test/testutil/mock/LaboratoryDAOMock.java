@@ -1,4 +1,4 @@
-package org.smal2.test.testutils.mock;
+package org.smal2.test.testutil.mock;
 
 import org.smal2.domain.entity.Laboratory;
 import org.smal2.infrastructure.persistence.jpa.DAOException;

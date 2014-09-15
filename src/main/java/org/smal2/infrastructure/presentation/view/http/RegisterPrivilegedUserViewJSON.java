@@ -1,7 +1,7 @@
 package org.smal2.infrastructure.presentation.view.http;
 
 import org.smal2.common.ICommand;
-import org.smal2.infrastructure.presentation.view.http.JSONResponse;
+import org.smal2.infrastructure.presentation.view.http.util.JSONResponse;
 import org.smal2.presentation.presenter.RegisterPrivilegedUserPresenter;
 import org.smal2.presentation.view.IRegisterPrivilegedUserView;
 import org.smal2.service.user.RegisterPrivilegedUserRequest;
