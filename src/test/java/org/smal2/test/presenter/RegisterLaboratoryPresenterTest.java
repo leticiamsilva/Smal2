@@ -1,13 +1,22 @@
 package org.smal2.test.presenter;
 
+import org.smal2.domain.entity.Laboratory;
 import org.smal2.presentation.presenter.RegisterLaboratoryPresenter;
 import org.smal2.presentation.view.IRegisterLaboratoryView;
 import org.smal2.test.presenter.mock.RegisterLaboratoryViewMock;
 import org.smal2.test.service.ALaboratoryServiceTest;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class RegisterLaboratoryPresenterTest extends ALaboratoryServiceTest {
+
+	@Before
+	public void before() {
+		laboratoryRepository.insert(new Laboratory("lab01"));
+		laboratoryRepository.insert(new Laboratory("lab02"));
+		laboratoryRepository.insert(new Laboratory("lab03"));
+	}
 
 	@Test
 	public void registerLaboratoryMustSaveLaboratory() {

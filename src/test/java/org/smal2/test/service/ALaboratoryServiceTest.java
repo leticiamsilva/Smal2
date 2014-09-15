@@ -1,6 +1,5 @@
 package org.smal2.test.service;
 
-import org.smal2.domain.entity.Laboratory;
 import org.smal2.domain.repository.LaboratoryRepository;
 import org.smal2.service.laboratory.LaboratoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -23,13 +21,6 @@ public abstract class ALaboratoryServiceTest {
 
 	@Autowired
 	protected LaboratoryService laboratoryService;
-
-	@Before
-	public void before() {
-		laboratoryRepository.insert(new Laboratory("lab01"));
-		laboratoryRepository.insert(new Laboratory("lab02"));
-		laboratoryRepository.insert(new Laboratory("lab03"));
-	}
 
 	@Test
 	public void mustAutowireTestDependencies() {

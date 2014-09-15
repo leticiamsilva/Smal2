@@ -8,9 +8,17 @@ import org.smal2.service.user.RegisterPrivilegedUserRequest;
 import org.smal2.service.user.UserType;
 import org.smal2.test.service.AUserServiceTest;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class RegisterPrivilegedUserPresenterTest extends AUserServiceTest {
+
+	@Before
+	public void before() {
+		userRepository.insert(new User("0001", "Jhon", new Date()));
+		userRepository.insert(new User("0002", "Jack", new Date()));
+		userRepository.insert(new User("0003", "Joe", new Date()));
+	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerNullUserMustThrowException() {

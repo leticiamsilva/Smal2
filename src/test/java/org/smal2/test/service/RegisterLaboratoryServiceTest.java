@@ -1,9 +1,18 @@
 package org.smal2.test.service;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.smal2.domain.entity.Laboratory;
 
 public class RegisterLaboratoryServiceTest extends ALaboratoryServiceTest {
+
+	@Before
+	public void before() {
+		laboratoryRepository.insert(new Laboratory("lab01"));
+		laboratoryRepository.insert(new Laboratory("lab02"));
+		laboratoryRepository.insert(new Laboratory("lab03"));
+	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerNullLaboratoryNameMustThrowException() {
