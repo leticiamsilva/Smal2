@@ -21,11 +21,19 @@ a layer should be added between view (json) and services to handle authenticatio
 
 
 
+== Error result ==
+
+the presenters are hiding exceptions, so the json response will be ever successful!
+
+
+
 = System operations =
 
 
 
 == Register privileged user ==
+
+* http://localhost:8080/smal2/rest/user/register
 
 pre-requisites: administration session, user type == administration || user type == technichan, regsitration must be not null, not empty, not already exist
 input: user { registration, password, name, birth date, user type }
@@ -36,6 +44,8 @@ post-requisites: user must be registred
 
 == List users ==
 
+* http://localhost:8080/smal2/rest/user/list
+
 pre-requisites: administration session
 input: -
 output: set of users { reg, name, birth date }
@@ -44,6 +54,8 @@ post-requisites: the set must be registred in the system
 
 
 == Register laboratory ==
+
+* http://localhost:8080/smal2/rest/laboratory/register
 
 pre-requisites: administration session || technichan session, name must be not null, not empty, not already exist
 input: laboratory { name }
@@ -54,6 +66,8 @@ post-requisites: laboratory must be registred
 
 == List laboratories ==
 
+* http://localhost:8080/smal2/rest/laboratory/list
+
 pre-requisites: user session
 input: -
 output: set of laboratories { name, num of computers }
@@ -63,6 +77,8 @@ post-requisites: the set must be registred in the system
 
 == Register computer ==
 
+* http://localhost:8080/smal2/rest/computer/register
+
 pre-requisites: administration session || technichan session, asset code must be not null, not empty, not already exist, laboratory name must exist, position must be free, row and column numbers must be greather then 0, row number must be minor or equal 6
 input: computer { asset code, position { laboratory { name }, row number, column number } }
 output: result message
@@ -71,6 +87,8 @@ post-requisites: computer must be registred, position must be full
 
 
 == List computers ==
+
+* http://localhost:8080/smal2/rest/computer/list
 
 pre-requisites: user session, laboratory name must be not null, not empty, not already exist
 input: laboratory { name }

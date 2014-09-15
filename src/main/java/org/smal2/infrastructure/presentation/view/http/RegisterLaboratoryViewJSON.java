@@ -1,0 +1,73 @@
+package org.smal2.infrastructure.presentation.view.http;
+
+import org.smal2.common.ICommand;
+import org.smal2.infrastructure.presentation.view.http.util.JSONResponse;
+import org.smal2.presentation.presenter.RegisterLaboratoryPresenter;
+import org.smal2.presentation.view.IRegisterLaboratoryView;
+import org.smal2.service.laboratory.LaboratoryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Component
+@RequestMapping("/laboratory")
+public class RegisterLaboratoryViewJSON implements IRegisterLaboratoryView {
+	@Autowired
+	private LaboratoryService laboratoryService;
+
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	@ResponseBody
+	public JSONResponse registerLaboratory(@RequestBody String request) {
+		try {
+			this.request = request;
+			new RegisterLaboratoryPresenter(this, laboratoryService);
+			command.execute();
+
+			return new JSONResponse(true, response);
+
+		} catch (Exception ex) {
+			return new JSONResponse(false, "Error:\n" + ex.getMessage());
+		}
+	}
+
+	// IRegisterLaboratoryView implementation
+
+	private String request;
+	private ICommand command;
+	private String response;
+
+	@Override
+	public String getRequest() {
+		return request;
+	}
+
+	@Override
+	public void setRequest(String request) {
+		this.request = request;
+	}
+
+	@Override
+	public ICommand getCommand() {
+		return command;
+	}
+
+	@Override
+	public void setCommand(ICommand command) {
+		this.command = command;
+	}
+
+	@Override
+	public String getResponse() {
+		return response;
+	}
+
+	@Override
+	public void setResponse(String response) {
+		this.response = response;
+	}
+
+	// end IRegisterLaboratoryView
+}
