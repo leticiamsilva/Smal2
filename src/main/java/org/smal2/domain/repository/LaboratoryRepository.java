@@ -37,7 +37,7 @@ public class LaboratoryRepository {
 		return dao.getByName(name);
 	}
 
-	public boolean existName(String name) {
-		return dao.existName(name);
+	public boolean existWithName(String name) {
+		return dao.existWithName(name);
 	}
 }

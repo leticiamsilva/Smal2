@@ -17,5 +17,5 @@ public interface IUserDAO {
 
 	User getByRegistration(String registration);
 
-	boolean existRegistration(String registration);
+	boolean existWithRegistration(String registration);
 }

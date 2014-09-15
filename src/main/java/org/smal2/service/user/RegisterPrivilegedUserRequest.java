@@ -12,7 +12,6 @@ public class RegisterPrivilegedUserRequest {
 
 	public RegisterPrivilegedUserRequest(String registration, String password,
 			String name, Date birthDate, UserType type) {
-		super();
 		this.registration = registration;
 		this.password = password;
 		this.name = name;

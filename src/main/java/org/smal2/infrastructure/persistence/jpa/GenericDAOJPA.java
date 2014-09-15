@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 public class GenericDAOJPA<T> {
@@ -89,6 +90,17 @@ public class GenericDAOJPA<T> {
 		T entity = (T) query.getSingleResult();
 
 		return entity;
+	}
+
+	protected boolean hasEntity(String queryString,
+			final Object... positionalParams) {
+		try {
+			getEntity(queryString, positionalParams);
+
+			return true;
+		} catch (NoResultException ex) {
+			return false;
+		}
 	}
 
 	public void update(T entity) {

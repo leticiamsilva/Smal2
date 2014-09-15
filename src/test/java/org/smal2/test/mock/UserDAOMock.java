@@ -33,7 +33,7 @@ public class UserDAOMock extends AInMemoryDAO<User, Long> implements IUserDAO {
 	}
 
 	@Override
-	public boolean existRegistration(String registration) {
+	public boolean existWithRegistration(String registration) {
 		for (User user : readAll()) {
 			if (user.getRegistration().equals(registration)) {
 

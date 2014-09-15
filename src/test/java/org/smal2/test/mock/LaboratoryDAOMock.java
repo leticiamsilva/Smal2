@@ -34,7 +34,7 @@ public class LaboratoryDAOMock extends AInMemoryDAO<Laboratory, Long> implements
 	}
 
 	@Override
-	public boolean existName(String name) {
+	public boolean existWithName(String name) {
 		for (Laboratory laboratory : readAll()) {
 			if (laboratory.getName().equals(name)) {
 

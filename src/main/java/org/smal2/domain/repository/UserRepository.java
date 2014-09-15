@@ -37,7 +37,7 @@ public class UserRepository {
 		return dao.getByRegistration(registration);
 	}
 
-	public boolean existRegistration(String registration) {
-		return dao.existRegistration(registration);
+	public boolean existWithRegistration(String registration) {
+		return dao.existWithRegistration(registration);
 	}
 }

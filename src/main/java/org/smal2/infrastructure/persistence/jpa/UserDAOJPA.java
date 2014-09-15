@@ -35,12 +35,12 @@ public class UserDAOJPA extends GenericDAOJPA<User> implements IUserDAO {
 	}
 
 	@Override
-	public boolean existRegistration(String registration) {
+	public boolean existWithRegistration(String registration) {
 
 		StringBuilder query = new StringBuilder();
 		query.append("SELECT e FROM user e WHERE e.registration = ?");
 		Object array[] = { registration };
 
-		return super.getEntities(query.toString(), array).size() != 0;
+		return super.hasEntity(query.toString(), array);
 	}
 }

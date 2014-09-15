@@ -50,7 +50,7 @@ public class UserService {
 			throw new IllegalArgumentException("Undefined user registration.");
 		}
 		
-		if(repository.existRegistration(request.getRegistration()))
+		if(repository.existWithRegistration(request.getRegistration()))
 		{
 			throw new IllegalArgumentException("User registration already exist.");
 		}

@@ -33,7 +33,7 @@ public class LaboratoryService {
 			throw new IllegalArgumentException("Undefined laboratory name.");
 		}
 		
-		if(repository.existName(name))
+		if(repository.existWithName(name))
 		{
 			throw new IllegalArgumentException("Laboratory name already exist.");
 		}

@@ -18,5 +18,5 @@ public interface ILaboratoryDAO {
 
 	Laboratory getByName(String name);
 
-	boolean existName(String name);
+	boolean existWithName(String name);
 }
