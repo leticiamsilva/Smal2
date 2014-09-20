@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="AppModule">
+<html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,17 +29,25 @@
         <link type="text/css" rel="stylesheet" href="css/app.css"/>
         <script type="text/javascript" src="js/utils.js"></script>
         <script type="text/javascript" src="js/app.js"></script>
-        <script type="text/javascript" src="js/models.js"></script>
-        <script type="text/javascript" src="js/services.js"></script>
-        <script type="text/javascript" src="js/controllers.js"></script>
         <script type="text/javascript" src="js/filters.js"></script>
         <script type="text/javascript" src="js/directives.js"></script>
+        <script type="text/javascript" src="js/animations.js"></script>
+        <script type="text/javascript" src="js/model/user_model.js"></script>
+        <script type="text/javascript" src="js/model/laboratory_model.js"></script>
+        <script type="text/javascript" src="js/service/session_service.js"></script>
+        <script type="text/javascript" src="js/service/account_service.js"></script>
+        <script type="text/javascript" src="js/service/modal_service.js"></script>
+        <script type="text/javascript" src="js/service/laboratory_service.js"></script>
+        <script type="text/javascript" src="js/controller/account_controller.js"></script>
+        <script type="text/javascript" src="js/controller/header_controller.js"></script>
+        <script type="text/javascript" src="js/controller/footer_controller.js"></script>
+        <script type="text/javascript" src="js/controller/laboratory_controller.js"></script>
 
         <!-- Application animations -->
         <link type="text/css" rel="stylesheet" href="css/animations.css"/>
         <script type="text/javascript" src="js/animations.js"></script>
     </head>
-    <body>
+    <body data-ng-app="AppModule">
         <div class="view-container">
             <div data-ng-controller="HeaderController" data-ng-include="'partials/header.html'"></div>
             <div data-ng-view="" class="view-frame" data-autoscroll="true"></div>

@@ -1,3 +1,13 @@
+angular.module("ServicesModule", []);
+angular.module("ControllersModule", []);
+angular.module("FiltersModule", []);
+angular.module("DirectivesModule", []);
+angular.module("AnimationsModule", [
+    "ngAnimate"
+]);
+
+
+
 // application module
 var appModule = angular.module("AppModule", [
     "ngRoute",
@@ -17,7 +27,7 @@ appModule.config( [
     "$routeProvider",
     function($routeProvider)
     {
-        $routeProvider.
+        $routeProvider./*
         when("/products",
         {
             templateUrl: "partials/product_list.html",
@@ -27,21 +37,22 @@ appModule.config( [
         {
             templateUrl: "partials/product_details.html",
             controller: "ProductDetailController"
-        }).
-        when("/cart",
-        {
-            templateUrl: "partials/cart.html",
-            controller: "CartController",
-            auth_required: true
-        }).
+        }).*/
         when("/account/:action*",
         {
             templateUrl: "partials/account.html",
-            controller: "AccountController"
+            controller: "AccountController",
+            auth_required: false
+        }).
+        when("/laboratories",
+        {
+            templateUrl: "partials/laboratories.html",
+            controller: "LaboratoryController",
+            //auth_required: true //TODO [CMP] re-enable
         }).
         otherwise(
         {
-            redirectTo: "/products"
+            redirectTo: "/laboratories"
         });
     }
 ]);

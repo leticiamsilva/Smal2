@@ -1,12 +1,5 @@
-// animations module
-var animationsModule = angular.module("AnimationsModule", [
-    "ngAnimate"
-]);
-
-
-
 // .phone animation
-animationsModule.animation(".phone", function()
+angular.module("AnimationsModule").animation(".phone", function()
 {
     var animateUp = function(element, className, done)
     {
