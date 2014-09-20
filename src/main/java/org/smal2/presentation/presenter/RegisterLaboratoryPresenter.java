@@ -25,7 +25,7 @@ public class RegisterLaboratoryPresenter {
 		try {
 			view.setResponse(service.registerLaboratory(view.getRequest()));
 		} catch (Exception ex) {
-			view.setResponse("Laboratory register error:\n" + ex.getMessage());
+			view.setError("Register laboratory error:\n" + ex.getMessage());
 		}
 	}
 }

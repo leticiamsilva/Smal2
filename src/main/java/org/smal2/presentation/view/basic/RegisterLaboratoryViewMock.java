@@ -1,4 +1,4 @@
-package org.smal2.test.presenter.mock;
+package org.smal2.presentation.view.basic;
 
 import org.smal2.common.ICommand;
 import org.smal2.presentation.view.IRegisterLaboratoryView;
@@ -7,6 +7,7 @@ public class RegisterLaboratoryViewMock implements IRegisterLaboratoryView {
 
 	private String request;
 	private ICommand command;
+	private String error;
 	private String response;
 
 	@Override
@@ -27,6 +28,16 @@ public class RegisterLaboratoryViewMock implements IRegisterLaboratoryView {
 	@Override
 	public void setCommand(ICommand command) {
 		this.command = command;
+	}
+
+	@Override
+	public String getError() {
+		return error;
+	}
+
+	@Override
+	public void setError(String error) {
+		this.error = error;
 	}
 
 	@Override

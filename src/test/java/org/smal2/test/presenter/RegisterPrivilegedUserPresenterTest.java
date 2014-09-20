@@ -6,9 +6,9 @@ import java.util.GregorianCalendar;
 import org.smal2.domain.entity.User;
 import org.smal2.presentation.presenter.RegisterPrivilegedUserPresenter;
 import org.smal2.presentation.view.IRegisterPrivilegedUserView;
+import org.smal2.presentation.view.basic.RegisterPrivilegedUserViewMock;
 import org.smal2.service.user.RegisterPrivilegedUserRequest;
 import org.smal2.service.user.UserType;
-import org.smal2.test.presenter.mock.RegisterPrivilegedUserViewMock;
 import org.smal2.test.testutil.AUserTest;
 import org.junit.Assert;
 import org.junit.Before;
@@ -61,6 +61,6 @@ public class RegisterPrivilegedUserPresenterTest extends AUserTest {
 		view.getCommand().execute();
 
 		// Assert
-		Assert.assertTrue(view.getResponse().contains("User register error"));
+		Assert.assertTrue(view.getError().contains("Register user error"));
 	}
 }

@@ -8,4 +8,7 @@ public interface ISimpleActionView {
 
 	void setCommand(ICommand command);
 
+	String getError();
+
+	void setError(String errorMessage);
 }

@@ -26,7 +26,7 @@ public class RegisterPrivilegedUserPresenter {
 		try {
 			view.setResponse(service.registerPrivilegedUser(view.getRequest()));
 		} catch (Exception ex) {
-			view.setResponse("User register error:\n" + ex.getMessage());
+			view.setError("Register user error:\n" + ex.getMessage());
 		}
 	}
 }

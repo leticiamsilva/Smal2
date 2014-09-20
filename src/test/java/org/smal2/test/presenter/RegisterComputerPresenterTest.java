@@ -8,8 +8,8 @@ import org.smal2.domain.entity.Laboratory;
 import org.smal2.domain.entity.Position;
 import org.smal2.presentation.presenter.RegisterComputerPresenter;
 import org.smal2.presentation.view.IRegisterComputerView;
+import org.smal2.presentation.view.basic.RegisterComputerViewMock;
 import org.smal2.service.computer.RegisterComputerRequest;
-import org.smal2.test.presenter.mock.RegisterComputerViewMock;
 import org.smal2.test.testutil.AComputerTest;
 
 public class RegisterComputerPresenterTest extends AComputerTest {
@@ -65,7 +65,6 @@ public class RegisterComputerPresenterTest extends AComputerTest {
 
 		// Assert
 		Assert.assertEquals(1, computerRepository.listAll().size());
-		Assert.assertTrue(view.getResponse()
-				.contains("Computer register error"));
+		Assert.assertTrue(view.getError().contains("Register computer error"));
 	}
 }

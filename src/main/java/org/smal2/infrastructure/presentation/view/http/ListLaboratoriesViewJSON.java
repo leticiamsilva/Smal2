@@ -1,10 +1,10 @@
 package org.smal2.infrastructure.presentation.view.http;
 
-import org.smal2.common.ICommand;
 import org.smal2.infrastructure.presentation.view.http.util.OperationRequest;
 import org.smal2.infrastructure.presentation.view.http.util.OperationResponse;
 import org.smal2.presentation.presenter.ListLaboratoriesPresenter;
 import org.smal2.presentation.view.IListLaboratoriesView;
+import org.smal2.presentation.view.basic.ListLaboratoriesViewMock;
 import org.smal2.service.laboratory.ListLaboratoriesResponse;
 import org.smal2.service.laboratory.LaboratoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Component
 @RequestMapping("/laboratory")
-public class ListLaboratoriesViewJSON implements IListLaboratoriesView {
+public class ListLaboratoriesViewJSON {
 	@Autowired
 	private LaboratoryService laboratoryService;
 
@@ -29,41 +29,22 @@ public class ListLaboratoriesViewJSON implements IListLaboratoriesView {
 		// TODO [CMP] verify request.getSessionId() permission
 
 		try {
-			new ListLaboratoriesPresenter(this, laboratoryService);
-			command.execute();
-			response.setResponse(this.response);
+			// [CMP] spring controllers are singleton (as common servlet)
+			// so we can't implements IView because his properties are shared
+			IListLaboratoriesView view = new ListLaboratoriesViewMock();
 
+			new ListLaboratoriesPresenter(view, laboratoryService);
+			view.getCommand().execute();
+
+			if (view.getError() != null) {
+				response.setError(view.getError());
+			} else {
+				response.setResponse(view.getResponse());
+			}
 		} catch (Exception ex) {
-			response.setError("Error:\n" + ex.getMessage());
+			response.setError("Unexpected error:\n" + ex.getMessage());
 		}
 
 		return response;
 	}
-
-	// IListLaboratoriesView implementation
-
-	private ICommand command;
-	private ListLaboratoriesResponse response;
-
-	@Override
-	public ICommand getCommand() {
-		return command;
-	}
-
-	@Override
-	public void setCommand(ICommand command) {
-		this.command = command;
-	}
-
-	@Override
-	public ListLaboratoriesResponse getResponse() {
-		return response;
-	}
-
-	@Override
-	public void setResponse(ListLaboratoriesResponse laboratories) {
-		this.response = laboratories;
-	}
-
-	// end IListLaboratoriesView
 }

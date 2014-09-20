@@ -1,4 +1,4 @@
-package org.smal2.test.presenter.mock;
+package org.smal2.presentation.view.basic;
 
 import org.smal2.common.ICommand;
 import org.smal2.presentation.view.IListComputersView;
@@ -8,6 +8,7 @@ public class ListComputersViewMock implements IListComputersView {
 
 	private String request;
 	private ICommand command;
+	private String error;
 	private ListComputersResponse response;
 
 	@Override
@@ -28,6 +29,16 @@ public class ListComputersViewMock implements IListComputersView {
 	@Override
 	public void setCommand(ICommand command) {
 		this.command = command;
+	}
+
+	@Override
+	public String getError() {
+		return error;
+	}
+
+	@Override
+	public void setError(String error) {
+		this.error = error;
 	}
 
 	@Override

@@ -22,6 +22,10 @@ public class ListUsersPresenter {
 	}
 
 	public void doListUsers() {
-		view.setResponse(service.listUsers());
+		try {
+			view.setResponse(service.listUsers());
+		} catch (Exception ex) {
+			view.setError("List users error:\n" + ex.getMessage());
+		}
 	}
 }

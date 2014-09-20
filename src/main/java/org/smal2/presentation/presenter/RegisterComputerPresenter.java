@@ -25,7 +25,7 @@ public class RegisterComputerPresenter {
 		try {
 			view.setResponse(service.registerComputer(view.getRequest()));
 		} catch (Exception ex) {
-			view.setResponse("Computer register error:\n" + ex.getMessage());
+			view.setError("Register computer error:\n" + ex.getMessage());
 		}
 	}
 }

@@ -22,6 +22,10 @@ public class ListLaboratoriesPresenter {
 	}
 
 	public void doListLaboratories() {
-		view.setResponse(service.listLaboratories());
+		try {
+			view.setResponse(service.listLaboratories());
+		} catch (Exception ex) {
+			view.setError("List laboratories error:\n" + ex.getMessage());
+		}
 	}
 }

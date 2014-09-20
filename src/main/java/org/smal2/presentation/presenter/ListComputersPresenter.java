@@ -22,6 +22,10 @@ public class ListComputersPresenter {
 	}
 
 	private void doListComputers() {
-		view.setResponse(service.listComputers(view.getRequest()));
+		try {
+			view.setResponse(service.listComputers(view.getRequest()));
+		} catch (Exception ex) {
+			view.setError("List computers error:\n" + ex.getMessage());
+		}
 	}
 }
