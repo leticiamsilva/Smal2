@@ -1,7 +1,7 @@
 package org.smal2.infrastructure.presentation.view.http;
 
 import org.smal2.common.ICommand;
-import org.smal2.infrastructure.presentation.view.http.util.JSONResponse;
+import org.smal2.infrastructure.presentation.view.http.util.OperationResponse;
 import org.smal2.presentation.presenter.ListComputersPresenter;
 import org.smal2.presentation.view.IListComputersView;
 import org.smal2.service.computer.ListComputersResponse;
@@ -21,17 +21,21 @@ public class ListComputersViewJSON implements IListComputersView {
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ResponseBody
-	public JSONResponse listComputers(@RequestBody String request) {
+	public OperationResponse<ListComputersResponse> listComputers(
+			@RequestBody String request) {
+		OperationResponse<ListComputersResponse> response = new OperationResponse<ListComputersResponse>();
+
 		try {
 			this.request = request;
 			new ListComputersPresenter(this, computerService);
 			command.execute();
-
-			return new JSONResponse(true, response);
+			response.setResponse(this.response);
 
 		} catch (Exception ex) {
-			return new JSONResponse(false, "Error:\n" + ex.getMessage());
+			response.setError("Error:\n" + ex.getMessage());
 		}
+
+		return response;
 	}
 
 	// IListComputersView implementation

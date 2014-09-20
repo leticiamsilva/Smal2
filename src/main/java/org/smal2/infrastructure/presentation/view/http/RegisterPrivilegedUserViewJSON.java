@@ -1,7 +1,7 @@
 package org.smal2.infrastructure.presentation.view.http;
 
 import org.smal2.common.ICommand;
-import org.smal2.infrastructure.presentation.view.http.util.JSONResponse;
+import org.smal2.infrastructure.presentation.view.http.util.OperationResponse;
 import org.smal2.presentation.presenter.RegisterPrivilegedUserPresenter;
 import org.smal2.presentation.view.IRegisterPrivilegedUserView;
 import org.smal2.service.user.RegisterPrivilegedUserRequest;
@@ -22,18 +22,21 @@ public class RegisterPrivilegedUserViewJSON implements
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	@ResponseBody
-	public JSONResponse registerPrivilegedUser(
+	public OperationResponse<String> registerPrivilegedUser(
 			@RequestBody RegisterPrivilegedUserRequest request) {
+		OperationResponse<String> response = new OperationResponse<String>();
+
 		try {
 			this.request = request;
 			new RegisterPrivilegedUserPresenter(this, userService);
 			command.execute();
-
-			return new JSONResponse(true, response);
+			response.setResponse(this.response);
 
 		} catch (Exception ex) {
-			return new JSONResponse(false, "Error:\n" + ex.getMessage());
+			response.setError("Error:\n" + ex.getMessage());
 		}
+
+		return response;
 	}
 
 	// IRegisterPrivilegedUserView implementation

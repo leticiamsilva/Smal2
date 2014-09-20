@@ -1,7 +1,7 @@
 package org.smal2.infrastructure.presentation.view.http;
 
 import org.smal2.common.ICommand;
-import org.smal2.infrastructure.presentation.view.http.util.JSONResponse;
+import org.smal2.infrastructure.presentation.view.http.util.OperationResponse;
 import org.smal2.presentation.presenter.ListUsersPresenter;
 import org.smal2.presentation.view.IListUsersView;
 import org.smal2.service.user.ListUsersResponse;
@@ -20,16 +20,19 @@ public class ListUsersViewJSON implements IListUsersView {
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ResponseBody
-	public JSONResponse listUsers() {
+	public OperationResponse<ListUsersResponse> listUsers() {
+		OperationResponse<ListUsersResponse> response = new OperationResponse<ListUsersResponse>();
+
 		try {
 			new ListUsersPresenter(this, userService);
 			command.execute();
-
-			return new JSONResponse(true, response);
+			response.setResponse(this.response);
 
 		} catch (Exception ex) {
-			return new JSONResponse(false, "Error:\n" + ex.getMessage());
+			response.setError("Error:\n" + ex.getMessage());
 		}
+
+		return response;
 	}
 
 	// IListUsersView implementation

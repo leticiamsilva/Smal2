@@ -1,7 +1,7 @@
 package org.smal2.infrastructure.presentation.view.http;
 
 import org.smal2.common.ICommand;
-import org.smal2.infrastructure.presentation.view.http.util.JSONResponse;
+import org.smal2.infrastructure.presentation.view.http.util.OperationResponse;
 import org.smal2.presentation.presenter.ListLaboratoriesPresenter;
 import org.smal2.presentation.view.IListLaboratoriesView;
 import org.smal2.service.laboratory.ListLaboratoriesResponse;
@@ -20,16 +20,19 @@ public class ListLaboratoriesViewJSON implements IListLaboratoriesView {
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ResponseBody
-	public JSONResponse listLaboratories() {
+	public OperationResponse<ListLaboratoriesResponse> listLaboratories() {
+		OperationResponse<ListLaboratoriesResponse> response = new OperationResponse<ListLaboratoriesResponse>();
+
 		try {
 			new ListLaboratoriesPresenter(this, laboratoryService);
 			command.execute();
-
-			return new JSONResponse(true, response);
+			response.setResponse(this.response);
 
 		} catch (Exception ex) {
-			return new JSONResponse(false, "Error:\n" + ex.getMessage());
+			response.setError("Error:\n" + ex.getMessage());
 		}
+
+		return response;
 	}
 
 	// IListLaboratoriesView implementation

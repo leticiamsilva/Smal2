@@ -73,7 +73,7 @@ post-requisites: laboratory must be registred
 
 pre-requisites: user session
 input: -
-output: set of laboratories { name, num of computers }
+output: set of laboratories { name }
 post-requisites: the set must be registred in the system
 
 
