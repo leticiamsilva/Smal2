@@ -1,6 +1,7 @@
 package org.smal2.infrastructure.presentation.view.http;
 
 import org.smal2.common.ICommand;
+import org.smal2.infrastructure.presentation.view.http.util.OperationRequest;
 import org.smal2.infrastructure.presentation.view.http.util.OperationResponse;
 import org.smal2.presentation.presenter.ListLaboratoriesPresenter;
 import org.smal2.presentation.view.IListLaboratoriesView;
@@ -8,6 +9,7 @@ import org.smal2.service.laboratory.ListLaboratoriesResponse;
 import org.smal2.service.laboratory.LaboratoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,10 +20,13 @@ public class ListLaboratoriesViewJSON implements IListLaboratoriesView {
 	@Autowired
 	private LaboratoryService laboratoryService;
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	@ResponseBody
-	public OperationResponse<ListLaboratoriesResponse> listLaboratories() {
+	public OperationResponse<ListLaboratoriesResponse> listLaboratories(
+			@RequestBody OperationRequest<String> request) {
 		OperationResponse<ListLaboratoriesResponse> response = new OperationResponse<ListLaboratoriesResponse>();
+
+		// TODO [CMP] verify request.getSessionId() permission
 
 		try {
 			new ListLaboratoriesPresenter(this, laboratoryService);

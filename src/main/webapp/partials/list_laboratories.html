@@ -3,26 +3,18 @@
     <hr/>
     <div class="row-fluid">
         <!--
-        <div data-ng-repeat="product in session.products | filter:session.query | orderBy:session.order_prop">
+            $scope.command = function;
+            $scope.laboratories = [];
+        -->
+        <div data-ng-repeat="laboratory in laboratories">
             <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="container-fluid">
                             <div class="row-fluid">
-                                <a href="#/products/{{ product.id }}">
-                                    <img data-ng-src="{{ product | ImagePathFilter }}" class="img-responsive"/>
+                                <a href="#/computer/list/{{ laboratory.name }}">
+                                    {{ laboratory.name }}<!--<img data-ng-src="{{ product | ImagePathFilter }}" class="img-responsive"/>-->
                                 </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-footer">
-                        <div class="container-fluid">
-                            <div class="row-fluid">
-                                <a href="#/products/{{ product.id }}">{{ product.name }}</a>
-                            </div>
-                            <div class="row-fluid">
-                                <div class="pull-left">{{ product.price }}</div>
-                                <div class="pull-right">{{ product.age }}</div>
                             </div>
                         </div>
                     </div>
@@ -43,6 +35,5 @@
                 </div>
             </div>
         </div>
-        -->
     </div>
 </div>

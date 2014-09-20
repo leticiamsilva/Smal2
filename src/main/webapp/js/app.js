@@ -44,15 +44,15 @@ appModule.config( [
             controller: "AccountController",
             auth_required: false
         }).
-        when("/laboratories",
+        when("/laboratory/list",
         {
-            templateUrl: "partials/laboratories.html",
-            controller: "LaboratoryController",
+            templateUrl: "partials/list_laboratories.html",
+            controller: "ListLaboratoriesPresenter",
             //auth_required: true //TODO [CMP] re-enable
         }).
         otherwise(
         {
-            redirectTo: "/laboratories"
+            redirectTo: "/laboratory/list"
         });
     }
 ]);

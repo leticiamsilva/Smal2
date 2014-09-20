@@ -1,6 +1,7 @@
 package org.smal2.infrastructure.presentation.view.http;
 
 import org.smal2.common.ICommand;
+import org.smal2.infrastructure.presentation.view.http.util.OperationRequest;
 import org.smal2.infrastructure.presentation.view.http.util.OperationResponse;
 import org.smal2.presentation.presenter.RegisterPrivilegedUserPresenter;
 import org.smal2.presentation.view.IRegisterPrivilegedUserView;
@@ -20,14 +21,16 @@ public class RegisterPrivilegedUserViewJSON implements
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	public OperationResponse<String> registerPrivilegedUser(
-			@RequestBody RegisterPrivilegedUserRequest request) {
+			@RequestBody OperationRequest<RegisterPrivilegedUserRequest> request) {
 		OperationResponse<String> response = new OperationResponse<String>();
 
+		// TODO [CMP] verify request.getSessionId() permission
+
 		try {
-			this.request = request;
+			this.request = request.getRequest();
 			new RegisterPrivilegedUserPresenter(this, userService);
 			command.execute();
 			response.setResponse(this.response);

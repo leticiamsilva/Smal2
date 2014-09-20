@@ -18,10 +18,12 @@ public class ListUsersViewJSON implements IListUsersView {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	@ResponseBody
 	public OperationResponse<ListUsersResponse> listUsers() {
 		OperationResponse<ListUsersResponse> response = new OperationResponse<ListUsersResponse>();
+
+		// TODO [CMP] verify request.getSessionId() permission
 
 		try {
 			new ListUsersPresenter(this, userService);

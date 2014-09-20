@@ -1,6 +1,7 @@
 package org.smal2.infrastructure.presentation.view.http;
 
 import org.smal2.common.ICommand;
+import org.smal2.infrastructure.presentation.view.http.util.OperationRequest;
 import org.smal2.infrastructure.presentation.view.http.util.OperationResponse;
 import org.smal2.presentation.presenter.ListComputersPresenter;
 import org.smal2.presentation.view.IListComputersView;
@@ -19,14 +20,16 @@ public class ListComputersViewJSON implements IListComputersView {
 	@Autowired
 	private ComputerService computerService;
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	@ResponseBody
 	public OperationResponse<ListComputersResponse> listComputers(
-			@RequestBody String request) {
+			@RequestBody OperationRequest<String> request) {
 		OperationResponse<ListComputersResponse> response = new OperationResponse<ListComputersResponse>();
 
+		// TODO [CMP] verify request.getSessionId() permission
+
 		try {
-			this.request = request;
+			this.request = request.getRequest();
 			new ListComputersPresenter(this, computerService);
 			command.execute();
 			response.setResponse(this.response);

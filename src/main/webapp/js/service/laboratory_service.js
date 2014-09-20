@@ -10,14 +10,15 @@ angular.module("ServicesModule").factory("LaboratoryService", [
             self.getLaboratories = function(session_id, fn_success, fn_error)
             {
                 $http({
-                    method: "GET",
-                    url: "rest/laboratory/list/" + session_id,
+                    method: "POST",
+                    url: "rest/laboratory/list",
+                    data: { session_id: session_id, request : null },
                     cache: false,
                     responseType: "json"
                 }).
                 success(function(data, status, headers, config)
                 {
-                    if(data.error == null)
+                    if(data.error != null)
                     {
                         fn_error(data.error);
                     }
@@ -48,7 +49,7 @@ angular.module("ServicesModule").factory("LaboratoryService", [
                     }
                 }
 
-                return cart;
+                return laboratories;
             };
          }
 
