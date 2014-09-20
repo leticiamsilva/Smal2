@@ -28,28 +28,50 @@ angular.module("ServicesModule").factory("LaboratoryService", [
                     }
                     else
                     {
-                        fn_success(getLaboratoriesFromDataResponse(data.response));
+                        var laboratories = [];
+
+                        if(data.response != null)
+                        {
+                            for(var i = 0; i < data.response.length; ++i)
+                            {
+                                laboratories.push(new LaboratoryModel(
+                                    data.response[i].name
+                                ));
+                            }
+                        }
+
+                        fn_success(laboratories);
                     }
                 }).
                 error(function(data, status, headers, config) { fn_error("AJAX ERROR:\n" + config.method + ": " + config.url + "\nstatus: " + status + "\nresponse: " + angular.toJson(data, true)); });
             };
 
-            // private
-            var getLaboratoriesFromDataResponse = function(data)
+            // return message
+            self.registerLaboratory = function(session_id, name, fn_success, fn_error)
             {
-                var laboratories = [];
-
-                if(data != null)
+                $http({
+                    method: "POST",
+                    url: "rest/laboratory/register",
+                    data: { session_id: session_id, request : name },
+                    cache: false,
+                    responseType: "json"
+                }).
+                success(function(data, status, headers, config)
                 {
-                    for(var i = 0; i < data.length; ++i)
+                    if(data.error != null)
                     {
-                        laboratories.push(new LaboratoryModel(
-                            data[i].name
-                        ));
+                        fn_error(data.error);
                     }
-                }
-
-                return laboratories;
+                    else if (data.response == null)
+                    {
+                        fn_error("NULL response.");
+                    }
+                    else
+                    {
+                        fn_success(data.response);
+                    }
+                }).
+                error(function(data, status, headers, config) { fn_error("AJAX ERROR:\n" + config.method + ": " + config.url + "\nstatus: " + status + "\nresponse: " + angular.toJson(data, true)); });
             };
          }
 

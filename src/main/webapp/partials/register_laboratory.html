@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <h3>Registrar laboratório:</h3>
+    <hr/>
+    <div class="row-fluid">
+        <!--
+            $scope.session = SessionService;
+            $scope.name = "";
+            $scope.command = registerLaboratory;
+            $scope.response = "";
+        -->
+
+        <!-- input form -->
+        <form>
+            <div>
+                <label class="control-label">Nome: </label>
+                <input type="text" placeholder="nome laboratório" data-ng-model="name" data-ngRequired="true"/>
+            </div>
+            <button class="btn btn-primary" data-ng-click="command()">Registrar</button>
+        </form>
+
+        <!-- response message -->
+        <div data-ng-hide="!response">{{ response }}</div>
+    </div>
+</div>

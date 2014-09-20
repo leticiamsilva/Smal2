@@ -3,9 +3,16 @@
     <hr/>
     <div class="row-fluid">
         <!--
-            $scope.command = function;
+            $scope.session = SessionService;
+            $scope.command = listLaboratories;
             $scope.laboratories = [];
+            $scope.response = "";
         -->
+
+        <!-- response message -->
+        <div data-ng-hide="!response">{{ response }}</div>
+
+        <!-- laboratories list-->
         <div data-ng-repeat="laboratory in laboratories">
             <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
                 <div class="panel panel-default">

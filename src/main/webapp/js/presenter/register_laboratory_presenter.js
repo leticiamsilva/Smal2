@@ -1,17 +1,18 @@
-angular.module("ControllersModule").controller("ListLaboratoriesPresenter", [
+angular.module("ControllersModule").controller("RegisterLaboratoryPresenter", [
     "$scope",
     "SessionService",
     "LaboratoryService",
     function($scope, SessionService, LaboratoryService)
     {
         // private
-        var listLaboratories = function()
+        var registerLaboratory = function()
         {
-            LaboratoryService.getLaboratories(
+            LaboratoryService.registerLaboratory(
                 SessionService.session_id,
+                $scope.name,
                 function(data)
                 {
-                    $scope.laboratories = data;
+                    $scope.response = data;
                 },
                 function(data) {
                     $scope.response = data;
@@ -22,11 +23,9 @@ angular.module("ControllersModule").controller("ListLaboratoriesPresenter", [
         // constructor
         {
             $scope.session = SessionService;
-            $scope.command = listLaboratories;
-            $scope.laboratories = [];
+            $scope.name = "";
+            $scope.command = registerLaboratory;
             $scope.response = "";
-
-            $scope.command();
         };
     }
 ]);
