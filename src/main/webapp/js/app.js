@@ -68,6 +68,18 @@ appModule.config( [
             controller: "ListLaboratoriesPresenter",
             //auth_required: true //TODO [CMP] re-enable
         }).
+        when("/computer/register",
+        {
+            templateUrl: "partials/register_computer.html",
+            controller: "RegisterComputerPresenter",
+            //auth_required: true //TODO [CMP] re-enable
+        }).
+        when("/computer/list/:laboratory_name*",
+        {
+            templateUrl: "partials/list_computers.html",
+            controller: "ListComputersPresenter",
+            //auth_required: true //TODO [CMP] re-enable
+        }).
         otherwise(
         {
             redirectTo: "/laboratory/list"

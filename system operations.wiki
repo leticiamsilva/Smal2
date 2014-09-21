@@ -83,10 +83,9 @@ post-requisites: the set must be registred in the system
 * http://localhost:8080/smal2/rest/computer/register
 
 pre-requisites: administration session || technichan session, asset code must be not null, not empty, not already exist, laboratory name must exist, position must be free, row and column numbers must be greather then 0, row number must be minor or equal 6
-input: computer { asset code, position { laboratory { name }, row_number, column_number } }
+input: computer { asset_code, laboratory_name, row_num, column_num } }
 output: result message
 post-requisites: computer must be registred, position must be full
-
 
 
 == List computers ==
@@ -95,5 +94,5 @@ post-requisites: computer must be registred, position must be full
 
 pre-requisites: user session, laboratory name must be not null, not empty, not already exist
 input: laboratory { name }
-output: set of computers { asset_code, position { row_number, column_number } }
+output: set of computers { asset_code, row_num, column_num }
 post-requisites: the set must be registred in the system

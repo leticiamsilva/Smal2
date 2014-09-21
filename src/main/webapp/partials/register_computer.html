@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <h3>Registrar computador:</h3>
+    <hr/>
+    <div class="row-fluid">
+        <!--
+            $scope.session = SessionService;
+            $scope.asset_code = "";
+            $scope.laboratory_name = "";
+            $scope.row_num = "";
+            $scope.column_num = "";
+            $scope.command = registerComputer;
+            $scope.response = "";
+        -->
+
+        <!-- input form -->
+        <form>
+            <div>
+                <label class="control-label">Patrimonio: </label>
+                <input type="text" data-ng-model="asset_code" data-ngRequired="true"/>
+            </div>
+            <div>
+                <label class="control-label">Laboratório: </label>
+                <input type="text" data-ng-model="laboratory_name" data-ngRequired="true"/>
+            </div>
+            <div>
+                <label class="control-label">Fila: </label>
+                <input type="text" data-ng-model="row_num" data-ngRequired="true"/>
+            </div>
+            <div>
+                <label class="control-label">Coluna: </label>
+                <input type="text" data-ng-model="column_num" data-ngRequired="true"/>
+            </div>
+            <button class="btn btn-primary" data-ng-click="command()">Registrar</button>
+        </form>
+
+        <!-- response message -->
+        <div data-ng-hide="!response">{{ response }}</div>
+    </div>
+</div>
