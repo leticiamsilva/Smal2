@@ -30,7 +30,7 @@ public class User {
 	@Column(nullable = false)
 	private Date birthDate;
 
-	private User() {
+	protected User() {
 	}
 
 	public User(String registration, String name, Date birthDate) {

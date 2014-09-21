@@ -15,6 +15,9 @@ public class Technician extends User {
 	@Column(nullable = false)
 	private String password;
 
+	protected Technician() {
+	}
+
 	public Technician(String registration, String name, Date birthDate,
 			String password) {
 		super(registration, name, birthDate);

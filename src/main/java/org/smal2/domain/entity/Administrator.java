@@ -11,6 +11,9 @@ import javax.persistence.Table;
 @DiscriminatorValue("administrator")
 public class Administrator extends Technician {
 
+	protected Administrator() {
+	}
+
 	public Administrator(String registration, String name, Date birthDate,
 			String password) {
 		super(registration, name, birthDate, password);
