@@ -1,25 +1,25 @@
 package org.smal2.service.computer;
 
 public class ListComputersResponseItem {
-	private String assetCode;
-	private int rowNum;
-	private int columnNum;
+	private String asset_code;
+	private int row_num;
+	private int column_num;
 
-	public ListComputersResponseItem(String assetCode, int rowNum, int columnNum) {
-		this.assetCode = assetCode;
-		this.rowNum = rowNum;
-		this.columnNum = columnNum;
+	public ListComputersResponseItem(String asset_code, int row_num, int column_num) {
+		this.asset_code = asset_code;
+		this.row_num = row_num;
+		this.column_num = column_num;
 	}
 
-	public String getAssetCode() {
-		return assetCode;
+	public String getAsset_code() {
+		return asset_code;
 	}
 
-	public int getRowNum() {
-		return rowNum;
+	public int getRow_num() {
+		return row_num;
 	}
 
-	public int getColumnNum() {
-		return columnNum;
+	public int getColumn_num() {
+		return column_num;
 	}
 }

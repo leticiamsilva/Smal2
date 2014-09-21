@@ -23,7 +23,7 @@ public class UserService {
 		}
 
 		if (request.getRegistration() == null
-				|| request.getRegistration() == "") {
+				|| request.getRegistration().equals("")) {
 			throw new IllegalArgumentException("Undefined user registration.");
 		}
 
@@ -41,8 +41,10 @@ public class UserService {
 			break;
 
 		case TECHNICHAN:
-			repository.insert(new Technician(request.getRegistration(), request
-					.getName(), request.getBirth_date(), request.getPassword()));
+			repository
+					.insert(new Technician(request.getRegistration(), request
+							.getName(), request.getBirth_date(), request
+							.getPassword()));
 			break;
 
 		default:

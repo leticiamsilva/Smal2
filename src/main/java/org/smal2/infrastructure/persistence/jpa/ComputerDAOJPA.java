@@ -29,7 +29,7 @@ public class ComputerDAOJPA extends GenericDAOJPA<Computer> implements
 	public Computer getByAssetCode(String assetCode) {
 
 		StringBuilder query = new StringBuilder();
-		query.append("SELECT e FROM Computer e WHERE e.assetcode = ?");
+		query.append("SELECT e FROM Computer e WHERE e.assetCode = ?");
 		Object array[] = { assetCode };
 
 		return super.getEntity(query.toString(), array);
@@ -39,7 +39,7 @@ public class ComputerDAOJPA extends GenericDAOJPA<Computer> implements
 	public boolean existWithAssetCode(String assetCode) {
 
 		StringBuilder query = new StringBuilder();
-		query.append("SELECT e FROM Computer e WHERE e.assetcode = ?");
+		query.append("SELECT e FROM Computer e WHERE e.assetCode = ?");
 		Object array[] = { assetCode };
 
 		return super.hasEntity(query.toString(), array);

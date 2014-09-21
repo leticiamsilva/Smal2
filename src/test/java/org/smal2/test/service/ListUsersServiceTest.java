@@ -34,7 +34,7 @@ public class ListUsersServiceTest extends AUserTest {
 
 		ListUsersResponseItem r1, r2;
 
-		if (response.get(0).getRegistration() == "0001") {
+		if (response.get(0).getRegistration().equals("0001")) {
 			r1 = response.get(0);
 			r2 = response.get(1);
 		} else {

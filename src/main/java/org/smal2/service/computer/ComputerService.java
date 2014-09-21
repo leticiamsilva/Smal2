@@ -32,7 +32,8 @@ public class ComputerService {
 			throw new IllegalArgumentException("Undefined request.");
 		}
 
-		if (request.getAsset_code() == null || request.getAsset_code() == "") {
+		if (request.getAsset_code() == null
+				|| request.getAsset_code().equals("")) {
 			throw new IllegalArgumentException("Undefined computer asset code.");
 		}
 
@@ -41,7 +42,8 @@ public class ComputerService {
 					"Computer asset code already exist.");
 		}
 
-		if (request.getLaboratory_name() == null || request.getLaboratory_name() == "") {
+		if (request.getLaboratory_name() == null
+				|| request.getLaboratory_name().equals("")) {
 			throw new IllegalArgumentException("Undefined laboratory name.");
 		}
 
@@ -49,8 +51,8 @@ public class ComputerService {
 			throw new IllegalArgumentException("Laboratory must exist.");
 		}
 
-		Laboratory lab = laboratoryRepository
-				.getByName(request.getLaboratory_name());
+		Laboratory lab = laboratoryRepository.getByName(request
+				.getLaboratory_name());
 
 		if (request.getRow_num() > 6) {
 			throw new IllegalArgumentException(
@@ -70,8 +72,9 @@ public class ComputerService {
 				throw new IllegalArgumentException("Position must be empty.");
 			}
 		} else {
-			pos = new Position(request.getRow_num(), request.getColumn_num(), lab);
-			positionRepository.save(pos);
+			pos = new Position(request.getRow_num(), request.getColumn_num(),
+					lab);
+			positionRepository.insert(pos);
 		}
 
 		computerRepository.insert(new Computer(request.getAsset_code(), pos));
@@ -81,7 +84,7 @@ public class ComputerService {
 
 	public ListComputersResponse listComputers(String laboratoryName) {
 
-		if (laboratoryName == null || laboratoryName == "") {
+		if (laboratoryName == null || laboratoryName.equals("")) {
 			throw new IllegalArgumentException("Undefined request.");
 		}
 
@@ -93,7 +96,8 @@ public class ComputerService {
 		ListComputersResponseItem item;
 
 		for (Computer computer : computerRepository.listAll()) {
-			if (computer.getPosition().getLaboratory().getName() == laboratoryName) {
+			if (computer.getPosition().getLaboratory().getName()
+					.equals(laboratoryName)) {
 				item = new ListComputersResponseItem(computer.getAssetCode(),
 						computer.getPosition().getRowNum(), computer
 								.getPosition().getColumnNum());

@@ -16,7 +16,7 @@ public class LaboratoryService {
 
 	public String registerLaboratory(String name) {
 
-		if (name == null || name == "") {
+		if (name == null || name.equals("")) {
 			throw new IllegalArgumentException("Undefined laboratory name.");
 		}
 

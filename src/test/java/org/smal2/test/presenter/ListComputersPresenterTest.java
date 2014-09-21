@@ -61,7 +61,7 @@ public class ListComputersPresenterTest extends AComputerTest {
 
 		ListComputersResponseItem r1, r2;
 
-		if (response.get(0).getAssetCode() == "asset01") {
+		if (response.get(0).getAsset_code().equals("asset01")) {
 			r1 = response.get(0);
 			r2 = response.get(1);
 		} else {
@@ -69,11 +69,11 @@ public class ListComputersPresenterTest extends AComputerTest {
 			r2 = response.get(0);
 		}
 
-		Assert.assertEquals("asset01", r1.getAssetCode());
-		Assert.assertEquals(1, r1.getRowNum());
-		Assert.assertEquals(1, r1.getColumnNum());
-		Assert.assertEquals("asset02", r2.getAssetCode());
-		Assert.assertEquals(1, r2.getRowNum());
-		Assert.assertEquals(2, r2.getColumnNum());
+		Assert.assertEquals("asset01", r1.getAsset_code());
+		Assert.assertEquals(1, r1.getRow_num());
+		Assert.assertEquals(1, r1.getColumn_num());
+		Assert.assertEquals("asset02", r2.getAsset_code());
+		Assert.assertEquals(1, r2.getRow_num());
+		Assert.assertEquals(2, r2.getColumn_num());
 	}
 }

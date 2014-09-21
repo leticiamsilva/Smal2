@@ -27,7 +27,7 @@ public class ListLaboratoriesServiceTest extends ALaboratoryTest {
 
 		ListLaboratoriesResponseItem r1, r2;
 
-		if (response.get(0).getName() == "lab01") {
+		if (response.get(0).getName().equals("lab01")) {
 			r1 = response.get(0);
 			r2 = response.get(1);
 		} else {

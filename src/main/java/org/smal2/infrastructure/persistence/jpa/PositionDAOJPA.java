@@ -29,7 +29,7 @@ public class PositionDAOJPA extends GenericDAOJPA<Position> implements
 	public Position getByLaboratoryAndPosition(String laboratory, int rowNum,
 			int columnNum) {
 		StringBuilder query = new StringBuilder();
-		query.append("SELECT p FROM Position p INNER JOIN p.laboratory as l WHERE l.name = ? AND p.rownum = ? AND p.columnnum = ?");
+		query.append("SELECT p FROM Position p INNER JOIN p.laboratory as l WHERE l.name = ? AND p.rowNum = ? AND p.columnNum = ?");
 		Object array[] = { laboratory, rowNum, columnNum };
 
 		return super.getEntity(query.toString(), array);
@@ -39,7 +39,7 @@ public class PositionDAOJPA extends GenericDAOJPA<Position> implements
 	public boolean existWithLaboratoryAndPosition(String laboratory,
 			int rowNum, int columnNum) {
 		StringBuilder query = new StringBuilder();
-		query.append("SELECT p FROM Position p INNER JOIN p.laboratory as l WHERE l.name = ? AND p.rownum = ? AND p.columnnum = ?");
+		query.append("SELECT p FROM Position p INNER JOIN p.laboratory as l WHERE l.name = ? AND p.rowNum = ? AND p.columnNum = ?");
 		Object array[] = { laboratory, rowNum, columnNum };
 
 		return super.hasEntity(query.toString(), array);

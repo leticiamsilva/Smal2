@@ -28,7 +28,7 @@ public class ExceptionHandlerViewJSON {
 
 		String message;
 
-		if (ex.getMessage() == null || ex.getMessage().trim() == "") {
+		if (ex.getMessage() == null || ex.getMessage().trim().equals("")) {
 			message = "Unknown exception";
 		} else {
 			message = ex.getMessage();
