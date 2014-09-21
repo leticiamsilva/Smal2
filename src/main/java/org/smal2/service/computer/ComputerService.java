@@ -32,27 +32,27 @@ public class ComputerService {
 			throw new IllegalArgumentException("Undefined request.");
 		}
 
-		if (request.getAssetCode() == null || request.getAssetCode() == "") {
+		if (request.getAsset_code() == null || request.getAsset_code() == "") {
 			throw new IllegalArgumentException("Undefined computer asset code.");
 		}
 
-		if (computerRepository.existWithAssetCode(request.getAssetCode())) {
+		if (computerRepository.existWithAssetCode(request.getAsset_code())) {
 			throw new IllegalArgumentException(
 					"Computer asset code already exist.");
 		}
 
-		if (request.getLaboratory() == null || request.getLaboratory() == "") {
+		if (request.getLaboratory_name() == null || request.getLaboratory_name() == "") {
 			throw new IllegalArgumentException("Undefined laboratory name.");
 		}
 
-		if (!laboratoryRepository.existWithName(request.getLaboratory())) {
+		if (!laboratoryRepository.existWithName(request.getLaboratory_name())) {
 			throw new IllegalArgumentException("Laboratory must exist.");
 		}
 
 		Laboratory lab = laboratoryRepository
-				.getByName(request.getLaboratory());
+				.getByName(request.getLaboratory_name());
 
-		if (request.getRowNum() > 6) {
+		if (request.getRow_num() > 6) {
 			throw new IllegalArgumentException(
 					"Position row number cannot be greather then 6.");
 		}
@@ -60,21 +60,21 @@ public class ComputerService {
 		Position pos;
 
 		if (positionRepository.existWithLaboratoryAndPosition(
-				request.getLaboratory(), request.getRowNum(),
-				request.getColumnNum())) {
+				request.getLaboratory_name(), request.getRow_num(),
+				request.getColumn_num())) {
 			pos = positionRepository.getByLaboratoryAndPosition(
-					request.getLaboratory(), request.getRowNum(),
-					request.getColumnNum());
+					request.getLaboratory_name(), request.getRow_num(),
+					request.getColumn_num());
 
 			if (computerRepository.existWithPosition(pos.getId())) {
 				throw new IllegalArgumentException("Position must be empty.");
 			}
 		} else {
-			pos = new Position(request.getRowNum(), request.getColumnNum(), lab);
+			pos = new Position(request.getRow_num(), request.getColumn_num(), lab);
 			positionRepository.save(pos);
 		}
 
-		computerRepository.insert(new Computer(request.getAssetCode(), pos));
+		computerRepository.insert(new Computer(request.getAsset_code(), pos));
 
 		return "Computer registred successfully.";
 	}
