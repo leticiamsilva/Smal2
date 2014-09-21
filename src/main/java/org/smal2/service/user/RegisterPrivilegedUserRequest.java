@@ -7,15 +7,18 @@ public class RegisterPrivilegedUserRequest {
 	private String registration;
 	private String name;
 	private String password;
-	private Date birthDate;
+	private Date birth_date;
 	private UserType type;
 
+	public RegisterPrivilegedUserRequest() {
+	}
+
 	public RegisterPrivilegedUserRequest(String registration, String password,
-			String name, Date birthDate, UserType type) {
+			String name, Date birth_date, UserType type) {
 		this.registration = registration;
 		this.password = password;
 		this.name = name;
-		this.birthDate = birthDate;
+		this.birth_date = birth_date;
 		this.type = type;
 	}
 
@@ -31,8 +34,8 @@ public class RegisterPrivilegedUserRequest {
 		return name;
 	}
 
-	public Date getBirthDate() {
-		return birthDate;
+	public Date getBirth_date() {
+		return birth_date;
 	}
 
 	public UserType getType() {

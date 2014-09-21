@@ -7,6 +7,9 @@ public class RegisterComputerRequest {
 	private int rowNum;
 	private int columnNum;
 
+	public RegisterComputerRequest() {
+	}
+
 	public RegisterComputerRequest(String assetCode, String laboratory,
 			int rowNum, int columnNum) {
 		this.assetCode = assetCode;
