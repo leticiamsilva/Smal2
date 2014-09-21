@@ -44,6 +44,18 @@ appModule.config( [
             controller: "AccountController",
             auth_required: false
         }).
+        when("/user/register",
+        {
+            templateUrl: "partials/register_user.html",
+            controller: "RegisterUserPresenter",
+            //auth_required: true //TODO [CMP] re-enable
+        }).
+        when("/user/list",
+        {
+            templateUrl: "partials/list_users.html",
+            controller: "ListUsersPresenter",
+            //auth_required: true //TODO [CMP] re-enable
+        }).
         when("/laboratory/register",
         {
             templateUrl: "partials/register_laboratory.html",

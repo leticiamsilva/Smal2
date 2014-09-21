@@ -1,18 +1,27 @@
-angular.module("ServicesModule").factory("LaboratoryService", [
+angular.module("ServicesModule").factory("UserService", [
     "$http",
     function($http)
     {
-        function LaboratoryServiceObject()
+        function UserServiceObject()
         {
             var self = this;
 
             // return message
-            self.registerLaboratory = function(session_id, name, fn_success, fn_error)
+            self.registerUser = function(session_id, registration, password, name, birth_date, type, fn_success, fn_error)
             {
                 $http({
                     method: "POST",
-                    url: "rest/laboratory/register",
-                    data: { session_id: session_id, request : name },
+                    url: "rest/user/register",
+                    data: {
+                        session_id: session_id,
+                        request : {
+                            registration : registration,
+                            password : password,
+                            name : name,
+                            birth_date : birth_date,
+                            type : type
+                        }
+                    },
                     cache: false,
                     responseType: "json"
                 }).
@@ -34,12 +43,12 @@ angular.module("ServicesModule").factory("LaboratoryService", [
                 error(function(data, status, headers, config) { fn_error("AJAX ERROR:\n" + config.method + ": " + config.url + "\nstatus: " + status + "\nresponse: " + angular.toJson(data, true)); });
             };
 
-            // return Array of Laboratories
-            self.getLaboratories = function(session_id, fn_success, fn_error)
+            // return Array of Users
+            self.getUsers = function(session_id, fn_success, fn_error)
             {
                 $http({
                     method: "POST",
-                    url: "rest/laboratory/list",
+                    url: "rest/user/list",
                     data: { session_id: session_id, request : null },
                     cache: false,
                     responseType: "json"
@@ -56,25 +65,27 @@ angular.module("ServicesModule").factory("LaboratoryService", [
                     }
                     else
                     {
-                        var laboratories = [];
+                        var users = [];
 
                         if(data.response != null)
                         {
                             for(var i = 0; i < data.response.length; ++i)
                             {
-                                laboratories.push(new LaboratoryModel(
-                                    data.response[i].name
+                                users.push(new UserModel(
+                                    data.response[i].registration,
+                                    data.response[i].name,
+                                    data.response[i].type
                                 ));
                             }
                         }
 
-                        fn_success(laboratories);
+                        fn_success(users);
                     }
                 }).
                 error(function(data, status, headers, config) { fn_error("AJAX ERROR:\n" + config.method + ": " + config.url + "\nstatus: " + status + "\nresponse: " + angular.toJson(data, true)); });
             };
          }
 
-         return new LaboratoryServiceObject();
+         return new UserServiceObject();
     }
 ]);
