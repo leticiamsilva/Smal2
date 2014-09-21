@@ -36,13 +36,13 @@ public class UserService {
 		switch (request.getType()) {
 		case ADMINISTRATOR:
 			repository.insert(new Administrator(request.getRegistration(),
-					request.getName(), request.getBirthDate(), request
+					request.getName(), request.getBirth_date(), request
 							.getPassword()));
 			break;
 
 		case TECHNICHAN:
 			repository.insert(new Technician(request.getRegistration(), request
-					.getName(), request.getBirthDate(), request.getPassword()));
+					.getName(), request.getBirth_date(), request.getPassword()));
 			break;
 
 		default:
