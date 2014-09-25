@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <h3>Laboratórios:</h3>
+    <h3>Laboratórios:<a href="#/laboratory/register"><img data-ng-src="img/icon/plus32.png" class="img-responsive"/></a></h3>
     <hr/>
     <div class="row-fluid">
         <!--
@@ -20,11 +20,12 @@
                         <div class="container-fluid">
                             <div class="row-fluid">
                                 <a href="#/computer/list/{{ laboratory.name }}">
-                                    {{ laboratory.name }}<!--<img data-ng-src="{{ product | ImagePathFilter }}" class="img-responsive"/>-->
+                                    <img data-ng-src="img/icon/box32.png" class="img-responsive"/>
                                 </a>
                             </div>
                         </div>
                     </div>
+                    <div class="panel-footer"><a href="#/computer/list/{{ laboratory.name }}">{{ laboratory.name }}</a></div>
                 </div>
             </div>
             <div data-ng-if="$index != 0">

@@ -67,18 +67,20 @@ filtersModule.filter("JsonNewlineToNewLineFilter",
 
 
 
-filtersModule.filter("ImagePathFilter", [
+filtersModule.filter("ImagePathForComputer", [
     "SessionService",
     function (SessionService)
     {
-        return function(product)
+        return function(computer)
         {
-            if(typeof(product) === "undefined")
+            alert(typeof(computer));
+
+            if(typeof(computer) === "ComputerModel")
             {
-                return "";
+                return "img/icon/monitor32.png";
             }
 
-            return SessionService.getImagePathFromProduct(product);
+            return "img/icon/transparent32.png";
         };
     }
 ]);

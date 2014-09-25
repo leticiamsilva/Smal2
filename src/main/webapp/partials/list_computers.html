@@ -1,12 +1,12 @@
 <div class="container-fluid">
-    <h3>Computadores do laboratório {{ laboratory_name }}:</h3>
+    <h3>Computadores do laboratório {{ laboratory_name }}:<a href="#/computer/register"><img data-ng-src="img/icon/plus32.png" class="img-responsive"/></a></h3>
     <hr/>
     <div class="row-fluid">
         <!--
             $scope.session = SessionService;
             $scope.laboratory_name = $routeParams.laboratory_name;
             $scope.command = listComputers;
-            $scope.computers = [];
+            $scope.allComputerPos = [];
             $scope.response = "";
         -->
 
@@ -14,16 +14,17 @@
         <div data-ng-hide="!response">{{ response }}</div>
 
         <!-- computers list-->
-        <div data-ng-repeat="computer in computers">
+        <div data-ng-repeat="computerPos in allComputerPos">
             <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="container-fluid">
                             <div class="row-fluid">
-                                {{ computer.asset_code }}<!--<img data-ng-src="{{ product | ImagePathFilter }}" class="img-responsive"/>-->
+                                <img data-ng-src="{{ computerPos | ImagePathForComputer }}" class="img-responsive"/>
                             </div>
                         </div>
                     </div>
+                    <div class="panel-footer">\{\{ computerPos.computer.asset_code \}\}</div>
                 </div>
             </div>
             <div data-ng-if="$index != 0">
