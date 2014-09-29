@@ -54,9 +54,9 @@ public class ComputerService {
 		Laboratory lab = laboratoryRepository.getByName(request
 				.getLaboratory_name());
 
-		if (request.getRow_num() > 6) {
+		if (request.getColumn_num() > 6) {
 			throw new IllegalArgumentException(
-					"Position row number cannot be greather then 6.");
+					"Position column cannot be greather then 6.");
 		}
 
 		Position pos;

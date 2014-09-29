@@ -92,16 +92,43 @@ public class RegisterComputerServiceTest extends AComputerTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void registerComputerOnRowPositionGreatherThen6MustThrowException() {
+	public void registerComputerOnColumnPositionGreatherThen6MustThrowException() {
 		// Act
 		computerService.registerComputer(new RegisterComputerRequest("asset02",
-				"lab01", 7, 1));
+				"lab01", 1, 7));
+	}
+
+	@Test
+	public void registerComputerOnColumnPositionIqual6MustRegister() {
+		// Arrange
+		String assetCode = "asset02";
+		String laboratory = "lab01";
+		int row_num = 6;
+		int col_num = 6;
+
+		// Act
+		computerService.registerComputer(new RegisterComputerRequest(assetCode,
+				laboratory, row_num, col_num));
+
+		// Assert
+		Assert.assertEquals(assetCode,
+				computerRepository.getByAssetCode(assetCode).getAssetCode());
+		Assert.assertEquals(laboratory,
+				computerRepository.getByAssetCode(assetCode).getPosition()
+						.getLaboratory().getName());
+		Assert.assertEquals(row_num,
+				computerRepository.getByAssetCode(assetCode).getPosition()
+						.getRowNum());
+		Assert.assertEquals(col_num,
+				computerRepository.getByAssetCode(assetCode).getPosition()
+						.getColumnNum());
+		Assert.assertEquals(2, computerRepository.listAll().size());
 	}
 
 	@Test
 	public void registerNewComputerAt1_2MustRegister() {
 		// Arrange
-		String assetCode = "asset02";
+		String assetCode = "asset03";
 		String laboratory = "lab01";
 		int row_num = 1;
 		int col_num = 2;
