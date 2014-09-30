@@ -73,14 +73,12 @@ filtersModule.filter("ImagePathForComputer", [
     {
         return function(computer)
         {
-            alert(typeof(computer));
-
-            if(typeof(computer) === "ComputerModel")
+            if(typeof(computer) === "undefined")
             {
-                return "img/icon/monitor32.png";
+                return "img/icon/monitor_transparent32.png";
             }
 
-            return "img/icon/transparent32.png";
+            return "img/icon/monitor32.png";
         };
     }
 ]);
