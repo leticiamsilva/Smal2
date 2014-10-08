@@ -44,12 +44,12 @@ public class TicketService {
 			throw new IllegalArgumentException("Undefined description.");
 		}
 
-		if (request.getAssetCode() == null || request.getAssetCode().equals("")) {
+		if (request.getAsset_code() == null || request.getAsset_code().equals("")) {
 			throw new IllegalArgumentException("Undefined computer asset code.");
 		}
 
-		if (request.getSubTrouble() == null
-				|| request.getSubTrouble().equals("")) {
+		if (request.getSub_trouble() == null
+				|| request.getSub_trouble().equals("")) {
 			throw new IllegalArgumentException("Undefined sub-t	rouble name.");
 		}
 
@@ -57,19 +57,19 @@ public class TicketService {
 			throw new IllegalArgumentException("User must exist.");
 		}
 
-		if (!computerRepository.existWithAssetCode(request.getAssetCode())) {
+		if (!computerRepository.existWithAssetCode(request.getAsset_code())) {
 			throw new IllegalArgumentException("Computer must exist.");
 		}
 
-		if (!subTroubleRepository.existWithName(request.getSubTrouble())) {
+		if (!subTroubleRepository.existWithName(request.getSub_trouble())) {
 			throw new IllegalArgumentException("Sub-trouble must exist.");
 		}
 
 		User user = userRepository.getByRegistration(request.getRegistration());
 
-		Computer computer = computerRepository.get(request.getAssetCode());
+		Computer computer = computerRepository.get(request.getAsset_code());
 		SubTrouble subTrouble = subTroubleRepository.get(request
-				.getSubTrouble());
+				.getSub_trouble());
 
 		ticketRepository.insert(new Ticket(new Date(),
 				request.getDescription(), user, subTrouble, computer));
