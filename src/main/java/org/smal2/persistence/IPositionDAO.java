@@ -8,13 +8,13 @@ public interface IPositionDAO {
 
 	void create(Position entity);
 
-	Position read(long id);
+	Position read(Long id);
 
 	List<Position> readAll();
 
 	void update(Position entity);
 
-	void delete(long id);
+	void delete(Long id);
 
 	Position getByLaboratoryAndPosition(String laboratory, int rowNum,
 			int columnNum);

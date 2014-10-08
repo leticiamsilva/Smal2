@@ -13,12 +13,12 @@ public class PositionDAOMock extends AInMemoryDAO<Position, Long> implements
 
 	@Override
 	public void create(Position entity) {
-		createById(entity, ++sequence);
+		createByKey(entity, ++sequence);
 	}
 
 	@Override
 	public void update(Position entity) {
-		updateById(entity, entity.getId());
+		updateByKey(entity, entity.getId());
 	}
 
 	@Override

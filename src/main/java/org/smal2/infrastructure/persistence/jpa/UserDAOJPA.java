@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class UserDAOJPA extends GenericDAOJPA<User> implements IUserDAO {
 
 	@Override
-	public User read(long id) {
+	public User read(Long id) {
 		return read(User.class, id);
 	}
 
@@ -20,7 +20,7 @@ public class UserDAOJPA extends GenericDAOJPA<User> implements IUserDAO {
 	}
 
 	@Override
-	public void delete(long id) {
+	public void delete(Long id) {
 		delete(User.class, id);
 	}
 

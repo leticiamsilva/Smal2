@@ -2,30 +2,30 @@ package org.smal2.domain.repository;
 
 import java.util.List;
 
-import org.smal2.domain.entity.Laboratory;
-import org.smal2.persistence.ILaboratoryDAO;
+import org.smal2.domain.entity.Trouble;
+import org.smal2.persistence.ITroubleDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LaboratoryRepository {
+public class TroubleRepository {
 
 	@Autowired
-	ILaboratoryDAO dao;
+	ITroubleDAO dao;
 
-	public void insert(Laboratory entity) {
+	public void insert(Trouble entity) {
 		dao.create(entity);
 	}
 
-	public Laboratory get(String name) {
+	public Trouble get(String name) {
 		return dao.read(name);
 	}
 
-	public List<Laboratory> listAll() {
+	public List<Trouble> listAll() {
 		return dao.readAll();
 	}
 
-	public void save(Laboratory entity) {
+	public void save(Trouble entity) {
 		dao.update(entity);
 	}
 

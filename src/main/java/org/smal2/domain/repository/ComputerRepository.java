@@ -17,8 +17,8 @@ public class ComputerRepository {
 		dao.create(entity);
 	}
 
-	public Computer get(long id) {
-		return dao.read(id);
+	public Computer get(String assetCode) {
+		return dao.read(assetCode);
 	}
 
 	public List<Computer> listAll() {
@@ -29,12 +29,8 @@ public class ComputerRepository {
 		dao.update(entity);
 	}
 
-	public void remove(long id) {
-		dao.delete(id);
-	}
-
-	public Computer getByAssetCode(String assetCode) {
-		return dao.getByAssetCode(assetCode);
+	public void remove(String assetCode) {
+		dao.delete(assetCode);
 	}
 
 	public boolean existWithAssetCode(String assetCode) {

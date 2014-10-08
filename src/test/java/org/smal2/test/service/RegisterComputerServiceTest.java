@@ -111,17 +111,14 @@ public class RegisterComputerServiceTest extends AComputerTest {
 				laboratory, row_num, col_num));
 
 		// Assert
-		Assert.assertEquals(assetCode,
-				computerRepository.getByAssetCode(assetCode).getAssetCode());
-		Assert.assertEquals(laboratory,
-				computerRepository.getByAssetCode(assetCode).getPosition()
-						.getLaboratory().getName());
-		Assert.assertEquals(row_num,
-				computerRepository.getByAssetCode(assetCode).getPosition()
-						.getRowNum());
-		Assert.assertEquals(col_num,
-				computerRepository.getByAssetCode(assetCode).getPosition()
-						.getColumnNum());
+		Assert.assertEquals(assetCode, computerRepository.get(assetCode)
+				.getAssetCode());
+		Assert.assertEquals(laboratory, computerRepository.get(assetCode)
+				.getPosition().getLaboratory().getName());
+		Assert.assertEquals(row_num, computerRepository.get(assetCode)
+				.getPosition().getRowNum());
+		Assert.assertEquals(col_num, computerRepository.get(assetCode)
+				.getPosition().getColumnNum());
 		Assert.assertEquals(2, computerRepository.listAll().size());
 	}
 
@@ -138,17 +135,14 @@ public class RegisterComputerServiceTest extends AComputerTest {
 				laboratory, row_num, col_num));
 
 		// Assert
-		Assert.assertEquals(assetCode,
-				computerRepository.getByAssetCode(assetCode).getAssetCode());
-		Assert.assertEquals(laboratory,
-				computerRepository.getByAssetCode(assetCode).getPosition()
-						.getLaboratory().getName());
-		Assert.assertEquals(row_num,
-				computerRepository.getByAssetCode(assetCode).getPosition()
-						.getRowNum());
-		Assert.assertEquals(col_num,
-				computerRepository.getByAssetCode(assetCode).getPosition()
-						.getColumnNum());
+		Assert.assertEquals(assetCode, computerRepository.get(assetCode)
+				.getAssetCode());
+		Assert.assertEquals(laboratory, computerRepository.get(assetCode)
+				.getPosition().getLaboratory().getName());
+		Assert.assertEquals(row_num, computerRepository.get(assetCode)
+				.getPosition().getRowNum());
+		Assert.assertEquals(col_num, computerRepository.get(assetCode)
+				.getPosition().getColumnNum());
 		Assert.assertEquals(2, computerRepository.listAll().size());
 	}
 
@@ -165,17 +159,14 @@ public class RegisterComputerServiceTest extends AComputerTest {
 				laboratory, row_num, col_num));
 
 		// Assert
-		Assert.assertEquals(assetCode,
-				computerRepository.getByAssetCode(assetCode).getAssetCode());
-		Assert.assertEquals(laboratory,
-				computerRepository.getByAssetCode(assetCode).getPosition()
-						.getLaboratory().getName());
-		Assert.assertEquals(row_num,
-				computerRepository.getByAssetCode(assetCode).getPosition()
-						.getRowNum());
-		Assert.assertEquals(col_num,
-				computerRepository.getByAssetCode(assetCode).getPosition()
-						.getColumnNum());
+		Assert.assertEquals(assetCode, computerRepository.get(assetCode)
+				.getAssetCode());
+		Assert.assertEquals(laboratory, computerRepository.get(assetCode)
+				.getPosition().getLaboratory().getName());
+		Assert.assertEquals(row_num, computerRepository.get(assetCode)
+				.getPosition().getRowNum());
+		Assert.assertEquals(col_num, computerRepository.get(assetCode)
+				.getPosition().getColumnNum());
 		Assert.assertEquals(2, computerRepository.listAll().size());
 	}
 }

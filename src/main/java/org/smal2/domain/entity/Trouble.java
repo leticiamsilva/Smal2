@@ -2,7 +2,6 @@ package org.smal2.domain.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,9 +10,6 @@ import javax.persistence.Table;
 public class Trouble {
 
 	@Id
-	@GeneratedValue
-	private long id;
-
 	@Column(nullable = false)
 	private String name;
 
@@ -28,10 +24,6 @@ public class Trouble {
 		}
 
 		this.name = name;
-	}
-
-	public long getId() {
-		return id;
 	}
 
 	public String getName() {

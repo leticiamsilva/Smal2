@@ -48,7 +48,7 @@ public class RegisterComputerPresenterTest extends AComputerTest {
 	}
 
 	@Test
-	public void registerExisterComputerAssetCodeMustShowError() {
+	public void registerExistentComputerAssetCodeMustShowError() {
 		// Arrange
 		String assetCode = "asset01";
 		String laboratory = "lab01";

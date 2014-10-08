@@ -11,8 +11,8 @@ public class LaboratoryDAOJPA extends GenericDAOJPA<Laboratory> implements
 		ILaboratoryDAO {
 
 	@Override
-	public Laboratory read(long id) {
-		return read(Laboratory.class, id);
+	public Laboratory read(String name) {
+		return read(Laboratory.class, name);
 	}
 
 	@Override
@@ -21,17 +21,8 @@ public class LaboratoryDAOJPA extends GenericDAOJPA<Laboratory> implements
 	}
 
 	@Override
-	public void delete(long id) {
-		delete(Laboratory.class, id);
-	}
-
-	@Override
-	public Laboratory getByName(String name) {
-		StringBuilder query = new StringBuilder();
-		query.append("SELECT e FROM Laboratory e WHERE e.name = ?");
-		Object array[] = { name };
-
-		return super.getEntity(query.toString(), array);
+	public void delete(String name) {
+		delete(Laboratory.class, name);
 	}
 
 	@Override

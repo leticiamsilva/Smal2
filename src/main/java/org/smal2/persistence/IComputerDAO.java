@@ -8,17 +8,15 @@ public interface IComputerDAO {
 
 	void create(Computer entity);
 
-	Computer read(long id);
+	Computer read(String assetCode);
 
 	List<Computer> readAll();
 
 	void update(Computer entity);
 
-	void delete(long id);
-
-	Computer getByAssetCode(String assetCode);
+	void delete(String assetCode);
 
 	boolean existWithAssetCode(String assetCode);
 
-	boolean existWithPosition(long id);
+	boolean existWithPosition(Long id);
 }

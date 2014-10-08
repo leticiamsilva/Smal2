@@ -12,23 +12,23 @@ public abstract class AInMemoryDAO<T, K> {
 		entities = new Hashtable<K, T>();
 	}
 
-	public void createById(T entity, K id) {
-		entities.put(id, entity);
+	public void createByKey(T entity, K key) {
+		entities.put(key, entity);
 	}
 
-	public T read(long id) {
-		return entities.get(id);
+	public T read(K key) {
+		return entities.get(key);
 	}
 
 	public List<T> readAll() {
 		return new ArrayList<T>(entities.values());
 	}
 
-	public void updateById(T entity, K id) {
-		entities.replace(id, entity);
+	public void updateByKey(T entity, K key) {
+		entities.replace(key, entity);
 	}
 
-	public void delete(long id) {
-		entities.remove(id);
+	public void delete(K key) {
+		entities.remove(key);
 	}
 }

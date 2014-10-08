@@ -51,8 +51,7 @@ public class ComputerService {
 			throw new IllegalArgumentException("Laboratory must exist.");
 		}
 
-		Laboratory lab = laboratoryRepository.getByName(request
-				.getLaboratory_name());
+		Laboratory lab = laboratoryRepository.get(request.getLaboratory_name());
 
 		if (request.getColumn_num() > 6) {
 			throw new IllegalArgumentException(

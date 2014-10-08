@@ -11,8 +11,8 @@ public class ComputerDAOJPA extends GenericDAOJPA<Computer> implements
 		IComputerDAO {
 
 	@Override
-	public Computer read(long id) {
-		return read(Computer.class, id);
+	public Computer read(String assetCode) {
+		return read(Computer.class, assetCode);
 	}
 
 	@Override
@@ -21,18 +21,8 @@ public class ComputerDAOJPA extends GenericDAOJPA<Computer> implements
 	}
 
 	@Override
-	public void delete(long id) {
-		delete(Computer.class, id);
-	}
-
-	@Override
-	public Computer getByAssetCode(String assetCode) {
-
-		StringBuilder query = new StringBuilder();
-		query.append("SELECT e FROM Computer e WHERE e.assetCode = ?");
-		Object array[] = { assetCode };
-
-		return super.getEntity(query.toString(), array);
+	public void delete(String assetCode) {
+		delete(Computer.class, assetCode);
 	}
 
 	@Override
@@ -46,7 +36,7 @@ public class ComputerDAOJPA extends GenericDAOJPA<Computer> implements
 	}
 
 	@Override
-	public boolean existWithPosition(long id) {
+	public boolean existWithPosition(Long id) {
 		StringBuilder query = new StringBuilder();
 		query.append("SELECT c FROM Computer c INNER JOIN c.position as p WHERE p.id = ?");
 		Object array[] = { id };

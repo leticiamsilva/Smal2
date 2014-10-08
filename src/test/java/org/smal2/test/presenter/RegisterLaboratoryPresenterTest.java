@@ -30,7 +30,7 @@ public class RegisterLaboratoryPresenterTest extends ALaboratoryTest {
 
 		// Assert
 		Assert.assertEquals(4, laboratoryRepository.listAll().size());
-		Assert.assertEquals("lab04", laboratoryRepository.getByName("lab04")
+		Assert.assertEquals("lab04", laboratoryRepository.get("lab04")
 				.getName());
 		Assert.assertTrue(view.getResponse().equals(
 				"Laboratory registred successfully."));

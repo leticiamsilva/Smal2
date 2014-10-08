@@ -42,8 +42,7 @@ public class RegisterLaboratoryServiceTest extends ALaboratoryTest {
 		laboratoryService.registerLaboratory(name);
 
 		// Assert
-		Assert.assertEquals(name, laboratoryRepository.getByName(name)
-				.getName());
+		Assert.assertEquals(name, laboratoryRepository.get(name).getName());
 		Assert.assertEquals(4, laboratoryRepository.listAll().size());
 	}
 }

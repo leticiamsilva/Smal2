@@ -7,13 +7,13 @@ import org.smal2.domain.entity.User;
 public interface IUserDAO {
 	void create(User entity);
 
-	User read(long id);
+	User read(Long id);
 
 	List<User> readAll();
 
 	void update(User entity);
 
-	void delete(long id);
+	void delete(Long id);
 
 	User getByRegistration(String registration);
 

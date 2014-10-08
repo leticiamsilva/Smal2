@@ -8,15 +8,13 @@ public interface ILaboratoryDAO {
 
 	void create(Laboratory entity);
 
-	Laboratory read(long id);
+	Laboratory read(String name);
 
 	List<Laboratory> readAll();
 
 	void update(Laboratory entity);
 
-	void delete(long id);
-
-	Laboratory getByName(String name);
+	void delete(String name);
 
 	boolean existWithName(String name);
 }

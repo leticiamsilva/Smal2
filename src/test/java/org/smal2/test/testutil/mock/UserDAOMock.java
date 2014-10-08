@@ -12,12 +12,12 @@ public class UserDAOMock extends AInMemoryDAO<User, Long> implements IUserDAO {
 
 	@Override
 	public void create(User entity) {
-		createById(entity, ++sequence);
+		createByKey(entity, ++sequence);
 	}
 
 	@Override
 	public void update(User entity) {
-		updateById(entity, entity.getId());
+		updateByKey(entity, entity.getId());
 	}
 
 	@Override

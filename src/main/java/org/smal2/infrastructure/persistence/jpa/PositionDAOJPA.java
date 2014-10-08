@@ -11,7 +11,7 @@ public class PositionDAOJPA extends GenericDAOJPA<Position> implements
 		IPositionDAO {
 
 	@Override
-	public Position read(long id) {
+	public Position read(Long id) {
 		return read(Position.class, id);
 	}
 
@@ -21,7 +21,7 @@ public class PositionDAOJPA extends GenericDAOJPA<Position> implements
 	}
 
 	@Override
-	public void delete(long id) {
+	public void delete(Long id) {
 		delete(Position.class, id);
 	}
 

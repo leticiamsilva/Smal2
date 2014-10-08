@@ -114,6 +114,10 @@ public class Ticket {
 		return status;
 	}
 
+	public Trouble getTrouble() {
+		return subTrouble.getTrouble();
+	}
+
 	public SubTrouble getSubTrouble() {
 		return subTrouble;
 	}
