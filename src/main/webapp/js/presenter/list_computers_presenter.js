@@ -48,7 +48,7 @@ angular.module("ControllersModule").controller("ListComputersPresenter", [
                     }
 
                     $scope.num_columns = num_columns;
-                    $scope.col_size = 12 / num_columns; //[CMP] bootstrap magic number 12
+                    $scope.col_size = parseInt(12 / num_columns); //[CMP] bootstrap magic number 12
                     $scope.positions = positions;
                 },
                 function(data) {
