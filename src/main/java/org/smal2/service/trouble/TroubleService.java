@@ -1,5 +1,8 @@
 package org.smal2.service.trouble;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.smal2.domain.entity.Trouble;
 import org.smal2.domain.repository.TroubleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +27,18 @@ public class TroubleService {
 		repository.insert(new Trouble(name));
 
 		return "Trouble registred successfully.";
+	}
+
+	public ListTroublesResponse listTroubles() {
+
+		List<ListTroublesResponseItem> troubles = new ArrayList<ListTroublesResponseItem>();
+		ListTroublesResponseItem item;
+
+		for (Trouble trouble : repository.listAll()) {
+			item = new ListTroublesResponseItem(trouble.getName());
+			troubles.add(item);
+		}
+
+		return new ListTroublesResponse(troubles);
 	}
 }

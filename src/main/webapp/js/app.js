@@ -86,6 +86,12 @@ appModule.config( [
             controller: "RegisterTroublePresenter",
             //auth_required: true //TODO [CMP] re-enable
         }).
+        when("/trouble/list",
+        {
+            templateUrl: "partials/list_troubles.html",
+            controller: "ListTroublesPresenter",
+            //auth_required: true //TODO [CMP] re-enable
+        }).
         when("/subtrouble/register",
         {
             templateUrl: "partials/register_subtrouble.html",
