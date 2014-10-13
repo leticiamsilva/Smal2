@@ -80,6 +80,12 @@ appModule.config( [
             controller: "ListComputersPresenter",
             //auth_required: true //TODO [CMP] re-enable
         }).
+        when("/trouble/register",
+        {
+            templateUrl: "partials/register_trouble.html",
+            controller: "RegisterTroublePresenter",
+            //auth_required: true //TODO [CMP] re-enable
+        }).
         otherwise(
         {
             redirectTo: "/laboratory/list"
