@@ -5,7 +5,7 @@
         <!--
             $scope.session = SessionService;
             $scope.asset_code = "";
-            $scope.laboratory_name = "";
+            $scope.laboratory_name = $routeParams.laboratory_name;
             $scope.row_num = "";
             $scope.column_num = "";
             $scope.command = registerComputer;
@@ -20,7 +20,7 @@
             </div>
             <div>
                 <label class="control-label">Laboratório: </label>
-                <input type="text" data-ng-model="laboratory_name" data-ngRequired="true"/>
+                <input type="text" disabled data-ng-model="laboratory_name" data-ngRequired="true"/>
             </div>
             <div>
                 <label class="control-label">Fila: </label>

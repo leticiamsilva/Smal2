@@ -1,8 +1,9 @@
 angular.module("ControllersModule").controller("RegisterComputerPresenter", [
     "$scope",
+    "$routeParams",
     "SessionService",
     "ComputerService",
-    function($scope, SessionService, ComputerService)
+    function($scope, $routeParams, SessionService, ComputerService)
     {
         // private
         var registerComputer = function()
@@ -27,7 +28,7 @@ angular.module("ControllersModule").controller("RegisterComputerPresenter", [
         {
             $scope.session = SessionService;
             $scope.asset_code = "";
-            $scope.laboratory_name = "";
+            $scope.laboratory_name = $routeParams.laboratory_name;
             $scope.row_num = "";
             $scope.column_num = "";
             $scope.command = registerComputer;

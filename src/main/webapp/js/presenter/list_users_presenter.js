@@ -1,8 +1,9 @@
 angular.module("ControllersModule").controller("ListUsersPresenter", [
     "$scope",
+    "$routeParams",
     "SessionService",
     "UserService",
-    function($scope, SessionService, UserService)
+    function($scope, $routeParams, SessionService, UserService)
     {
         // private
         var listUsers = function()

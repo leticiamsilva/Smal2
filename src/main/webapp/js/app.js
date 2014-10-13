@@ -68,7 +68,7 @@ appModule.config( [
             controller: "ListLaboratoriesPresenter",
             //auth_required: true //TODO [CMP] re-enable
         }).
-        when("/computer/register",
+        when("/computer/register/:laboratory_name*",
         {
             templateUrl: "partials/register_computer.html",
             controller: "RegisterComputerPresenter",

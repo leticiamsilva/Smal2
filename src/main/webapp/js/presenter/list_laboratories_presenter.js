@@ -1,8 +1,9 @@
 angular.module("ControllersModule").controller("ListLaboratoriesPresenter", [
     "$scope",
+    "$routeParams",
     "SessionService",
     "LaboratoryService",
-    function($scope, SessionService, LaboratoryService)
+    function($scope, $routeParams, SessionService, LaboratoryService)
     {
         // private
         var listLaboratories = function()
