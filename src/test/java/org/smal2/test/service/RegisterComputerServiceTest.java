@@ -16,7 +16,7 @@ public class RegisterComputerServiceTest extends AComputerTest {
 		Laboratory lab = new Laboratory("lab01");
 		laboratoryRepository.insert(lab);
 
-		Position pos = new Position(1, 1, lab);
+		Position pos = new Position(3, 3, lab);
 		positionRepository.insert(pos);
 
 		computerRepository.insert(new Computer("asset01", pos));
@@ -32,49 +32,63 @@ public class RegisterComputerServiceTest extends AComputerTest {
 	public void registerNullComputerAssetCodeMustThrowException() {
 		// Act
 		computerService.registerComputer(new RegisterComputerRequest(null,
-				null, 0, 0));
+				null, 1, 1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerEmptyComputerAssetCodeMustThrowException() {
 		// Act
 		computerService.registerComputer(new RegisterComputerRequest("", null,
-				0, 0));
+				1, 1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerExistentComputerAssetCodeMustThrowException() {
 		// Act
 		computerService.registerComputer(new RegisterComputerRequest("asset01",
-				null, 0, 0));
+				null, 1, 1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerNullComputerLaboratoryNameMustThrowException() {
 		// Act
 		computerService.registerComputer(new RegisterComputerRequest("asset02",
-				null, 0, 0));
+				null, 1, 1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerEmptyComputerLaboratoryNameMustThrowException() {
 		// Act
 		computerService.registerComputer(new RegisterComputerRequest("asset02",
-				"", 0, 0));
+				"", 1, 1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerNotExistentComputerLaboratoryNameMustThrowException() {
 		// Act
 		computerService.registerComputer(new RegisterComputerRequest("asset02",
-				"lab02", 0, 0));
+				"lab02", 1, 1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerComputerOnBusyPositionMustThrowException() {
 		// Act
 		computerService.registerComputer(new RegisterComputerRequest("asset02",
-				"lab01", 1, 1));
+				"lab01", 3, 3));
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void registerComputerOnZeroRowPositionMustThrowException() {
+		// Act
+		computerService.registerComputer(new RegisterComputerRequest("asset02",
+				"lab01", 0, 1));
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void registerComputerOnZeroColumnPositionMustThrowException() {
+		// Act
+		computerService.registerComputer(new RegisterComputerRequest("asset02",
+				"lab01", 1, 0));
 	}
 
 	@Test(expected = IllegalArgumentException.class)

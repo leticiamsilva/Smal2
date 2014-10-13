@@ -53,6 +53,16 @@ public class ComputerService {
 
 		Laboratory lab = laboratoryRepository.get(request.getLaboratory_name());
 
+		if (request.getRow_num() < 1) {
+			throw new IllegalArgumentException(
+					"Position row cannot be less then 1.");
+		}
+
+		if (request.getColumn_num() < 1) {
+			throw new IllegalArgumentException(
+					"Position column cannot be less then 1.");
+		}
+
 		if (request.getColumn_num() > 6) {
 			throw new IllegalArgumentException(
 					"Position column cannot be greather then 6.");

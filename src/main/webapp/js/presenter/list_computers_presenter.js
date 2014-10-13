@@ -30,24 +30,26 @@ angular.module("ControllersModule").controller("ListComputersPresenter", [
                         }
                     }
 
-                    num_rows++; // data.row_num 0 index based
-                    num_columns++; // data.column_num 0 index based
+                    positions = [];
 
                     // create all empty positions
                     for(var i = 0; i < num_rows; ++i)
                     {
                         for(var j = 0; j < num_columns; ++j)
                         {
-                            $scope.positions[i * num_columns + j] = {};
+                            positions[i * num_columns + j] = {};
                         }
                     }
 
                     // assign computers to its pos
                     for(var i = 0; i < data.length; ++i)
                     {
-                        $scope.positions[data[i].row_num * num_columns + data[i].column_num].computer = data[i];
+                        positions[(data[i].row_num - 1) * num_columns + (data[i].column_num - 1)].computer = data[i];
                     }
 
+                    $scope.num_columns = num_columns;
+                    $scope.col_size = 12 / num_columns; //[CMP] bootstrap magic number 12
+                    $scope.positions = positions;
                 },
                 function(data) {
                     $scope.response = data;
@@ -61,6 +63,9 @@ angular.module("ControllersModule").controller("ListComputersPresenter", [
             $scope.laboratory_name = $routeParams.laboratory_name;
             $scope.command = listPositions;
             $scope.positions = [];
+            //[CMP] bootstrap magic number 12
+            $scope.num_columns = 6;
+            $scope.col_size = 2;
             $scope.response = "";
 
             $scope.command();
