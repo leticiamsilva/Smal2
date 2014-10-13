@@ -5,6 +5,7 @@
         <!--
             $scope.session = SessionService;
             $scope.name = "";
+            $scope.trouble_name = $routeParams.trouble_name;
             $scope.command = registerSubTrouble;
             $scope.response = "";
         -->
@@ -17,7 +18,7 @@
             </div>
             <div>
                 <label class="control-label">Nome problema: </label>
-                <input type="text" data-ng-model="trouble_name" data-ngRequired="true"/>
+                <input type="text" disabled data-ng-model="trouble_name" data-ngRequired="true"/>
             </div>
             <button class="btn btn-primary" data-ng-click="command()">Registrar</button>
         </form>

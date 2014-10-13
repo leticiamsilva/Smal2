@@ -1,4 +1,4 @@
-angular.module("ControllersModule").controller("RegisterSubTroublePresenter", [
+angular.module("ControllersModule").controller("ListSubTroublesPresenter", [
     "$scope",
     "$routeParams",
     "SessionService",
@@ -6,15 +6,14 @@ angular.module("ControllersModule").controller("RegisterSubTroublePresenter", [
     function($scope, $routeParams, SessionService, SubTroubleService)
     {
         // private
-        var registerSubTrouble = function()
+        var listSubTroubles = function()
         {
-            SubTroubleService.registerSubTrouble(
+            SubTroubleService.getSubTroubles(
                 SessionService.session_id,
-                $scope.name,
                 $scope.trouble_name,
                 function(data)
                 {
-                    $scope.response = data;
+                    $scope.subtroubles = data;
                 },
                 function(data) {
                     $scope.response = data;
@@ -25,10 +24,12 @@ angular.module("ControllersModule").controller("RegisterSubTroublePresenter", [
         // constructor
         {
             $scope.session = SessionService;
-            $scope.name = "";
             $scope.trouble_name = $routeParams.trouble_name;
-            $scope.command = registerSubTrouble;
+            $scope.command = listSubTroubles;
+            $scope.subtroubles = [];
             $scope.response = "";
+
+            $scope.command();
         };
     }
 ]);

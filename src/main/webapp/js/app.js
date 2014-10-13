@@ -92,10 +92,16 @@ appModule.config( [
             controller: "ListTroublesPresenter",
             //auth_required: true //TODO [CMP] re-enable
         }).
-        when("/subtrouble/register",
+        when("/subtrouble/register/:trouble_name*",
         {
             templateUrl: "partials/register_subtrouble.html",
             controller: "RegisterSubTroublePresenter",
+            //auth_required: true //TODO [CMP] re-enable
+        }).
+        when("/subtrouble/list/:trouble_name*",
+        {
+            templateUrl: "partials/list_subtroubles.html",
+            controller: "ListSubTroublesPresenter",
             //auth_required: true //TODO [CMP] re-enable
         }).
         when("/ticket/open/:computer_asset_code*",
