@@ -44,6 +44,7 @@ public class OpenTicketPresenterTest extends ATicketTest {
 		// Arrange
 		String registration = "registration01";
 		String assetCode = "asset01";
+		String trouble = "trouble01";
 		String subTrouble = "subTrouble01";
 		String description = "descriptionEmpty";
 
@@ -51,7 +52,7 @@ public class OpenTicketPresenterTest extends ATicketTest {
 
 		// Act
 		new OpenTicketPresenter(view, ticketService);
-		view.setRequest(new OpenTicketRequest(registration, assetCode,
+		view.setRequest(new OpenTicketRequest(registration, assetCode, trouble,
 				subTrouble, description));
 		view.getCommand().execute();
 

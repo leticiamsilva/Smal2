@@ -86,6 +86,18 @@ appModule.config( [
             controller: "RegisterTroublePresenter",
             //auth_required: true //TODO [CMP] re-enable
         }).
+        when("/subtrouble/register",
+        {
+            templateUrl: "partials/register_subtrouble.html",
+            controller: "RegisterSubTroublePresenter",
+            //auth_required: true //TODO [CMP] re-enable
+        }).
+        when("/ticket/open/:computer_asset_code*",
+        {
+            templateUrl: "partials/open_ticket.html",
+            controller: "OpenTicketPresenter",
+            //auth_required: true //TODO [CMP] re-enable
+        }).
         otherwise(
         {
             redirectTo: "/laboratory/list"
