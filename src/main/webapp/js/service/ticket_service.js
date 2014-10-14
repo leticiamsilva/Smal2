@@ -81,7 +81,7 @@ angular.module("ServicesModule").factory("TicketService", [
                                     data.response[i].administrator,
                                     data.response[i].status,
                                     data.response[i].trouble,
-                                    data.response[i].subTrouble,
+                                    data.response[i].sub_trouble,
                                     data.response[i].computer
                                 ));
                             }

@@ -14,13 +14,13 @@ public class ListTicketsResponseItem {
 	private String administrator;
 	private Status status;
 	private String trouble;
-	private String subTrouble;
+	private String sub_trouble;
 	private String computer;
 
 	public ListTicketsResponseItem(long protocol, Date open_date,
 			Date close_date, String description, String user,
 			String technician, String administrator, Status status,
-			String trouble, String subTrouble, String computer) {
+			String trouble, String sub_trouble, String computer) {
 		super();
 		this.protocol = protocol;
 		this.open_date = open_date;
@@ -31,7 +31,7 @@ public class ListTicketsResponseItem {
 		this.administrator = administrator;
 		this.status = status;
 		this.trouble = trouble;
-		this.subTrouble = subTrouble;
+		this.sub_trouble = sub_trouble;
 		this.computer = computer;
 	}
 
@@ -71,8 +71,8 @@ public class ListTicketsResponseItem {
 		return trouble;
 	}
 
-	public String getSubTrouble() {
-		return subTrouble;
+	public String getSub_trouble() {
+		return sub_trouble;
 	}
 
 	public String getComputer() {

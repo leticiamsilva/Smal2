@@ -1,4 +1,4 @@
-function TicketModel(protocol, open_date, close_date, description, user, technician, administrator, status, trouble, subTrouble, computer)
+function TicketModel(protocol, open_date, close_date, description, user, technician, administrator, status, trouble, sub_trouble, computer)
 {
     var self = this;
     self.protocol = protocol;
@@ -10,6 +10,6 @@ function TicketModel(protocol, open_date, close_date, description, user, technic
     self.administrator = administrator;
     self.status = status;
     self.trouble = trouble;
-    self.subTrouble = subTrouble;
+    self.sub_trouble = sub_trouble;
     self.computer = computer;
 }
