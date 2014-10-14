@@ -6,7 +6,7 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin;
 
 USER="nobody";
 CMD_PATH="/srv/local/Smal2";
-CMD_BIN="startup_loop.sh";
+CMD_BIN="startup/startup_loop.sh";
 CMD_ARGS="${CMD_PATH} /usr/bin/mvn \"tomcat:run -Dmaven.repo.local=${CMD_PATH}/.m2\""
 
 
