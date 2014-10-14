@@ -1,6 +1,8 @@
 package org.smal2.service.ticket;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.smal2.domain.entity.Computer;
 import org.smal2.domain.entity.SubTrouble;
@@ -44,7 +46,8 @@ public class TicketService {
 			throw new IllegalArgumentException("Undefined description.");
 		}
 
-		if (request.getAsset_code() == null || request.getAsset_code().equals("")) {
+		if (request.getAsset_code() == null
+				|| request.getAsset_code().equals("")) {
 			throw new IllegalArgumentException("Undefined computer asset code.");
 		}
 
@@ -77,4 +80,26 @@ public class TicketService {
 		return "Ticket open successfully.";
 	}
 
+	public ListTicketsResponse listTickets() {
+
+		List<ListTicketsResponseItem> tickets = new ArrayList<ListTicketsResponseItem>();
+		ListTicketsResponseItem item;
+
+		for (Ticket ticket : ticketRepository.listAll()) {
+			item = new ListTicketsResponseItem(ticket.getProtocol(),
+					ticket.getOpenDate(), ticket.getCloseDate(),
+					ticket.getDescription(),
+					ticket.getUser().getRegistration(),
+					(ticket.getTechnician() == null) ? null : ticket
+							.getTechnician().getRegistration(),
+					(ticket.getAdministrator() == null) ? null : ticket
+							.getAdministrator().getRegistration(),
+					ticket.getStatus(), ticket.getSubTrouble().getTrouble()
+							.getName(), ticket.getSubTrouble().getName(),
+					ticket.getComputer().getAssetCode());
+			tickets.add(item);
+		}
+
+		return new ListTicketsResponse(tickets);
+	}
 }

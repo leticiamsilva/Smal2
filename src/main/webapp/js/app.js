@@ -110,6 +110,12 @@ appModule.config( [
             controller: "OpenTicketPresenter",
             //auth_required: true //TODO [CMP] re-enable
         }).
+        when("/ticket/list",
+        {
+            templateUrl: "partials/list_tickets.html",
+            controller: "ListTicketsPresenter",
+            //auth_required: true //TODO [CMP] re-enable
+        }).
         otherwise(
         {
             redirectTo: "/laboratory/list"

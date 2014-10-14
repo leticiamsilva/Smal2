@@ -42,14 +42,14 @@ angular.module("ServicesModule").factory("TicketService", [
                 }).
                 error(function(data, status, headers, config) { fn_error("AJAX ERROR:\n" + config.method + ": " + config.url + "\nstatus: " + status + "\nresponse: " + angular.toJson(data, true)); });
             };
-/*
-            // return Array of Computers
-            self.getComputers = function(session_id, laboratory_name, fn_success, fn_error)
+
+            // return Array of Tickets
+            self.getTickets = function(session_id, fn_success, fn_error)
             {
                 $http({
                     method: "POST",
-                    url: "rest/computer/list",
-                    data: { session_id: session_id, request : laboratory_name },
+                    url: "rest/ticket/list",
+                    data: { session_id: session_id, request : null },
                     cache: false,
                     responseType: "json"
                 }).
@@ -65,26 +65,33 @@ angular.module("ServicesModule").factory("TicketService", [
                     }
                     else
                     {
-                        var computers = [];
+                        var tickets = [];
 
                         if(data.response != null)
                         {
                             for(var i = 0; i < data.response.length; ++i)
                             {
-                                computers.push(new ComputerModel(
-                                    data.response[i].asset_code,
-                                    data.response[i].row_num,
-                                    data.response[i].column_num
+                                tickets.push(new TicketModel(
+                                    data.response[i].protocol,
+                                    data.response[i].open_date,
+                                    data.response[i].close_date,
+                                    data.response[i].description,
+                                    data.response[i].user,
+                                    data.response[i].technician,
+                                    data.response[i].administrator,
+                                    data.response[i].status,
+                                    data.response[i].trouble,
+                                    data.response[i].subTrouble,
+                                    data.response[i].computer
                                 ));
                             }
                         }
 
-                        fn_success(computers);
+                        fn_success(tickets);
                     }
                 }).
                 error(function(data, status, headers, config) { fn_error("AJAX ERROR:\n" + config.method + ": " + config.url + "\nstatus: " + status + "\nresponse: " + angular.toJson(data, true)); });
             };
-            */
          }
 
          return new TicketServiceObject();
