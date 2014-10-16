@@ -30,7 +30,6 @@ public class ListUsersPresenterTest extends ABaseTest {
 		view.getCommand().execute();
 
 		// Assert
-		Assert.assertEquals(userRepository.listAll().size(), view.getResponse()
-				.size());
+		Assert.assertEquals(3, view.getResponse().size());
 	}
 }

@@ -9,7 +9,9 @@ import org.smal2.domain.repository.TroubleRepository;
 import org.smal2.domain.repository.UserRepository;
 import org.smal2.service.computer.ComputerService;
 import org.smal2.service.laboratory.LaboratoryService;
+import org.smal2.service.subtrouble.SubTroubleService;
 import org.smal2.service.ticket.TicketService;
+import org.smal2.service.trouble.TroubleService;
 import org.smal2.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
@@ -56,7 +58,13 @@ public abstract class ABaseTest {
 	protected TroubleRepository troubleRepository;
 
 	@Autowired
+	protected TroubleService troubleService;
+
+	@Autowired
 	protected SubTroubleRepository subTroubleRepository;
+
+	@Autowired
+	protected SubTroubleService subTroubleService;
 
 	@Test
 	public void mustAutowireTestDependencies() {
@@ -70,6 +78,8 @@ public abstract class ABaseTest {
 		Assert.assertNotNull(ticketRepository);
 		Assert.assertNotNull(ticketService);
 		Assert.assertNotNull(troubleRepository);
+		Assert.assertNotNull(troubleService);
 		Assert.assertNotNull(subTroubleRepository);
+		Assert.assertNotNull(subTroubleService);
 	}
 }

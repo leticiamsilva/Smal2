@@ -56,7 +56,6 @@ public class ListTicketPresenterTest extends ABaseTest {
 		view.getCommand().execute();
 
 		// Assert
-		Assert.assertEquals(userRepository.listAll().size(), view.getResponse()
-				.size());
+		Assert.assertEquals(1, view.getResponse().size());
 	}
 }

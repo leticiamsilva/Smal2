@@ -28,7 +28,6 @@ public class ListLaboratoriesPresenterTest extends ABaseTest {
 		view.getCommand().execute();
 
 		// Assert
-		Assert.assertEquals(laboratoryRepository.listAll().size(), view
-				.getResponse().size());
+		Assert.assertEquals(3, view.getResponse().size());
 	}
 }
