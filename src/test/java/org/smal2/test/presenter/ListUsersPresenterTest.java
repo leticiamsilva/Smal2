@@ -6,12 +6,12 @@ import org.smal2.domain.entity.User;
 import org.smal2.presentation.presenter.ListUsersPresenter;
 import org.smal2.presentation.view.IListUsersView;
 import org.smal2.presentation.view.basic.ListUsersViewMock;
-import org.smal2.test.testutil.AUserTest;
+import org.smal2.test.testutil.ABaseTest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ListUsersPresenterTest extends AUserTest {
+public class ListUsersPresenterTest extends ABaseTest {
 
 	@Before
 	public void before() {

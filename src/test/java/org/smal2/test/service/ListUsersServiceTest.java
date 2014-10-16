@@ -7,12 +7,12 @@ import org.smal2.domain.entity.Administrator;
 import org.smal2.domain.entity.User;
 import org.smal2.service.user.ListUsersResponse;
 import org.smal2.service.user.ListUsersResponseItem;
-import org.smal2.test.testutil.AUserTest;
+import org.smal2.test.testutil.ABaseTest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ListUsersServiceTest extends AUserTest {
+public class ListUsersServiceTest extends ABaseTest {
 
 	private Date birthDate1 = new GregorianCalendar(2001, 01, 01).getTime();
 	private Date birthDate2 = new GregorianCalendar(2001, 01, 02).getTime();

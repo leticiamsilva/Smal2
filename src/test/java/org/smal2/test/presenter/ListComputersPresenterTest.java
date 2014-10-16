@@ -8,12 +8,12 @@ import org.smal2.presentation.view.IListComputersView;
 import org.smal2.presentation.view.basic.ListComputersViewMock;
 import org.smal2.service.computer.ListComputersResponse;
 import org.smal2.service.computer.ListComputersResponseItem;
-import org.smal2.test.testutil.AComputerTest;
+import org.smal2.test.testutil.ABaseTest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ListComputersPresenterTest extends AComputerTest {
+public class ListComputersPresenterTest extends ABaseTest {
 
 	@Before
 	public void before() {

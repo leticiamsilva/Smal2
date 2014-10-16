@@ -10,9 +10,9 @@ import org.smal2.presentation.presenter.RegisterComputerPresenter;
 import org.smal2.presentation.view.IRegisterComputerView;
 import org.smal2.presentation.view.basic.RegisterComputerViewMock;
 import org.smal2.service.computer.RegisterComputerRequest;
-import org.smal2.test.testutil.AComputerTest;
+import org.smal2.test.testutil.ABaseTest;
 
-public class RegisterComputerPresenterTest extends AComputerTest {
+public class RegisterComputerPresenterTest extends ABaseTest {
 
 	@Before
 	public void before() {

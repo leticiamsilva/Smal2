@@ -15,9 +15,9 @@ import org.smal2.presentation.presenter.OpenTicketPresenter;
 import org.smal2.presentation.view.IOpenTicketView;
 import org.smal2.presentation.view.basic.OpenTicketViewMock;
 import org.smal2.service.ticket.OpenTicketRequest;
-import org.smal2.test.testutil.ATicketTest;
+import org.smal2.test.testutil.ABaseTest;
 
-public class OpenTicketPresenterTest extends ATicketTest {
+public class OpenTicketPresenterTest extends ABaseTest {
 
 	@Before
 	public void before() {

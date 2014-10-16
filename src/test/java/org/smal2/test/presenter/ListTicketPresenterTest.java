@@ -12,12 +12,12 @@ import org.smal2.presentation.presenter.ListTicketsPresenter;
 import org.smal2.presentation.view.IListTicketsView;
 import org.smal2.presentation.view.basic.ListTicketsViewMock;
 import org.smal2.service.ticket.OpenTicketRequest;
-import org.smal2.test.testutil.ATicketTest;
+import org.smal2.test.testutil.ABaseTest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ListTicketPresenterTest extends ATicketTest {
+public class ListTicketPresenterTest extends ABaseTest {
 
 	@Before
 	public void before() {

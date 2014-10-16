@@ -6,12 +6,12 @@ import java.util.GregorianCalendar;
 import org.smal2.domain.entity.User;
 import org.smal2.service.user.RegisterPrivilegedUserRequest;
 import org.smal2.service.user.UserType;
-import org.smal2.test.testutil.AUserTest;
+import org.smal2.test.testutil.ABaseTest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class RegisterPrivilegedUserServiceTest extends AUserTest {
+public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 
 	@Before
 	public void before() {
