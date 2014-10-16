@@ -69,7 +69,7 @@ public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 	}
 
 	@Test
-	public void registerNewUserNameMustRegister() {
+	public void registerNewUserNameMustSaveUser() {
 		// Arrange
 		String registration = "0004";
 		String password = "password";

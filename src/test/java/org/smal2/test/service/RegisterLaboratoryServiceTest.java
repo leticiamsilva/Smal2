@@ -34,7 +34,7 @@ public class RegisterLaboratoryServiceTest extends ABaseTest {
 	}
 
 	@Test
-	public void registerNewLaboratoryNameMustRegister() {
+	public void registerNewLaboratoryNameMustSaveLaboratory() {
 		// Arrange
 		String name = "lab04";
 

@@ -26,7 +26,7 @@ public class RegisterComputerPresenterTest extends ABaseTest {
 	}
 
 	@Test
-	public void registerNewComputerMustRegister() {
+	public void registerNewComputerMustSaveComputer() {
 		// Arrange
 		String assetCode = "asset02";
 		String laboratory = "lab01";

@@ -47,6 +47,6 @@ public class RegisterLaboratoryPresenterTest extends ABaseTest {
 		view.getCommand().execute();
 
 		// Assert
-		Assert.assertTrue(view.getError().contains("Register laboratory error"));
+		Assert.assertTrue(view.getError().contains("Laboratory name already exist"));
 	}
 }

@@ -113,7 +113,7 @@ public class RegisterComputerServiceTest extends ABaseTest {
 	}
 
 	@Test
-	public void registerComputerOnColumnPositionIqual6MustRegister() {
+	public void registerComputerOnColumnPositionIqual6MustSaveComputer() {
 		// Arrange
 		String assetCode = "asset02";
 		String laboratory = "lab01";
@@ -137,7 +137,7 @@ public class RegisterComputerServiceTest extends ABaseTest {
 	}
 
 	@Test
-	public void registerNewComputerAt1_2MustRegister() {
+	public void registerNewComputerAt1_2MustSaveComputer() {
 		// Arrange
 		String assetCode = "asset03";
 		String laboratory = "lab01";
@@ -161,7 +161,7 @@ public class RegisterComputerServiceTest extends ABaseTest {
 	}
 
 	@Test
-	public void registerNewComputerAt2_1MustRegister() {
+	public void registerNewComputerAt2_1MustSaveComputer() {
 		// Arrange
 		String assetCode = "asset02";
 		String laboratory = "lab01";
