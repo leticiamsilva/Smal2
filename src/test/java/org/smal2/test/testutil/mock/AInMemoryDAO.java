@@ -25,7 +25,7 @@ public abstract class AInMemoryDAO<T, K> {
 	}
 
 	public void updateByKey(T entity, K key) {
-		entities.replace(key, entity);
+		//entities.replace(key, entity);
 	}
 
 	public void delete(K key) {
