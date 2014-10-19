@@ -1,7 +1,13 @@
 SMAL2
 ====
 
-J2EE project to manage support requisitions of computers' lab maintenance at CEFET-RJ University.
+
+
+#### J2EE project to manage support requisitions of computers' lab maintenance at CEFET-RJ University.
+
+
+
+##### running example on http://www.campisano.org:8080/Smal2/
 
 
 
