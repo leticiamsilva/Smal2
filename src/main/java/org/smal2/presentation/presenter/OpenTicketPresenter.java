@@ -24,7 +24,7 @@ public class OpenTicketPresenter {
 		try {
 			view.setResponse(service.openTicket(view.getRequest()));
 		} catch (Exception ex) {
-			view.setError("Register computer error:\n" + ex.getMessage());
+			view.setError("Open ticket error:\n" + ex.getMessage());
 		}
 	}
 }
