@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.smal2.domain.entity.Administrator;
 import org.smal2.domain.entity.Computer;
+import org.smal2.domain.entity.Status;
 import org.smal2.domain.entity.SubTrouble;
+import org.smal2.domain.entity.Technician;
 import org.smal2.domain.entity.Ticket;
 import org.smal2.domain.entity.User;
 import org.smal2.domain.repository.ComputerRepository;
@@ -101,5 +104,64 @@ public class TicketService {
 		}
 
 		return new ListTicketsResponse(tickets);
+	}
+
+	public String assignTicket(AssignTicketRequest request) {
+
+		if (request == null) {
+			throw new IllegalArgumentException("Undefined request.");
+		}
+
+		if (request.getAdministrator() == null
+				|| request.getAdministrator().equals("")) {
+			throw new IllegalArgumentException(
+					"Undefined administrator registration.");
+		}
+
+		if (!userRepository.existWithRegistration(request.getAdministrator())) {
+			throw new IllegalArgumentException("Administrator must exist.");
+		}
+
+		if (request.getTechnician() == null
+				|| request.getTechnician().equals("")) {
+			throw new IllegalArgumentException(
+					"Undefined technician registration.");
+		}
+
+		if (!userRepository.existWithRegistration(request.getTechnician())) {
+			throw new IllegalArgumentException("Technician must exist.");
+		}
+
+		if (!ticketRepository.existWithProtocol(request.getProtocol())) {
+			throw new IllegalArgumentException("Ticket must exist.");
+		}
+
+		User admin = userRepository.getByRegistration(request
+				.getAdministrator());
+
+		if (admin.getClass() != Administrator.class) {
+			throw new IllegalArgumentException(
+					"Ticket cannot be assigned from a not administrator user.");
+		}
+
+		User tech = userRepository.getByRegistration(request.getTechnician());
+
+		if (tech.getClass() != Technician.class
+				&& tech.getClass() != Administrator.class) {
+			throw new IllegalArgumentException(
+					"Ticket cannot be assigned to a not administrator and not technician user.");
+		}
+
+		Ticket ticket = ticketRepository.get(request.getProtocol());
+
+		if (ticket.getStatus() != Status.OPEN) {
+			throw new IllegalArgumentException(
+					"Ticket with status different then Open cannot be assigned.");
+		}
+
+		ticket.assign((Administrator) admin, (Technician) tech);
+		ticketRepository.save(ticket);
+
+		return "Ticket assigned successfully.";
 	}
 }

@@ -125,4 +125,19 @@ public class Ticket {
 	public Computer getComputer() {
 		return computer;
 	}
+
+	public void assign(Administrator admin, Technician tech) {
+
+		if (admin == null) {
+			throw new IllegalArgumentException("Administrator can not be null.");
+		}
+
+		if (tech == null) {
+			throw new IllegalArgumentException("Technician can not be null.");
+		}
+
+		administrator = admin;
+		technician = tech;
+		status = Status.IN_PROGRESS;
+	}
 }
