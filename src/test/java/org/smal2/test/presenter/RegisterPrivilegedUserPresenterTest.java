@@ -44,8 +44,7 @@ public class RegisterPrivilegedUserPresenterTest extends ABaseTest {
 		Assert.assertEquals(birthDate, userRepository.getByRegistration("0004")
 				.getBirthDate());
 		// TODO [CMP] gettype
-		Assert.assertTrue(view.getResponse().equals(
-				"User registred successfully."));
+		Assert.assertEquals("User registred successfully.", view.getResponse());
 	}
 
 	@Test
@@ -61,6 +60,8 @@ public class RegisterPrivilegedUserPresenterTest extends ABaseTest {
 		view.getCommand().execute();
 
 		// Assert
-		Assert.assertTrue(view.getError().contains("Register user error"));
+		Assert.assertEquals(
+				"Register user error:\nUser type must be administrator or technichan.",
+				view.getError());
 	}
 }

@@ -37,8 +37,8 @@ public class RegisterSubTroublePresenterTest extends ABaseTest {
 		Assert.assertEquals(4, subTroubleRepository.listAll().size());
 		Assert.assertEquals("subtrouble04",
 				subTroubleRepository.get("subtrouble04").getName());
-		Assert.assertTrue(view.getResponse().equals(
-				"Sub-trouble registred successfully."));
+		Assert.assertEquals("Sub-trouble registred successfully.",
+				view.getResponse());
 	}
 
 	@Test
@@ -53,7 +53,8 @@ public class RegisterSubTroublePresenterTest extends ABaseTest {
 		view.getCommand().execute();
 
 		// Assert
-		Assert.assertTrue(view.getError().contains(
-				"Sub-trouble name already exist"));
+		Assert.assertEquals(
+				"Register sub-trouble error:\nSub-trouble name already exist.",
+				view.getError());
 	}
 }

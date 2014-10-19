@@ -58,7 +58,6 @@ public class OpenTicketPresenterTest extends ABaseTest {
 
 		// Assert
 		Assert.assertEquals(1, ticketRepository.listAll().size());
-		Assert.assertTrue(view.getResponse()
-				.equals("Ticket open successfully."));
+		Assert.assertEquals("Ticket open successfully.", view.getResponse());
 	}
 }

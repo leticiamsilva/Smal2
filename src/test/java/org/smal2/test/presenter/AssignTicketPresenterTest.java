@@ -83,8 +83,7 @@ public class AssignTicketPresenterTest extends ABaseTest {
 				.getRegistration());
 		Assert.assertEquals(tech, openTicket.getTechnician().getRegistration());
 		Assert.assertEquals(Status.IN_PROGRESS, openTicket.getStatus());
-		Assert.assertTrue(view.getResponse().equals(
-				"Ticket assigned successfully."));
+		Assert.assertEquals("Ticket assigned successfully.", view.getResponse());
 	}
 
 	@Test

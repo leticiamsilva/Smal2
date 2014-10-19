@@ -32,8 +32,8 @@ public class RegisterLaboratoryPresenterTest extends ABaseTest {
 		Assert.assertEquals(4, laboratoryRepository.listAll().size());
 		Assert.assertEquals("lab04", laboratoryRepository.get("lab04")
 				.getName());
-		Assert.assertTrue(view.getResponse().equals(
-				"Laboratory registred successfully."));
+		Assert.assertEquals("Laboratory registred successfully.",
+				view.getResponse());
 	}
 
 	@Test
@@ -47,6 +47,8 @@ public class RegisterLaboratoryPresenterTest extends ABaseTest {
 		view.getCommand().execute();
 
 		// Assert
-		Assert.assertTrue(view.getError().contains("Laboratory name already exist"));
+		Assert.assertEquals(
+				"Register laboratory error:\nLaboratory name already exist.",
+				view.getError());
 	}
 }

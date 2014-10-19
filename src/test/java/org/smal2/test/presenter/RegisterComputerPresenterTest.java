@@ -43,8 +43,8 @@ public class RegisterComputerPresenterTest extends ABaseTest {
 
 		// Assert
 		Assert.assertEquals(2, computerRepository.listAll().size());
-		Assert.assertTrue(view.getResponse().equals(
-				"Computer registred successfully."));
+		Assert.assertEquals("Computer registred successfully.",
+				view.getResponse());
 	}
 
 	@Test
@@ -65,6 +65,8 @@ public class RegisterComputerPresenterTest extends ABaseTest {
 
 		// Assert
 		Assert.assertEquals(1, computerRepository.listAll().size());
-		Assert.assertTrue(view.getError().contains("Register computer error"));
+		Assert.assertEquals(
+				"Register computer error:\nComputer asset code already exist.",
+				view.getError());
 	}
 }
