@@ -7,7 +7,7 @@ SMAL2
 
 
 
-##### running example on http://www.campisano.org:8080/Smal2/
+##### running example on http://www.campisano.org:8080/smal2/
 
 
 
