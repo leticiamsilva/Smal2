@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.smal2.domain.entity.Administrator;
 import org.smal2.domain.entity.Computer;
-import org.smal2.domain.entity.Status;
 import org.smal2.domain.entity.SubTrouble;
 import org.smal2.domain.entity.Technician;
 import org.smal2.domain.entity.Ticket;
@@ -153,15 +152,44 @@ public class TicketService {
 		}
 
 		Ticket ticket = ticketRepository.get(request.getProtocol());
-
-		if (ticket.getStatus() != Status.OPEN) {
-			throw new IllegalArgumentException(
-					"Ticket with status different then Open cannot be assigned.");
-		}
-
 		ticket.assign((Administrator) admin, (Technician) tech);
 		ticketRepository.save(ticket);
 
 		return "Ticket assigned successfully.";
+	}
+
+	public String closeTicket(CloseTicketRequest request) {
+
+		if (request == null) {
+			throw new IllegalArgumentException("Undefined request.");
+		}
+
+		if (request.getTechnician() == null
+				|| request.getTechnician().equals("")) {
+			throw new IllegalArgumentException(
+					"Undefined technician registration.");
+		}
+
+		if (!userRepository.existWithRegistration(request.getTechnician())) {
+			throw new IllegalArgumentException("Technician must exist.");
+		}
+
+		if (!ticketRepository.existWithProtocol(request.getProtocol())) {
+			throw new IllegalArgumentException("Ticket must exist.");
+		}
+
+		User tech = userRepository.getByRegistration(request.getTechnician());
+
+		if (tech.getClass() != Technician.class
+				&& tech.getClass() != Administrator.class) {
+			throw new IllegalArgumentException(
+					"Ticket cannot be closed by a not administrator and not technician user.");
+		}
+
+		Ticket ticket = ticketRepository.get(request.getProtocol());
+		ticket.close(request.getStatus());
+		ticketRepository.save(ticket);
+
+		return "Ticket closed successfully.";
 	}
 }

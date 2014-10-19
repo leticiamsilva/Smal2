@@ -136,8 +136,28 @@ public class Ticket {
 			throw new IllegalArgumentException("Technician can not be null.");
 		}
 
+		if (status != Status.OPEN) {
+			throw new IllegalArgumentException(
+					"Ticket with status different then Open cannot be assigned.");
+		}
+
 		administrator = admin;
 		technician = tech;
 		status = Status.IN_PROGRESS;
+	}
+
+	public void close(Status status) {
+		if (this.status != Status.IN_PROGRESS) {
+			throw new IllegalArgumentException(
+					"Ticket with status different then 'In Progress' cannot be closed.");
+		}
+
+		if (status != Status.RESOLVED && status != Status.NOT_RESOLVED) {
+			throw new IllegalArgumentException(
+					"Ticket cannot be closed with final status different then 'Resolved' and 'Not Resloved'.");
+		}
+
+		this.status = status;
+		this.closeDate = new Date();
 	}
 }
