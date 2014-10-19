@@ -28,7 +28,7 @@ Then, open eclipse project, click with right botton on project and do a refresh 
 
 
 
-##### HSQLDB (embedded db) and the sql editor SQL Workbench:
+### HSQLDB (embedded db) and the sql editor SQL Workbench:
 
 Open SQL Workbench,
 copy HSQLDB jar (auto-downloaded by maven into 'target' directory) in SQL Workbench directory
@@ -43,7 +43,7 @@ Password
 
 
 
-##### References
+### References
 <pre>
  http://www.campisano.org/wiki/en/Maven_manual_eclipse_project
  http://search.maven.org/#search
