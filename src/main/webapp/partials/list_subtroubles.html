@@ -1,5 +1,6 @@
 <div class="container-fluid">
-    <h3>Subproblemas do problema {{ trouble_name }}:<a href="#/subtrouble/register/{{ trouble_name }}"><img data-ng-src="img/icon/plus32.png" class="img-responsive"/></a></h3>
+    <h3>Subproblemas do problema {{ trouble_name }}:</h3>
+    <a href="#/subtrouble/register/{{ trouble_name }}"><img data-ng-src="img/icon/plus32.png" class="img-responsive"  alt="adicionar" title="Adicionar um sub-problema."/></a>
     <hr/>
     <div class="row-fluid">
         <!--
@@ -20,11 +21,11 @@
                     <div class="panel-body">
                         <div class="container-fluid">
                             <div class="row-fluid">
-                                <img data-ng-src="img/icon/warning32.png" class="img-responsive"/>
+                                <img data-ng-src="img/icon/warning32.png" class="img-responsive" alt="sub-problema" title="Sub-problema."/>
                             </div>
                         </div>
                     </div>
-                    <div class="panel-footer">{{ subtrouble.name }}</div>
+                    <div class="panel-footer">Nome: {{ subtrouble.name }}</div>
                 </div>
             </div>
             <div data-ng-if="$index != 0">

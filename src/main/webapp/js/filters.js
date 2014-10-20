@@ -85,6 +85,24 @@ filtersModule.filter("ImagePathForComputer", [
 
 
 
+filtersModule.filter("NameForComputer", [
+    "SessionService",
+    function (SessionService)
+    {
+        return function(computer)
+        {
+            if(typeof(computer) === "undefined")
+            {
+                return "[empty]";
+            }
+
+            return computer.asset_code;
+        };
+    }
+]);
+
+
+
 filtersModule.filter("ReferenceURLFilter", [
     "SessionService",
     function (SessionService)

@@ -63,21 +63,27 @@
                                     <label class="control-label">Descrição: </label>
                                     <textarea disabled data-ng-model="ticket.description"></textarea>
                                 </div>
-                                <div data-ng-hide="ticket.status != 'OPEN'">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="container-fluid">
+                            <div class="row-fluid">
+                                <div class="col-xs-3" data-ng-hide="ticket.status != 'OPEN'">
                                     <a href="#/ticket/assign/{{ ticket.protocol }}">
-                                        <img data-ng-src="img/icon/spanner32.png" class="img-responsive" alt="Designar chamado"/>
+                                        <img data-ng-src="img/icon/spanner32.png" class="img-responsive" alt="designar" title="Designar o chamado."/>
                                     </a>
                                 </div>
-                                <div data-ng-hide="ticket.status == 'OPEN'">
-                                    <img data-ng-src="img/icon/spanner_transparent32.png" class="img-responsive" alt="Designar chamado"/>
+                                <div class="col-xs-3" data-ng-hide="ticket.status == 'OPEN'">
+                                    <img data-ng-src="img/icon/spanner_transparent32.png" class="img-responsive" alt="designar" title="Não é possível designar o chamado."/>
                                 </div>
-                                <div data-ng-hide="ticket.status != 'IN_PROGRESS'">
+                                <div class="col-xs-3" data-ng-hide="ticket.status != 'IN_PROGRESS'">
                                     <a href="#/ticket/close/{{ ticket.protocol }}">
-                                        <img data-ng-src="img/icon/check32.png" class="img-responsive" alt="Fechar chamado"/>
+                                        <img data-ng-src="img/icon/check32.png" class="img-responsive" alt="fechar" title="Fechar o chamado."/>
                                     </a>
                                 </div>
-                                <div data-ng-hide="ticket.status == 'IN_PROGRESS'">
-                                    <img data-ng-src="img/icon/check_transparent32.png" class="img-responsive" alt="Fechar chamado"/>
+                                <div class="col-xs-3" data-ng-hide="ticket.status == 'IN_PROGRESS'">
+                                    <img data-ng-src="img/icon/check_transparent32.png" class="img-responsive" alt="fechar" title="Não é possível fechar o chamado."/>
                                 </div>
                             </div>
                         </div>

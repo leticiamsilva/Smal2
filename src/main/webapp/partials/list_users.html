@@ -1,5 +1,6 @@
 <div class="container-fluid">
-    <h3>Usuários:<a href="#/user/register"><img data-ng-src="img/icon/plus32.png" class="img-responsive"/></a></h3>
+    <h3>Usuários:</h3>
+    <a href="#/user/register"><img data-ng-src="img/icon/plus32.png" class="img-responsive" alt="adicionar" title="Adicionar um usuário."/></a>
     <hr/>
     <div class="row-fluid">
         <!--
@@ -19,11 +20,11 @@
                     <div class="panel-body">
                         <div class="container-fluid">
                             <div class="row-fluid">
-                                <img data-ng-src="img/icon/user32.png" class="img-responsive"/>
+                                <img data-ng-src="img/icon/user32.png" class="img-responsive" alt="usuário" title="Usuário."/>
                             </div>
                         </div>
                     </div>
-                    <div class="panel-footer">{{ user.name }}</div>
+                    <div class="panel-footer">Nome: {{ user.name }}</div>
                 </div>
             </div>
             <div data-ng-if="$index != 0">

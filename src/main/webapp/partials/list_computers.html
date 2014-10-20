@@ -1,5 +1,6 @@
 <div class="container-fluid">
-    <h3>Computadores do laboratório {{ laboratory_name }}:<a href="#/computer/register/{{ laboratory_name }}"><img data-ng-src="img/icon/plus32.png" class="img-responsive"/></a></h3>
+    <h3>Computadores do laboratório {{ laboratory_name }}:</h3>
+    <a href="#/computer/register/{{ laboratory_name }}"><img data-ng-src="img/icon/plus32.png" class="img-responsive" alt="adicionar" title="Adicionar um computador."/></a>
     <hr/>
     <div class="row-fluid">
         <!--
@@ -17,26 +18,29 @@
         <div data-ng-hide="!response">{{ response }}</div>
 
         <!-- positions list-->
-        <div data-ng-repeat="computerPos in positions">
+        <div class="row-fluid" data-ng-repeat="computerPos in positions">
             <div class="col-xs-{{ col_size }} col-sm-{{ col_size }} col-md-{{ col_size }} col-lg-{{ col_size }}">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="container-fluid">
                             <div class="row-fluid">
-                                <img data-ng-src="{{ computerPos.computer | ImagePathForComputer }}" class="img-responsive"/>
+                                <img data-ng-src="{{ computerPos.computer | ImagePathForComputer }}" class="img-responsive" alt="computador" title="Computador."/>
+                                {{ computerPos.computer | NameForComputer }}
                             </div>
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <div data-ng-hide="computerPos.computer">
-                            [empty]
-                            <img data-ng-src="img/icon/warning_transparent32.png" class="img-responsive"/>
-                        </div>
-                        <div data-ng-hide="!computerPos.computer">
-                            {{ computerPos.computer.asset_code }}
-                            <a href="#/ticket/open/{{ computerPos.computer.asset_code }}">
-                                <img data-ng-src="img/icon/warning32.png" class="img-responsive" alt="Abrir chamado"/>
-                            </a>
+                        <div class="container-fluid">
+                            <div class="row-fluid">
+                                <div class="col-xs-3" data-ng-hide="computerPos.computer">
+                                    <img data-ng-src="img/icon/warning_transparent32.png" class="img-responsive" alt="chamado" title="Não é possível abrir um chamado."/>
+                                </div>
+                                <div class="col-xs-3" data-ng-hide="!computerPos.computer">
+                                    <a href="#/ticket/open/{{ computerPos.computer.asset_code }}">
+                                        <img data-ng-src="img/icon/warning32.png" class="img-responsive" alt="chamado" title="Abrir um chamado."/>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
