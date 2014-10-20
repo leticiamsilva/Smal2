@@ -116,6 +116,12 @@ appModule.config( [
             controller: "ListTicketsPresenter",
             //auth_required: true //TODO [CMP] re-enable
         }).
+        when("/ticket/assign/:protocol*",
+        {
+            templateUrl: "partials/assign_ticket.html",
+            controller: "AssignTicketPresenter",
+            //auth_required: true //TODO [CMP] re-enable
+        }).
         otherwise(
         {
             redirectTo: "/laboratory/list"

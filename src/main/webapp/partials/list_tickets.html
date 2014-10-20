@@ -37,31 +37,39 @@
                                 </div>
                                 <div>
                                     <label class="control-label">Para o computador: </label>
-                                    <input type="text" data-ng-model="ticket.computer" data-ngRequired="true"/>
+                                    <input type="text" disabled data-ng-model="ticket.computer" data-ngRequired="true"/>
                                 </div>
                                 <div>
                                     <label class="control-label">Designado por: </label>
-                                    <input type="text" data-ng-model="ticket.administrator" data-ngRequired="true"/>
+                                    <input type="text" disabled data-ng-model="ticket.administrator" data-ngRequired="true"/>
                                 </div>
                                 <div>
                                     <label class="control-label">Designado para: </label>
-                                    <input type="text" data-ng-model="ticket.technician" data-ngRequired="true"/>
+                                    <input type="text" disabled data-ng-model="ticket.technician" data-ngRequired="true"/>
                                 </div>
                                 <div>
                                     <label class="control-label">Status: </label>
-                                    <input type="text" data-ng-model="ticket.status" data-ngRequired="true"/>
+                                    <input type="text" disabled data-ng-model="ticket.status" data-ngRequired="true"/>
                                 </div>
                                 <div>
                                     <label class="control-label">Problema: </label>
-                                    <input type="text" data-ng-model="ticket.trouble" data-ngRequired="true"/>
+                                    <input type="text" disabled data-ng-model="ticket.trouble" data-ngRequired="true"/>
                                 </div>
                                 <div>
                                     <label class="control-label">Sub problema: </label>
-                                    <input type="text" data-ng-model="ticket.sub_trouble" data-ngRequired="true"/>
+                                    <input type="text" disabled data-ng-model="ticket.sub_trouble" data-ngRequired="true"/>
                                 </div>
                                 <div>
                                     <label class="control-label">Descrição: </label>
-                                    <textarea data-ng-model="ticket.description"></textarea>
+                                    <textarea disabled data-ng-model="ticket.description"></textarea>
+                                </div>
+                                <div data-ng-hide="ticket.status != 'OPEN'">
+                                    <a href="#/ticket/assign/{{ ticket.protocol }}">
+                                        <img data-ng-src="img/icon/spanner32.png" class="img-responsive" alt="Designar chamado"/>
+                                    </a>
+                                </div>
+                                <div data-ng-hide="ticket.status == 'OPEN'">
+                                    <img data-ng-src="img/icon/spanner_transparent32.png" class="img-responsive" alt="Designar chamado"/>
                                 </div>
                             </div>
                         </div>
