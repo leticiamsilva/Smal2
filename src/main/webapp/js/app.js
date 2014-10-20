@@ -122,6 +122,12 @@ appModule.config( [
             controller: "AssignTicketPresenter",
             //auth_required: true //TODO [CMP] re-enable
         }).
+        when("/ticket/close/:protocol*",
+        {
+            templateUrl: "partials/close_ticket.html",
+            controller: "CloseTicketPresenter",
+            //auth_required: true //TODO [CMP] re-enable
+        }).
         otherwise(
         {
             redirectTo: "/laboratory/list"

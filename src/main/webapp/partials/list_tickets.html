@@ -71,6 +71,14 @@
                                 <div data-ng-hide="ticket.status == 'OPEN'">
                                     <img data-ng-src="img/icon/spanner_transparent32.png" class="img-responsive" alt="Designar chamado"/>
                                 </div>
+                                <div data-ng-hide="ticket.status != 'IN_PROGRESS'">
+                                    <a href="#/ticket/close/{{ ticket.protocol }}">
+                                        <img data-ng-src="img/icon/check32.png" class="img-responsive" alt="Fechar chamado"/>
+                                    </a>
+                                </div>
+                                <div data-ng-hide="ticket.status == 'IN_PROGRESS'">
+                                    <img data-ng-src="img/icon/check_transparent32.png" class="img-responsive" alt="Fechar chamado"/>
+                                </div>
                             </div>
                         </div>
                     </div>
