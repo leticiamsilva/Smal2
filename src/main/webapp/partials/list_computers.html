@@ -30,12 +30,12 @@
                     <div class="panel-footer">
                         <div data-ng-hide="computerPos.computer">
                             [empty]
-                            <img data-ng-src="img/icon/spanner_transparent32.png" class="img-responsive"/>
+                            <img data-ng-src="img/icon/warning_transparent32.png" class="img-responsive"/>
                         </div>
                         <div data-ng-hide="!computerPos.computer">
                             {{ computerPos.computer.asset_code }}
                             <a href="#/ticket/open/{{ computerPos.computer.asset_code }}">
-                                <img data-ng-src="img/icon/spanner32.png" class="img-responsive"/>
+                                <img data-ng-src="img/icon/warning32.png" class="img-responsive" alt="Abrir chamado"/>
                             </a>
                         </div>
                     </div>
