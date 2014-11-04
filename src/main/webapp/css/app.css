@@ -12,3 +12,14 @@ body
     margin-left: 5px;
     margin-right: 5px;
 }
+
+
+
+.tool_icon
+{
+    height: 20px;
+    width: 20px;
+
+    min-height: 10px;
+    min-width: 10px;
+}

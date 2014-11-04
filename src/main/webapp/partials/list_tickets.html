@@ -71,19 +71,19 @@
                             <div class="row-fluid">
                                 <div class="col-xs-3" data-ng-hide="ticket.status != 'OPEN'">
                                     <a href="#/ticket/assign/{{ ticket.protocol }}">
-                                        <img data-ng-src="img/icon/spanner32.png" class="img-responsive" alt="designar" title="Designar o chamado."/>
+                                        <img data-ng-src="img/icon/spanner32.png" class="tool_icon" alt="designar" title="Designar o chamado."/>
                                     </a>
                                 </div>
                                 <div class="col-xs-3" data-ng-hide="ticket.status == 'OPEN'">
-                                    <img data-ng-src="img/icon/spanner_transparent32.png" class="img-responsive" alt="designar" title="Não é possível designar o chamado."/>
+                                    <img data-ng-src="img/icon/spanner_transparent32.png" class="tool_icon" alt="designar" title="Não é possível designar o chamado."/>
                                 </div>
                                 <div class="col-xs-3" data-ng-hide="ticket.status != 'IN_PROGRESS'">
                                     <a href="#/ticket/close/{{ ticket.protocol }}">
-                                        <img data-ng-src="img/icon/check32.png" class="img-responsive" alt="fechar" title="Fechar o chamado."/>
+                                        <img data-ng-src="img/icon/check32.png" class="tool_icon" alt="fechar" title="Fechar o chamado."/>
                                     </a>
                                 </div>
                                 <div class="col-xs-3" data-ng-hide="ticket.status == 'IN_PROGRESS'">
-                                    <img data-ng-src="img/icon/check_transparent32.png" class="img-responsive" alt="fechar" title="Não é possível fechar o chamado."/>
+                                    <img data-ng-src="img/icon/check_transparent32.png" class="tool_icon" alt="fechar" title="Não é possível fechar o chamado."/>
                                 </div>
                             </div>
                         </div>

@@ -20,25 +20,29 @@
         <!-- positions list-->
         <div class="row-fluid" data-ng-repeat="computerPos in positions">
             <div class="col-xs-{{ col_size }} col-sm-{{ col_size }} col-md-{{ col_size }} col-lg-{{ col_size }}">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="container-fluid">
-                            <div class="row-fluid">
-                                <img data-ng-src="{{ computerPos.computer | ImagePathForComputer }}" class="img-responsive" alt="computador" title="Computador."/>
-                                {{ computerPos.computer | NameForComputer }}
+                <div data-ng-if="computerPos.computer">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="container-fluid">
+                                <div class="row-fluid">
+                                    <a href="#/ticket/open/{{ computerPos.computer.asset_code }}">
+                                        <img data-ng-src="{{ computerPos.computer | ImagePathForComputer }}" class="img-responsive" alt="computador" title="Computador."/>
+                                    </a>
+                                    {{ computerPos.computer | NameForComputer }}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="panel-footer">
-                        <div class="container-fluid">
-                            <div class="row-fluid">
-                                <div class="col-xs-3" data-ng-hide="computerPos.computer">
-                                    <img data-ng-src="img/icon/warning_transparent32.png" class="img-responsive" alt="chamado" title="Não é possível abrir um chamado."/>
-                                </div>
-                                <div class="col-xs-3" data-ng-hide="!computerPos.computer">
-                                    <a href="#/ticket/open/{{ computerPos.computer.asset_code }}">
-                                        <img data-ng-src="img/icon/warning32.png" class="img-responsive" alt="chamado" title="Abrir um chamado."/>
-                                    </a>
+                        <div class="panel-footer">
+                            <div class="container-fluid">
+                                <div class="row-fluid">
+                                    <div class="col-xs-3" data-ng-hide="computerPos.computer">
+                                        <img data-ng-src="img/icon/warning_transparent32.png" class="tool_icon" alt="chamado" title="Não é possível abrir um chamado."/>
+                                    </div>
+                                    <div class="col-xs-3" data-ng-hide="!computerPos.computer">
+                                        <a href="#/ticket/open/{{ computerPos.computer.asset_code }}">
+                                            <img data-ng-src="img/icon/warning32.png" class="tool_icon" alt="chamado" title="Abrir um chamado."/>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
