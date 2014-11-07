@@ -23,13 +23,16 @@
                 <label class="control-label">Patrimonio: </label>
                 <input type="text" disabled data-ng-model="asset_code" data-ngRequired="true"/>
             </div>
-            <div>
-                <label class="control-label">Problema: </label>
-                <input type="text" data-ng-model="trouble" data-ngRequired="true"/>
-            </div>
-            <div>
+            <div data-ng-controller="ListSubTroublesPresenter">
+                <div data-ng-controller="ListTroublesPresenter" data-ng-init="command();">
+                    <label class="control-label">Problema: </label>
+                    <select data-ng-model="$parent.$parent.trouble"
+                            data-ng-options="t.name as t.name for t in troubles"
+                            data-ng-change="$parent.trouble_name = $parent.$parent.trouble; $parent.command();"></select>
+                </div>
                 <label class="control-label">Sub problema: </label>
-                <input type="text" data-ng-model="sub_trouble" data-ngRequired="true"/>
+                <select data-ng-model="$parent.sub_trouble"
+                        data-ng-options="st.name as st.name for st in subtroubles"></select>
             </div>
             <div>
                 <label class="control-label">Descrição: </label>
