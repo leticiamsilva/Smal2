@@ -1,47 +1,49 @@
-<div class="container-fluid">
-    <h3>Registrar técnico ou administrador:</h3>
-    <hr/>
-    <div class="row-fluid">
-        <!--
-            $scope.session = SessionService;
-            $scope.registration = "";
-            $scope.password = "";
-            $scope.name = "";
-            $scope.birth_date = "";
-            $scope.type = "";
-            $scope.command = registerUser;
-            $scope.response = "";
-        -->
+<div data-ng-controller="RegisterUserPresenter">
+    <!--
+        $scope.session = SessionService;
+        $scope.registration = "";
+        $scope.password = "";
+        $scope.name = "";
+        $scope.birth_date = "";
+        $scope.type = "";
+        $scope.command = registerUser;
+        $scope.response = "";
+    -->
 
-        <!-- input form -->
-        <form>
-            <div>
-                <label class="control-label">Matrícula: </label>
-                <input type="text" data-ng-model="registration" data-ngRequired="true"/>
-            </div>
-            <div>
-                <label class="control-label">Nome: </label>
-                <input type="text" data-ng-model="name" data-ngRequired="true"/>
-            </div>
-            <div>
-                <label class="control-label">Senha: </label>
-                <input type="password" data-ng-model="password" data-ngRequired="true"/>
-            </div>
-            <div>
-                <label class="control-label">Data nascimento: </label>
-                <input type="text" data-ng-model="birth_date" data-ngRequired="true"/>
-            </div>
-            <div>
-                <label class="control-label">Tipo: </label>
-                <select data-ng-model="type"> <!-- STUDENT(1), TECHNICHAN(2), ADMINISTRATOR(3); -->
-                    <option value="ADMINISTRATOR">administrador</option>
-                    <option value="TECHNICHAN">técnico</option>
-                </select>
-            </div>
-            <button class="btn btn-primary" data-ng-click="command()">Registrar</button>
-        </form>
+    <div class="container-fluid">
+        <h3>Registrar técnico ou administrador:</h3>
+        <hr/>
+        <div class="row-fluid">
+            <!-- input form -->
+            <form>
+                <div>
+                    <label class="control-label">Matrícula: </label>
+                    <input type="text" data-ng-model="registration" data-ngRequired="true"/>
+                </div>
+                <div>
+                    <label class="control-label">Nome: </label>
+                    <input type="text" data-ng-model="name" data-ngRequired="true"/>
+                </div>
+                <div>
+                    <label class="control-label">Senha: </label>
+                    <input type="password" data-ng-model="password" data-ngRequired="true"/>
+                </div>
+                <div>
+                    <label class="control-label">Data nascimento: </label>
+                    <input type="text" data-ng-model="birth_date" data-ngRequired="true"/>
+                </div>
+                <div>
+                    <label class="control-label">Tipo: </label>
+                    <select data-ng-model="type"> <!-- STUDENT(1), TECHNICHAN(2), ADMINISTRATOR(3); -->
+                        <option value="ADMINISTRATOR">administrador</option>
+                        <option value="TECHNICHAN">técnico</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" data-ng-click="command()">Registrar</button>
+            </form>
 
-        <!-- response message -->
-        <div data-ng-hide="!response">{{ response }}</div>
+            <!-- response message -->
+            <div data-ng-hide="!response">{{ response }}</div>
+        </div>
     </div>
 </div>

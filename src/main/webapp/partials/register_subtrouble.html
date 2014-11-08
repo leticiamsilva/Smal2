@@ -1,29 +1,31 @@
-<div class="container-fluid">
-    <h3>Registrar sub-problema:</h3>
-    <hr/>
-    <div class="row-fluid">
-        <!--
-            $scope.session = SessionService;
-            $scope.name = "";
-            $scope.trouble_name = $routeParams.trouble_name;
-            $scope.command = registerSubTrouble;
-            $scope.response = "";
-        -->
+<div data-ng-controller="RegisterSubTroublePresenter">
+    <!--
+        $scope.session = SessionService;
+        $scope.name = "";
+        $scope.trouble_name = $routeParams.trouble_name;
+        $scope.command = registerSubTrouble;
+        $scope.response = "";
+    -->
 
-        <!-- input form -->
-        <form>
-            <div>
-                <label class="control-label">Nome sub-problema: </label>
-                <input type="text" data-ng-model="name" data-ngRequired="true"/>
-            </div>
-            <div>
-                <label class="control-label">Nome problema: </label>
-                <input type="text" disabled data-ng-model="trouble_name" data-ngRequired="true"/>
-            </div>
-            <button class="btn btn-primary" data-ng-click="command()">Registrar</button>
-        </form>
+    <div class="container-fluid">
+        <h3>Registrar sub-problema:</h3>
+        <hr/>
+        <div class="row-fluid">
+            <!-- input form -->
+            <form>
+                <div>
+                    <label class="control-label">Nome sub-problema: </label>
+                    <input type="text" data-ng-model="name" data-ngRequired="true"/>
+                </div>
+                <div>
+                    <label class="control-label">Nome problema: </label>
+                    <input type="text" disabled data-ng-model="trouble_name" data-ngRequired="true"/>
+                </div>
+                <button class="btn btn-primary" data-ng-click="command()">Registrar</button>
+            </form>
 
-        <!-- response message -->
-        <div data-ng-hide="!response">{{ response }}</div>
+            <!-- response message -->
+            <div data-ng-hide="!response">{{ response }}</div>
+        </div>
     </div>
 </div>

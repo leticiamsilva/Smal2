@@ -1,34 +1,36 @@
-<div class="container-fluid">
-    <h3>Designar chamado:</h3>
-    <hr/>
-    <div class="row-fluid">
-        <!--
-            $scope.session = SessionService;
-            $scope.protocol = $routeParams.protocol;
-            $scope.administrator = "";
-            $scope.technician = "";
-            $scope.command = assignTicket;
-            $scope.response = "";
-        -->
+<div data-ng-controller="AssignTicketPresenter">
+    <!--
+        $scope.session = SessionService;
+        $scope.protocol = $routeParams.protocol;
+        $scope.administrator = "";
+        $scope.technician = "";
+        $scope.command = assignTicket;
+        $scope.response = "";
+    -->
 
-        <!-- input form -->
-        <form>
-            <div>
-                <label class="control-label">Protocolo: </label>
-                <input type="text" disabled data-ng-model="protocol" data-ngRequired="true"/>
-            </div>
-            <div>
-                <label class="control-label">Matrícula administrador (temporário, será por sessão): </label>
-                <input type="text" data-ng-model="administrator" data-ngRequired="true"/>
-            </div>
-            <div>
-                <label class="control-label">Matrícula técnico: </label>
-                <input type="text" data-ng-model="technician" data-ngRequired="true"/>
-            </div>
-            <button class="btn btn-primary" data-ng-click="command()">Designar</button>
-        </form>
+    <div class="container-fluid">
+        <h3>Designar chamado:</h3>
+        <hr/>
+        <div class="row-fluid">
+            <!-- input form -->
+            <form>
+                <div>
+                    <label class="control-label">Protocolo: </label>
+                    <input type="text" disabled data-ng-model="protocol" data-ngRequired="true"/>
+                </div>
+                <div>
+                    <label class="control-label">Matrícula administrador (temporário, será por sessão): </label>
+                    <input type="text" data-ng-model="administrator" data-ngRequired="true"/>
+                </div>
+                <div>
+                    <label class="control-label">Matrícula técnico: </label>
+                    <input type="text" data-ng-model="technician" data-ngRequired="true"/>
+                </div>
+                <button class="btn btn-primary" data-ng-click="command()">Designar</button>
+            </form>
 
-        <!-- response message -->
-        <div data-ng-hide="!response">{{ response }}</div>
+            <!-- response message -->
+            <div data-ng-hide="!response">{{ response }}</div>
+        </div>
     </div>
 </div>

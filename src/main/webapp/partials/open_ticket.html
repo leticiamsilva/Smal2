@@ -1,47 +1,62 @@
-<div class="container-fluid">
-    <h3>Abrir chamado:</h3>
-    <hr/>
-    <div class="row-fluid">
-        <!--
-            $scope.session = SessionService;
-            $scope.registration = "";
-            $scope.asset_code = $routeParams.computer_asset_code;
-            $scope.trouble = "";
-            $scope.sub_trouble = "";
-            $scope.description = "";
-            $scope.command = openTicket;
-            $scope.response = "";
-        -->
+<div data-ng-controller="OpenTicketPresenter">
+    <!--
+        $scope.session = SessionService;
+        $scope.registration = "";
+        $scope.asset_code = $routeParams.computer_asset_code;
+        $scope.trouble = "";
+        $scope.sub_trouble = "";
+        $scope.description = "";
+        $scope.command = openTicket;
+        $scope.response = "";
+    -->
 
-        <!-- input form -->
-        <form>
-            <div>
-                <label class="control-label">Matrícula (temporário, será por sessão): </label>
-                <input type="text" data-ng-model="registration" data-ngRequired="true"/>
-            </div>
-            <div>
-                <label class="control-label">Patrimonio: </label>
-                <input type="text" disabled data-ng-model="asset_code" data-ngRequired="true"/>
-            </div>
-            <div data-ng-controller="ListSubTroublesPresenter">
-                <div data-ng-controller="ListTroublesPresenter" data-ng-init="command();">
-                    <label class="control-label">Problema: </label>
-                    <select data-ng-model="$parent.$parent.trouble"
-                            data-ng-options="t.name as t.name for t in troubles"
-                            data-ng-change="$parent.trouble_name = $parent.$parent.trouble; $parent.command();"></select>
+    <div class="container-fluid">
+        <h3>Abrir chamado:</h3>
+        <hr/>
+        <div class="row-fluid">
+            <!-- input form -->
+            <form>
+                <div>
+                    <label class="control-label">Matrícula (temporário, será por sessão): </label>
+                    <input type="text" data-ng-model="registration" data-ngRequired="true"/>
                 </div>
-                <label class="control-label">Sub problema: </label>
-                <select data-ng-model="$parent.sub_trouble"
-                        data-ng-options="st.name as st.name for st in subtroubles"></select>
-            </div>
-            <div>
-                <label class="control-label">Descrição: </label>
-                <textarea data-ng-model="description"></textarea>
-            </div>
-            <button class="btn btn-primary" data-ng-click="command()">Abrir</button>
-        </form>
+                <div>
+                    <label class="control-label">Patrimonio: </label>
+                    <input type="text" disabled data-ng-model="asset_code" data-ngRequired="true"/>
+                </div>
+                <div data-ng-controller="ListSubTroublesPresenter">
+                    <!--
+                        $scope.session = SessionService;
+                        $scope.trouble_name = $routeParams.trouble_name;
+                        $scope.command = listSubTroubles;
+                        $scope.subtroubles = [];
+                        $scope.response = "";
+                    -->
+                    <div data-ng-controller="ListTroublesPresenter" data-ng-init="command();">
+                        <!--
+                            $scope.session = SessionService;
+                            $scope.command = listTroubles;
+                            $scope.troubles = [];
+                            $scope.response = "";
+                        -->
+                        <label class="control-label">Problema: </label>
+                        <select data-ng-model="$parent.$parent.trouble"
+                                data-ng-options="t.name as t.name for t in troubles"
+                                data-ng-change="$parent.trouble_name = $parent.$parent.trouble; $parent.command();"></select>
+                    </div>
+                    <label class="control-label">Sub problema: </label>
+                    <select data-ng-model="$parent.sub_trouble"
+                            data-ng-options="st.name as st.name for st in subtroubles"></select>
+                </div>
+                <div>
+                    <label class="control-label">Descrição: </label>
+                    <textarea data-ng-model="description"></textarea>
+                </div>
+                <button class="btn btn-primary" data-ng-click="command()">Abrir</button>
+            </form>
 
-        <!-- response message -->
-        <div data-ng-hide="!response">{{ response }}</div>
+            <!-- response message -->
+            <div data-ng-hide="!response">{{ response }}</div>
+        </div>
     </div>
 </div>

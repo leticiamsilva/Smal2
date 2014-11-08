@@ -1,34 +1,36 @@
-<div class="container-fluid">
-    <h3>Designar chamado:</h3>
-    <hr/>
-    <div class="row-fluid">
-        <!--
-            $scope.session = SessionService;
-            $scope.protocol = $routeParams.protocol;
-            $scope.technician = "";
-            $scope.status = "RESOLVED";
-            $scope.command = closeTicket;
-            $scope.response = "";
-        -->
+<div data-ng-controller="CloseTicketPresenter">
+    <!--
+        $scope.session = SessionService;
+        $scope.protocol = $routeParams.protocol;
+        $scope.technician = "";
+        $scope.status = "RESOLVED";
+        $scope.command = closeTicket;
+        $scope.response = "";
+    -->
 
-        <!-- input form -->
-        <form>
-            <div>
-                <label class="control-label">Protocolo: </label>
-                <input type="text" disabled data-ng-model="protocol" data-ngRequired="true"/>
-            </div>
-            <div>
-                <label class="control-label">Matrícula técnico: </label>
-                <input type="text" data-ng-model="technician" data-ngRequired="true"/>
-            </div>
-            <div>
-                <label class="control-label">Status {RESOLVED, NOT_RESOLVED}: </label>
-                <input type="text" data-ng-model="status" data-ngRequired="true"/>
-            </div>
-            <button class="btn btn-primary" data-ng-click="command()">Fechar</button>
-        </form>
+    <div class="container-fluid">
+        <h3>Designar chamado:</h3>
+        <hr/>
+        <div class="row-fluid">
+            <!-- input form -->
+            <form>
+                <div>
+                    <label class="control-label">Protocolo: </label>
+                    <input type="text" disabled data-ng-model="protocol" data-ngRequired="true"/>
+                </div>
+                <div>
+                    <label class="control-label">Matrícula técnico: </label>
+                    <input type="text" data-ng-model="technician" data-ngRequired="true"/>
+                </div>
+                <div>
+                    <label class="control-label">Status {RESOLVED, NOT_RESOLVED}: </label>
+                    <input type="text" data-ng-model="status" data-ngRequired="true"/>
+                </div>
+                <button class="btn btn-primary" data-ng-click="command()">Fechar</button>
+            </form>
 
-        <!-- response message -->
-        <div data-ng-hide="!response">{{ response }}</div>
+            <!-- response message -->
+            <div data-ng-hide="!response">{{ response }}</div>
+        </div>
     </div>
 </div>
