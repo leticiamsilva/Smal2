@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class TroubleRepository {
 
 	@Autowired
-	ITroubleDAO dao;
+	private ITroubleDAO dao;
 
 	public void insert(Trouble entity) {
 		dao.create(entity);

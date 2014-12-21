@@ -21,10 +21,10 @@ public class ComputerService {
 	private ComputerRepository computerRepository;
 
 	@Autowired
-	LaboratoryRepository laboratoryRepository;
+	private LaboratoryRepository laboratoryRepository;
 
 	@Autowired
-	PositionRepository positionRepository;
+	private PositionRepository positionRepository;
 
 	public String registerComputer(RegisterComputerRequest request) {
 

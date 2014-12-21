@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class LaboratoryRepository {
 
 	@Autowired
-	ILaboratoryDAO dao;
+	private ILaboratoryDAO dao;
 
 	public void insert(Laboratory entity) {
 		dao.create(entity);

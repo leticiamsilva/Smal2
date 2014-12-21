@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class ComputerRepository {
 
 	@Autowired
-	IComputerDAO dao;
+	private IComputerDAO dao;
 
 	public void insert(Computer entity) {
 		dao.create(entity);

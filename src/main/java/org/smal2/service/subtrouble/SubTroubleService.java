@@ -19,7 +19,7 @@ public class SubTroubleService {
 	private SubTroubleRepository subTroubleRepository;
 
 	@Autowired
-	TroubleRepository troubleRepository;
+	private TroubleRepository troubleRepository;
 
 	public String registerSubTrouble(RegisterSubTroubleRequest request) {
 

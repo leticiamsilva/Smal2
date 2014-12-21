@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class PositionRepository {
 
 	@Autowired
-	IPositionDAO dao;
+	private IPositionDAO dao;
 
 	public void insert(Position entity) {
 		dao.create(entity);

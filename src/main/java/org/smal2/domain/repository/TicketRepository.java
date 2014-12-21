@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class TicketRepository {
 
 	@Autowired
-	ITicketDAO dao;
+	private ITicketDAO dao;
 
 	public void insert(Ticket entity) {
 		dao.create(entity);
