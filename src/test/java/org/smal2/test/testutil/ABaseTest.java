@@ -1,5 +1,6 @@
 package org.smal2.test.testutil;
 
+import org.smal2.domain.repository.AuthRepository;
 import org.smal2.domain.repository.ComputerRepository;
 import org.smal2.domain.repository.LaboratoryRepository;
 import org.smal2.domain.repository.PositionRepository;
@@ -7,6 +8,7 @@ import org.smal2.domain.repository.SubTroubleRepository;
 import org.smal2.domain.repository.TicketRepository;
 import org.smal2.domain.repository.TroubleRepository;
 import org.smal2.domain.repository.UserRepository;
+import org.smal2.service.auth.AuthService;
 import org.smal2.service.computer.ComputerService;
 import org.smal2.service.laboratory.LaboratoryService;
 import org.smal2.service.subtrouble.SubTroubleService;
@@ -66,6 +68,12 @@ public abstract class ABaseTest {
 	@Autowired
 	protected SubTroubleService subTroubleService;
 
+	@Autowired
+	protected AuthRepository authRepository;
+
+	@Autowired
+	protected AuthService authService;
+
 	@Test
 	public void mustAutowireTestDependencies() {
 		Assert.assertNotNull(userRepository);
@@ -81,5 +89,7 @@ public abstract class ABaseTest {
 		Assert.assertNotNull(troubleService);
 		Assert.assertNotNull(subTroubleRepository);
 		Assert.assertNotNull(subTroubleService);
+		Assert.assertNotNull(authRepository);
+		Assert.assertNotNull(authService);
 	}
 }
