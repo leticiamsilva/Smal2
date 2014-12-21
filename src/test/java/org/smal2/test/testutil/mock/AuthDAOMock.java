@@ -26,12 +26,12 @@ public class AuthDAOMock extends AInMemoryDAO<String[], Long> implements
 	public RemoteLoginResponse getRemoteLoginResponse(String username,
 			String password) {
 
-		String messageResponse = errorString;
+		String responseMessage = errorString;
 
 		for (String[] user : readAll()) {
 			if (user[0].equals(username) && user[1].equals(password)) {
 
-				messageResponse = successString;
+				responseMessage = successString;
 				break;
 			}
 		}
@@ -43,12 +43,12 @@ public class AuthDAOMock extends AInMemoryDAO<String[], Long> implements
 		RemoteLoginResponse response;
 
 		try {
-			response = mapper.readValue(messageResponse,
+			response = mapper.readValue(responseMessage,
 					RemoteLoginResponse.class);
 		} catch (Exception ex) {
 			response = new RemoteLoginResponse(null,
 					"Jackson mapper error.\nResponse message: "
-							+ messageResponse + "\nError message: "
+							+ responseMessage + "\nError message: "
 							+ ex.getMessage());
 		}
 
