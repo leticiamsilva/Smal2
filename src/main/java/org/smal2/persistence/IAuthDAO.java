@@ -1,5 +1,7 @@
 package org.smal2.persistence;
 
+import org.smal2.service.auth.RemoteLoginResponse;
+
 public interface IAuthDAO {
-	String getRemoteLoginMessage(String username, String password);
+	RemoteLoginResponse getRemoteLoginResponse(String username, String password);
 }
