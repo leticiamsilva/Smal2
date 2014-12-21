@@ -65,14 +65,30 @@ public class AuthenticateUserServiceTest extends ABaseTest {
 		authService.loginUser(new LoginUserRequest("test_login", "1234"));
 	}
 
+	@Test
 	public void authenticateExistingUserWithValidAuthMustLogin() {
 		// Act
 		authService.loginUser(new LoginUserRequest("local_test_login",
 				"local_test_login"));
+
+		// Assert
+		User user = userRepository.getByRegistration("local_test_login");
+		Assert.assertEquals("local_test_login", user.getRegistration());
+		// TODO [CMP] to test
+		// Assert.assertEquals("local_test_login", user.getPassword());
+		Assert.assertEquals("local_test_login", user.getName());
 	}
 
+	@Test
 	public void authenticateUnexistingUserWithValidAuthMustRegisterUserAndLogin() {
 		// Act
 		authService.loginUser(new LoginUserRequest("test_login", "test_login"));
+
+		// Assert
+		User user = userRepository.getByRegistration("test_login");
+		Assert.assertEquals("test_login", user.getRegistration());
+		// TODO [CMP] to test
+		// Assert.assertEquals("test_login", user.getPassword());
+		Assert.assertEquals("Auto-registred unprivileged user", user.getName());
 	}
 }

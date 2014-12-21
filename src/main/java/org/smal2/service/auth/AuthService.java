@@ -1,7 +1,5 @@
 package org.smal2.service.auth;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
 import java.util.Date;
 
 import org.smal2.common.MD5Generator;
@@ -23,8 +21,6 @@ public class AuthService {
 
 	@Autowired
 	private UserRepository userRepository;
-
-	private String s;
 
 	public String loginUser(LoginUserRequest request) {
 

@@ -26,16 +26,16 @@ public class AuthDAOMock extends AInMemoryDAO<String[], Long> implements
 	public RemoteLoginResponse getRemoteLoginResponse(String username,
 			String password) {
 
-		String messageResponse;
+		String messageResponse = errorString;
 
 		for (String[] user : readAll()) {
 			if (user[0].equals(username) && user[1].equals(password)) {
 
 				messageResponse = successString;
+				break;
 			}
 		}
 
-		messageResponse = errorString;
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(
 				DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
