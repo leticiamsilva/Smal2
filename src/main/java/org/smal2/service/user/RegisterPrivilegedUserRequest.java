@@ -1,24 +1,22 @@
 package org.smal2.service.user;
 
-import java.util.Date;
-
 public class RegisterPrivilegedUserRequest {
 
 	private String registration;
 	private String name;
 	private String password;
-	private Date birth_date;
+	private String email;
 	private UserType type;
 
 	public RegisterPrivilegedUserRequest() {
 	}
 
 	public RegisterPrivilegedUserRequest(String registration, String password,
-			String name, Date birth_date, UserType type) {
+			String name, String email, UserType type) {
 		this.registration = registration;
 		this.password = password;
 		this.name = name;
-		this.birth_date = birth_date;
+		this.email = email;
 		this.type = type;
 	}
 
@@ -34,8 +32,8 @@ public class RegisterPrivilegedUserRequest {
 		return name;
 	}
 
-	public Date getBirth_date() {
-		return birth_date;
+	public String getEmail() {
+		return email;
 	}
 
 	public UserType getType() {

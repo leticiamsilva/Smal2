@@ -1,8 +1,7 @@
 package org.smal2.test.service;
 
-import java.util.Date;
-import java.util.GregorianCalendar;
-
+import org.smal2.common.MD5Generator;
+import org.smal2.domain.entity.Administrator;
 import org.smal2.domain.entity.User;
 import org.smal2.service.user.RegisterPrivilegedUserRequest;
 import org.smal2.service.user.UserType;
@@ -15,9 +14,12 @@ public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 
 	@Before
 	public void before() {
-		userRepository.insert(new User("0001", "Jhon", new Date()));
-		userRepository.insert(new User("0002", "Jack", new Date()));
-		userRepository.insert(new User("0003", "Joe", new Date()));
+		userRepository.insert(new User("0001", MD5Generator
+				.generate("password1"), "Jhon"));
+		userRepository.insert(new User("0002", MD5Generator
+				.generate("password2"), "Jack"));
+		userRepository.insert(new User("0003", MD5Generator
+				.generate("password3"), "Joe"));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -28,44 +30,34 @@ public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerNullUserRegistrationMustThrowException() {
-		// Arrange
-		Date birthDate = new GregorianCalendar(2001, 01, 01).getTime();
-
 		// Act
 		userService.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
-				null, "password", "Jimmy", birthDate, UserType.ADMINISTRATOR));
+				null, "password", "Jimmy", "admin@smal.org",
+				UserType.ADMINISTRATOR));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerEmptyUserRegistrationMustThrowException() {
-		// Arrange
-		Date birthDate = new GregorianCalendar(2001, 01, 01).getTime();
-
 		// Act
 		userService.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
-				"", "password", "Jimmy", birthDate, UserType.ADMINISTRATOR));
+				"", "password", "Jimmy", "admin@smal.org",
+				UserType.ADMINISTRATOR));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerExistentUserRegistrationMustThrowException() {
-		// Arrange
-		Date birthDate = new GregorianCalendar(2001, 01, 01).getTime();
-
 		// Act
-		userService
-				.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
-						"0001", "password", "Jimmy", birthDate,
-						UserType.ADMINISTRATOR));
+		userService.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
+				"0001", "password", "Jimmy", "admin@smal.org",
+				UserType.ADMINISTRATOR));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerStudentServiceMustThrowException() {
-		// Arrange
-		Date birthDate = new GregorianCalendar(2001, 01, 01).getTime();
-
 		// Act
 		userService.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
-				"0004", "password", "Jimmy", birthDate, UserType.STUDENT));
+				"0004", "password", "Jimmy", "student@smal.org",
+				UserType.STUDENT));
 	}
 
 	@Test
@@ -74,21 +66,19 @@ public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 		String registration = "0004";
 		String password = "password";
 		String name = "Jimmy";
-		Date birthDate = new GregorianCalendar(2001, 01, 01).getTime();
+		String email = "admin@smal.org";
 		UserType type = UserType.ADMINISTRATOR;
 
 		// Act
 		userService.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
-				registration, password, "Jimmy", birthDate, type));
+				registration, password, "Jimmy", email, type));
 
 		// Assert
 		User user = userRepository.getByRegistration(registration);
 		Assert.assertEquals(registration, user.getRegistration());
-		// Assert.assertEquals(password, user.getPassword()); // TODO [CMP] to
-		// test
+		Assert.assertEquals(password, user.getPassword());
 		Assert.assertEquals(name, user.getName());
-		Assert.assertEquals(birthDate, user.getBirthDate());
-		// Assert.assertEquals(type, user.getType()); // TODO [CMP] to test
+		Assert.assertEquals(email, ((Administrator) user).getEmail());
 		Assert.assertEquals(4, userRepository.listAll().size());
 	}
 }

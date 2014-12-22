@@ -18,4 +18,6 @@ public interface IUserDAO {
 	User getByRegistration(String registration);
 
 	boolean existWithRegistration(String registration);
+
+	boolean existWithEmail(String email);
 }

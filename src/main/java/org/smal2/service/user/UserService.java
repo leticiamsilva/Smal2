@@ -27,24 +27,37 @@ public class UserService {
 			throw new IllegalArgumentException("Undefined user registration.");
 		}
 
+		if (request.getPassword() == null || request.getPassword().equals("")) {
+			throw new IllegalArgumentException("Undefined user password.");
+		}
+
+		if (request.getEmail() == null || request.getEmail().equals("")) {
+			throw new IllegalArgumentException("Undefined user email.");
+		}
+
+		if (request.getName() == null || request.getName().equals("")) {
+			throw new IllegalArgumentException("Undefined user name.");
+		}
+
 		if (repository.existWithRegistration(request.getRegistration())) {
 			throw new IllegalArgumentException(
 					"User registration already exist.");
 		}
 
-		// TODO [CMP] thinking about to use one entity class only
+		if (repository.existWithEmail(request.getEmail())) {
+			throw new IllegalArgumentException("User email already exist.");
+		}
+
 		switch (request.getType()) {
 		case ADMINISTRATOR:
 			repository.insert(new Administrator(request.getRegistration(),
-					request.getName(), request.getBirth_date(), request
-							.getPassword()));
+					request.getPassword(), request.getName(), request
+							.getEmail()));
 			break;
 
 		case TECHNICHAN:
-			repository
-					.insert(new Technician(request.getRegistration(), request
-							.getName(), request.getBirth_date(), request
-							.getPassword()));
+			repository.insert(new Technician(request.getRegistration(), request
+					.getPassword(), request.getName(), request.getEmail()));
 			break;
 
 		default:

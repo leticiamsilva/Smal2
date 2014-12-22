@@ -43,4 +43,16 @@ public class UserDAOMock extends AInMemoryDAO<User, Long> implements IUserDAO {
 
 		return false;
 	}
+
+	@Override
+	public boolean existWithEmail(String email) {
+		for (User user : readAll()) {
+			if (user.getRegistration().equals(email)) {
+
+				return true;
+			}
+		}
+
+		return false;
+	}
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.smal2.common.MD5Generator;
 import org.smal2.domain.entity.Administrator;
 import org.smal2.domain.entity.Computer;
 import org.smal2.domain.entity.Laboratory;
@@ -28,15 +29,16 @@ public class CloseTicketPresenterTest extends ABaseTest {
 
 	@Before
 	public void before() {
-		Administrator admin = new Administrator("registration01", "admin",
-				new Date(), "password");
+		Administrator admin = new Administrator("registration01",
+				MD5Generator.generate("password"), "admin", "admin@smal.org");
 		userRepository.insert(admin);
 
-		Technician tech = new Technician("registration02", "tech", new Date(),
-				"password");
+		Technician tech = new Technician("registration02",
+				MD5Generator.generate("password"), "tech", "tech@smal.org");
 		userRepository.insert(tech);
 
-		User user = new User("registration03", "user", new Date());
+		User user = new User("registration03",
+				MD5Generator.generate("password"), "user");
 		userRepository.insert(user);
 
 		Laboratory lab = new Laboratory("lab01");

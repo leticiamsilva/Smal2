@@ -40,4 +40,8 @@ public class UserRepository {
 	public boolean existWithRegistration(String registration) {
 		return dao.existWithRegistration(registration);
 	}
+
+	public boolean existWithEmail(String email) {
+		return dao.existWithEmail(email);
+	}
 }

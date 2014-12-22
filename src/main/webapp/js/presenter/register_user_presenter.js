@@ -13,7 +13,7 @@ angular.module("ControllersModule").controller("RegisterUserPresenter", [
                 $scope.registration,
                 $scope.password,
                 $scope.name,
-                Util.parseDate($scope.birth_date),
+                $scope.email,
                 $scope.type,
                 function(data)
                 {
@@ -31,7 +31,7 @@ angular.module("ControllersModule").controller("RegisterUserPresenter", [
             $scope.registration = "";
             $scope.password = "";
             $scope.name = "";
-            $scope.birth_date = "";
+            $scope.email = "";
             $scope.type = "";
             $scope.command = registerUser;
             $scope.response = "";

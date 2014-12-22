@@ -1,8 +1,6 @@
 package org.smal2.test.service;
 
-import java.util.Date;
-import java.util.GregorianCalendar;
-
+import org.smal2.common.MD5Generator;
 import org.smal2.domain.entity.Administrator;
 import org.smal2.domain.entity.User;
 import org.smal2.service.user.ListUsersResponse;
@@ -14,14 +12,12 @@ import org.junit.Test;
 
 public class ListUsersServiceTest extends ABaseTest {
 
-	private Date birthDate1 = new GregorianCalendar(2001, 01, 01).getTime();
-	private Date birthDate2 = new GregorianCalendar(2001, 01, 02).getTime();
-
 	@Before
 	public void before() {
-		userRepository.insert(new User("0001", "Jhon", birthDate1));
-		userRepository.insert(new Administrator("0002", "Jack", birthDate2,
-				"pass"));
+		userRepository.insert(new User("0001", MD5Generator
+				.generate("password1"), "Jhon"));
+		userRepository.insert(new Administrator("0002", MD5Generator
+				.generate("password2"), "Jack", "admin@smal.org"));
 	}
 
 	@Test
@@ -46,6 +42,7 @@ public class ListUsersServiceTest extends ABaseTest {
 		Assert.assertEquals("Jhon", r1.getName());
 		// TODO [CMP] to test
 		// Assert.assertEquals(UserType.STUDENT, r1.getType());
+
 		Assert.assertEquals("0002", r2.getRegistration());
 		Assert.assertEquals("Jack", r2.getName());
 		// TODO [CMP] to test

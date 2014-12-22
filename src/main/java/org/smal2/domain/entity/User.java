@@ -21,36 +21,48 @@ public class User {
 	@GeneratedValue
 	private long id;
 
-	@Column(nullable = false)
+	@Column(unique = true, nullable = false)
 	private String registration;
+
+	@Column(nullable = false)
+	private String password;
 
 	@Column(nullable = false)
 	private String name;
 
-	@Column(nullable = false)
-	private Date birthDate;
+	@Column
+	private String session;
+
+	@Column
+	private Date session_timestamp;
+
+	@Column
+	private String service_token;
+
+	@Column
+	private Date service_token_timestamp;
 
 	protected User() {
 	}
 
-	public User(String registration, String name, Date birthDate) {
+	public User(String registration, String password, String name) {
 		this();
 
 		if (registration == null || registration.equals("")) {
 			throw new IllegalArgumentException("Registration can not be empty.");
 		}
 
+		if (password == null || password.equals("")) {
+			throw new IllegalArgumentException("Password can not be empty.");
+		}
+
 		if (name == null || name.equals("")) {
 			throw new IllegalArgumentException("Name can not be empty.");
 		}
 
-		if (birthDate == null) {
-			throw new IllegalArgumentException("Birth date can not be null.");
-		}
-
-		this.name = name;
 		this.registration = registration;
-		this.birthDate = birthDate;
+		this.password = password;
+		this.name = name;
 	}
 
 	public long getId() {
@@ -61,11 +73,43 @@ public class User {
 		return registration;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
 	public String getName() {
 		return name;
 	}
 
-	public Date getBirthDate() {
-		return birthDate;
+	public String getSession() {
+		return session;
+	}
+
+	public void setSession(String session) {
+		this.session = session;
+	}
+
+	public Date getSession_timestamp() {
+		return session_timestamp;
+	}
+
+	public void setSession_timestamp(Date session_timestamp) {
+		this.session_timestamp = session_timestamp;
+	}
+
+	public String getService_token() {
+		return service_token;
+	}
+
+	public void setService_token(String service_token) {
+		this.service_token = service_token;
+	}
+
+	public Date getService_token_timestamp() {
+		return service_token_timestamp;
+	}
+
+	public void setService_token_timestamp(Date service_token_timestamp) {
+		this.service_token_timestamp = service_token_timestamp;
 	}
 }

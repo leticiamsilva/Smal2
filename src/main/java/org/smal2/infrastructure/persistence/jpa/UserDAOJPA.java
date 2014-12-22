@@ -43,4 +43,14 @@ public class UserDAOJPA extends GenericDAOJPA<User> implements IUserDAO {
 
 		return super.hasEntity(query.toString(), array);
 	}
+
+	@Override
+	public boolean existWithEmail(String email) {
+
+		StringBuilder query = new StringBuilder();
+		query.append("SELECT e FROM User e WHERE e.email = ?");
+		Object array[] = { email };
+
+		return super.hasEntity(query.toString(), array);
+	}
 }

@@ -23,8 +23,11 @@
                     <input type="text" data-ng-model="technician" data-ngRequired="true"/>
                 </div>
                 <div>
-                    <label class="control-label">Status {RESOLVED, NOT_RESOLVED}: </label>
-                    <input type="text" data-ng-model="status" data-ngRequired="true"/>
+                    <label class="control-label">Status: </label>
+                    <select data-ng-model="status" data-ngRequired="true"> <!-- RESOLVED(3), NOT_RESOLVED(4); -->
+                        <option value="RESOLVED">resolvido</option>
+                        <option value="NOT_RESOLVED">não resolvido</option>
+                    </select>
                 </div>
                 <button class="btn btn-primary" data-ng-click="command()">Fechar</button>
             </form>

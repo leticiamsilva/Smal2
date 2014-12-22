@@ -1,8 +1,7 @@
 package org.smal2.test.presenter;
 
-import java.util.Date;
-import java.util.GregorianCalendar;
-
+import org.smal2.common.MD5Generator;
+import org.smal2.domain.entity.Administrator;
 import org.smal2.domain.entity.User;
 import org.smal2.presentation.presenter.RegisterPrivilegedUserPresenter;
 import org.smal2.presentation.view.IRegisterPrivilegedUserView;
@@ -18,32 +17,35 @@ public class RegisterPrivilegedUserPresenterTest extends ABaseTest {
 
 	@Before
 	public void before() {
-		userRepository.insert(new User("0001", "Jhon", new Date()));
-		userRepository.insert(new User("0002", "Jack", new Date()));
-		userRepository.insert(new User("0003", "Joe", new Date()));
+		userRepository.insert(new User("0001", MD5Generator.generate("pass"),
+				"Jhon"));
+		userRepository.insert(new User("0002", MD5Generator.generate("pass"),
+				"Jack"));
+		userRepository.insert(new User("0003", MD5Generator.generate("pass"),
+				"Joe"));
 	}
 
 	@Test
 	public void registerAdminMustSaveAdmin() {
 		// Arrange
 		IRegisterPrivilegedUserView view = new RegisterPrivilegedUserViewMock();
-		Date birthDate = new GregorianCalendar(2001, 01, 01).getTime();
 
 		// Act
 		new RegisterPrivilegedUserPresenter(view, userService);
 		view.setRequest(new RegisterPrivilegedUserRequest("0004", "password",
-				"Jessy", birthDate, UserType.ADMINISTRATOR));
+				"Jessy", "admin@smal.org", UserType.ADMINISTRATOR));
 		view.getCommand().execute();
 
 		// Assert
 		Assert.assertEquals(4, userRepository.listAll().size());
 		Assert.assertEquals("0004", userRepository.getByRegistration("0004")
 				.getRegistration());
+		Assert.assertEquals("password", userRepository
+				.getByRegistration("0004").getPassword());
 		Assert.assertEquals("Jessy", userRepository.getByRegistration("0004")
 				.getName());
-		Assert.assertEquals(birthDate, userRepository.getByRegistration("0004")
-				.getBirthDate());
-		// TODO [CMP] gettype
+		Assert.assertEquals("admin@smal.org", ((Administrator) userRepository
+				.getByRegistration("0004")).getEmail());
 		Assert.assertEquals("User registred successfully.", view.getResponse());
 	}
 
@@ -51,12 +53,11 @@ public class RegisterPrivilegedUserPresenterTest extends ABaseTest {
 	public void registerStudentMustShowError() {
 		// Arrange
 		IRegisterPrivilegedUserView view = new RegisterPrivilegedUserViewMock();
-		Date birthDate = new GregorianCalendar(2001, 01, 01).getTime();
 
 		// Act
 		new RegisterPrivilegedUserPresenter(view, userService);
 		view.setRequest(new RegisterPrivilegedUserRequest("0005", "password",
-				"Jimmy", birthDate, UserType.STUDENT));
+				"Jimmy", "user@smal.org", UserType.STUDENT));
 		view.getCommand().execute();
 
 		// Assert

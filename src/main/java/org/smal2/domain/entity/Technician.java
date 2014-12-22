@@ -1,7 +1,5 @@
 package org.smal2.domain.entity;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -13,23 +11,23 @@ import javax.persistence.Table;
 public class Technician extends User {
 
 	@Column(nullable = false)
-	private String password;
+	private String email;
 
 	protected Technician() {
 	}
 
-	public Technician(String registration, String name, Date birthDate,
-			String password) {
-		super(registration, name, birthDate);
+	public Technician(String registration, String password, String name,
+			String email) {
+		super(registration, password, name);
 
-		if (password == null || password.equals("")) {
-			throw new IllegalArgumentException("Password can not be empty.");
+		if (email == null || email.equals("")) {
+			throw new IllegalArgumentException("Email can not be empty.");
 		}
 
-		this.password = password;
+		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getEmail() {
+		return email;
 	}
 }

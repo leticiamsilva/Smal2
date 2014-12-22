@@ -22,7 +22,7 @@ public class AuthService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public String loginUser(LoginUserRequest request) {
+	public LoginUserResponse loginUser(LoginUserRequest request) {
 
 		if (request == null) {
 			throw new IllegalArgumentException("Undefined request.");
@@ -54,11 +54,12 @@ public class AuthService {
 				throw new IllegalArgumentException(error);
 			}
 
-			// TODO [CMP] local md5 password registration
 			// local registration
-			// String md5Pass = MD5Generator.generate(request.getPassword());
+			String md5Pass = MD5Generator.generate(request.getPassword());
 			User unprivilegedUser = new User(request.getRegistration(),
-					"Auto-registred unprivileged user", new Date());
+					md5Pass, "Auto-registred unprivileged user");
+			unprivilegedUser.setService_token(response.getToken());
+			unprivilegedUser.setSession_timestamp(new Date());
 			userRepository.insert(unprivilegedUser);
 		}
 
@@ -72,10 +73,19 @@ public class AuthService {
 					"Internal error: cannot generate md5 hash for this password.");
 		}
 
-		// if (!user.getPassword().equals(md5Pass)) {
-		// throw new IllegalArgumentException("Invalid username or password");
-		// }
+		if (!user.getPassword().equals(md5Pass)) {
+			throw new IllegalArgumentException("Invalid username or password");
+		}
 
-		return "User login successfully.";
+		// generating session
+		Date date = new Date();
+		String session = MD5Generator.generate(String.valueOf(user.getId())
+				+ date.toString());
+		user.setSession(session);
+		user.setSession_timestamp(date);
+		userRepository.save(user);
+
+		return new LoginUserResponse(user.getSession(),
+				"User authenticated successfully.");
 	}
 }

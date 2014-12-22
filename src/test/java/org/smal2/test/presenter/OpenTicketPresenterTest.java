@@ -1,10 +1,9 @@
 package org.smal2.test.presenter;
 
-import java.util.Date;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.smal2.common.MD5Generator;
 import org.smal2.domain.entity.Computer;
 import org.smal2.domain.entity.Laboratory;
 import org.smal2.domain.entity.Position;
@@ -21,7 +20,8 @@ public class OpenTicketPresenterTest extends ABaseTest {
 
 	@Before
 	public void before() {
-		User user = new User("registration01", "name01", new Date());
+		User user = new User("registration01", MD5Generator.generate("pass"),
+				"name01");
 		userRepository.insert(user);
 
 		Laboratory lab = new Laboratory("lab01");

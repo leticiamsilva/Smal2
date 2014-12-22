@@ -7,7 +7,7 @@ angular.module("ServicesModule").factory("UserService", [
             var self = this;
 
             // return message
-            self.registerUser = function(session_id, registration, password, name, birth_date, type, fn_success, fn_error)
+            self.registerUser = function(session_id, registration, password, name, email, type, fn_success, fn_error)
             {
                 $http({
                     method: "POST",
@@ -18,7 +18,7 @@ angular.module("ServicesModule").factory("UserService", [
                             registration : registration,
                             password : password,
                             name : name,
-                            birth_date : birth_date,
+                            email : email,
                             type : type
                         }
                     },

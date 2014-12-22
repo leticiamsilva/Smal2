@@ -1,7 +1,6 @@
 package org.smal2.test.presenter;
 
-import java.util.Date;
-
+import org.smal2.common.MD5Generator;
 import org.smal2.domain.entity.User;
 import org.smal2.presentation.presenter.ListUsersPresenter;
 import org.smal2.presentation.view.IListUsersView;
@@ -15,9 +14,12 @@ public class ListUsersPresenterTest extends ABaseTest {
 
 	@Before
 	public void before() {
-		userRepository.insert(new User("0001", "Jhon", new Date()));
-		userRepository.insert(new User("0002", "Jack", new Date()));
-		userRepository.insert(new User("0003", "Joe", new Date()));
+		userRepository.insert(new User("0001", MD5Generator.generate("pass"),
+				"Jhon"));
+		userRepository.insert(new User("0002", MD5Generator.generate("pass"),
+				"Jack"));
+		userRepository.insert(new User("0003", MD5Generator.generate("pass"),
+				"Joe"));
 	}
 
 	@Test
