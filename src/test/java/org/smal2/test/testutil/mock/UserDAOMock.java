@@ -55,4 +55,28 @@ public class UserDAOMock extends AInMemoryDAO<User, Long> implements IUserDAO {
 
 		return false;
 	}
+
+	@Override
+	public User getBySession(String session) {
+		for (User user : readAll()) {
+			if (user.getSession().equals(session)) {
+
+				return user;
+			}
+		}
+
+		throw new DAOException("Cannot find specified entity");
+	}
+
+	@Override
+	public boolean existWithSession(String session) {
+		for (User user : readAll()) {
+			if (user.getSession() != null && user.getSession().equals(session)) {
+
+				return true;
+			}
+		}
+
+		return false;
+	}
 }

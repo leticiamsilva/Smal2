@@ -74,8 +74,8 @@ public class AuthenticateUserServiceTest extends ABaseTest {
 						"local_password"));
 
 		// Assert
-		Assert.assertEquals(userRepository.listAll().get(0).getSession(),
-				response.getSession());
+		User user = userRepository.getByRegistration("local_registration");
+		Assert.assertEquals(user.getSession(), response.getSession());
 		Assert.assertEquals("User authenticated successfully.",
 				response.getMessage());
 	}
@@ -96,5 +96,42 @@ public class AuthenticateUserServiceTest extends ABaseTest {
 		Assert.assertEquals(user.getSession(), response.getSession());
 		Assert.assertEquals("User authenticated successfully.",
 				response.getMessage());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void deauthenticateUserOnNullSessionMustThrowException() {
+		// Act
+		authService.logoutUser(null);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void deauthenticateUserOnEmptySessionMustThrowException() {
+		// Act
+		authService.logoutUser("");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void deauthenticateUserWithInvalidSessionMustThrowException() {
+		// Act
+		authService.logoutUser("1234");
+	}
+
+	@Test
+	public void deauthenticateWithValidSessionMustLog() {
+		// Arrange
+		LoginUserResponse loginResponse = authService
+				.loginUser(new LoginUserRequest("local_registration",
+						"local_password"));
+
+		// Act
+		String logoutResponse = authService.logoutUser(loginResponse
+				.getSession());
+
+		// Assert
+		User user = userRepository.getByRegistration("local_registration");
+
+		Assert.assertEquals(user.getSession(), null);
+		Assert.assertEquals("User deauthenticated successfully.",
+				logoutResponse);
 	}
 }

@@ -53,4 +53,24 @@ public class UserDAOJPA extends GenericDAOJPA<User> implements IUserDAO {
 
 		return super.hasEntity(query.toString(), array);
 	}
+
+	@Override
+	public User getBySession(String session) {
+
+		StringBuilder query = new StringBuilder();
+		query.append("SELECT e FROM User e WHERE e.session = ?");
+		Object array[] = { session };
+
+		return super.getEntity(query.toString(), array);
+	}
+
+	@Override
+	public boolean existWithSession(String session) {
+
+		StringBuilder query = new StringBuilder();
+		query.append("SELECT e FROM User e WHERE e.session = ?");
+		Object array[] = { session };
+
+		return super.hasEntity(query.toString(), array);
+	}
 }

@@ -20,4 +20,8 @@ public interface IUserDAO {
 	boolean existWithRegistration(String registration);
 
 	boolean existWithEmail(String email);
+
+	User getBySession(String session);
+
+	boolean existWithSession(String session);
 }

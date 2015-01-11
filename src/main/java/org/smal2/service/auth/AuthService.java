@@ -89,4 +89,24 @@ public class AuthService {
 				user.getName(), user.getType(),
 				"User authenticated successfully.");
 	}
+
+	public String logoutUser(String session) {
+
+		if (session == null || session.equals("")) {
+			throw new IllegalArgumentException("Undefined session identifier.");
+		}
+
+		// session identify a logged user
+		if (!userRepository.existWithSession(session)) {
+			throw new IllegalArgumentException("Invalid session identifier");
+		}
+
+		// logout
+		User user = userRepository.getBySession(session);
+
+		user.setSession(null);
+		userRepository.save(user);
+
+		return "User deauthenticated successfully.";
+	}
 }
