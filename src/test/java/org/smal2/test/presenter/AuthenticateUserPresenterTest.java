@@ -20,7 +20,7 @@ public class AuthenticateUserPresenterTest extends ABaseTest {
 	}
 
 	@Test
-	public void authenticateUserWithValidAuthMustReturnLoginSession() {
+	public void authenticateUserWithValidAuthMustReturnLoginSessionId() {
 		// Arrange
 		IAuthUserView view = new AuthUserViewMock();
 
@@ -33,7 +33,7 @@ public class AuthenticateUserPresenterTest extends ABaseTest {
 		Assert.assertEquals("User authenticated successfully.", view
 				.getResponse().getMessage());
 		User user = userRepository.getByRegistration("registration");
-		Assert.assertEquals(user.getSession(), view.getResponse().getSession());
+		Assert.assertEquals(user.getSession_id(), view.getResponse().getSession_id());
 	}
 
 	@Test

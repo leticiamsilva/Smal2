@@ -75,7 +75,7 @@ public class AuthenticateUserServiceTest extends ABaseTest {
 
 		// Assert
 		User user = userRepository.getByRegistration("local_registration");
-		Assert.assertEquals(user.getSession(), response.getSession());
+		Assert.assertEquals(user.getSession_id(), response.getSession_id());
 		Assert.assertEquals("User authenticated successfully.",
 				response.getMessage());
 	}
@@ -93,31 +93,31 @@ public class AuthenticateUserServiceTest extends ABaseTest {
 		Assert.assertEquals(MD5Generator.generate("remote_password"),
 				user.getPassword());
 		Assert.assertEquals("Auto-registred unprivileged user", user.getName());
-		Assert.assertEquals(user.getSession(), response.getSession());
+		Assert.assertEquals(user.getSession_id(), response.getSession_id());
 		Assert.assertEquals("User authenticated successfully.",
 				response.getMessage());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void deauthenticateUserOnNullSessionMustThrowException() {
+	public void deauthenticateUserOnNullSessionIdMustThrowException() {
 		// Act
 		authService.logoutUser(null);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void deauthenticateUserOnEmptySessionMustThrowException() {
+	public void deauthenticateUserOnEmptySessionIdMustThrowException() {
 		// Act
 		authService.logoutUser("");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void deauthenticateUserWithInvalidSessionMustThrowException() {
+	public void deauthenticateUserWithInvalidSessionIdMustThrowException() {
 		// Act
 		authService.logoutUser("1234");
 	}
 
 	@Test
-	public void deauthenticateWithValidSessionMustLog() {
+	public void deauthenticateWithValidSessionIdMustLog() {
 		// Arrange
 		LoginUserResponse loginResponse = authService
 				.loginUser(new LoginUserRequest("local_registration",
@@ -125,12 +125,12 @@ public class AuthenticateUserServiceTest extends ABaseTest {
 
 		// Act
 		String logoutResponse = authService.logoutUser(loginResponse
-				.getSession());
+				.getSession_id());
 
 		// Assert
 		User user = userRepository.getByRegistration("local_registration");
 
-		Assert.assertEquals(user.getSession(), null);
+		Assert.assertEquals(user.getSession_id(), null);
 		Assert.assertEquals("User deauthenticated successfully.",
 				logoutResponse);
 	}

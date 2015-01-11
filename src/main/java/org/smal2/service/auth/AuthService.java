@@ -77,34 +77,34 @@ public class AuthService {
 			throw new IllegalArgumentException("Invalid username or password");
 		}
 
-		// generating session
+		// generating session_id
 		Date date = new Date();
-		String session = MD5Generator.generate(String.valueOf(user.getId())
+		String session_id = MD5Generator.generate(String.valueOf(user.getId())
 				+ date.toString());
-		user.setSession(session);
+		user.setSession_id(session_id);
 		user.setSession_timestamp(date);
 		userRepository.save(user);
 
-		return new LoginUserResponse(user.getSession(), user.getRegistration(),
-				user.getName(), user.getType(),
+		return new LoginUserResponse(user.getSession_id(),
+				user.getRegistration(), user.getName(), user.getType(),
 				"User authenticated successfully.");
 	}
 
-	public String logoutUser(String session) {
+	public String logoutUser(String session_id) {
 
-		if (session == null || session.equals("")) {
+		if (session_id == null || session_id.equals("")) {
 			throw new IllegalArgumentException("Undefined session identifier.");
 		}
 
 		// session identify a logged user
-		if (!userRepository.existWithSession(session)) {
+		if (!userRepository.existWithSessionId(session_id)) {
 			throw new IllegalArgumentException("Invalid session identifier");
 		}
 
 		// logout
-		User user = userRepository.getBySession(session);
+		User user = userRepository.getBySessionId(session_id);
 
-		user.setSession(null);
+		user.setSession_id(null);
 		userRepository.save(user);
 
 		return "User deauthenticated successfully.";

@@ -21,7 +21,7 @@ public interface IUserDAO {
 
 	boolean existWithEmail(String email);
 
-	User getBySession(String session);
+	User getBySessionId(String session_id);
 
-	boolean existWithSession(String session);
+	boolean existWithSessionId(String session_id);
 }

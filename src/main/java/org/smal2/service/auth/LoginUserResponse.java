@@ -2,23 +2,23 @@ package org.smal2.service.auth;
 
 public class LoginUserResponse {
 
-	private String session;
+	private String session_id;
 	private String registration;
 	private String name;
 	private int type;
 	private String message;
 
-	public LoginUserResponse(String session, String registration, String name,
-			int type, String message) {
-		this.session = session;
+	public LoginUserResponse(String session_id, String registration,
+			String name, int type, String message) {
+		this.session_id = session_id;
 		this.registration = registration;
 		this.name = name;
 		this.type = type;
 		this.message = message;
 	}
 
-	public String getSession() {
-		return session;
+	public String getSession_id() {
+		return session_id;
 	}
 
 	public String getRegistration() {

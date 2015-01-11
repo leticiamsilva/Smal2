@@ -45,11 +45,11 @@ public class UserRepository {
 		return dao.existWithEmail(email);
 	}
 
-	public User getBySession(String session) {
-		return dao.getBySession(session);
+	public User getBySessionId(String session_id) {
+		return dao.getBySessionId(session_id);
 	}
 
-	public boolean existWithSession(String session) {
-		return dao.existWithSession(session);
+	public boolean existWithSessionId(String session_id) {
+		return dao.existWithSessionId(session_id);
 	}
 }

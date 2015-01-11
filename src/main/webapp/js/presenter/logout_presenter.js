@@ -13,7 +13,7 @@ angular.module("ControllersModule").controller("LogoutPresenter", [
                 function(data)
                 {
                     $scope.response = data;
-                    SessionService.session = null;
+                    delete SessionService.session;
                 },
                 function(data) {
                     $scope.response = data;

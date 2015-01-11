@@ -3,8 +3,11 @@ package org.smal2.infrastructure.presentation.view.http;
 import org.smal2.infrastructure.presentation.view.http.util.OperationRequest;
 import org.smal2.infrastructure.presentation.view.http.util.OperationResponse;
 import org.smal2.presentation.presenter.AuthUserPresenter;
+import org.smal2.presentation.presenter.DeAuthUserPresenter;
 import org.smal2.presentation.view.IAuthUserView;
+import org.smal2.presentation.view.IDeAuthUserView;
 import org.smal2.presentation.view.basic.AuthUserViewMock;
+import org.smal2.presentation.view.basic.DeAuthUserViewMock;
 import org.smal2.service.auth.AuthService;
 import org.smal2.service.auth.LoginUserRequest;
 import org.smal2.service.auth.LoginUserResponse;
@@ -34,6 +37,33 @@ public class AuthUserViewJSON {
 
 			view.setRequest(request.getRequest());
 			new AuthUserPresenter(view, authService);
+			view.getCommand().execute();
+
+			if (view.getError() != null) {
+				response.setError(view.getError());
+			} else {
+				response.setResponse(view.getResponse());
+			}
+		} catch (Exception ex) {
+			response.setError("Unexpected error:\n" + ex.getMessage());
+		}
+
+		return response;
+	}
+
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	@ResponseBody
+	public OperationResponse<String> logout(
+			@RequestBody OperationRequest<Object> request) {
+		OperationResponse<String> response = new OperationResponse<String>();
+
+		try {
+			// [CMP] spring controllers are singleton (as common servlet)
+			// so we can't implements IView because his properties are shared
+			IDeAuthUserView view = new DeAuthUserViewMock();
+
+			view.setRequest(request.getSession_id());
+			new DeAuthUserPresenter(view, authService);
 			view.getCommand().execute();
 
 			if (view.getError() != null) {

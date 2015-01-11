@@ -57,9 +57,9 @@ public class UserDAOMock extends AInMemoryDAO<User, Long> implements IUserDAO {
 	}
 
 	@Override
-	public User getBySession(String session) {
+	public User getBySessionId(String session_id) {
 		for (User user : readAll()) {
-			if (user.getSession().equals(session)) {
+			if (user.getSession_id().equals(session_id)) {
 
 				return user;
 			}
@@ -69,9 +69,10 @@ public class UserDAOMock extends AInMemoryDAO<User, Long> implements IUserDAO {
 	}
 
 	@Override
-	public boolean existWithSession(String session) {
+	public boolean existWithSessionId(String session_id) {
 		for (User user : readAll()) {
-			if (user.getSession() != null && user.getSession().equals(session)) {
+			if (user.getSession_id() != null
+					&& user.getSession_id().equals(session_id)) {
 
 				return true;
 			}

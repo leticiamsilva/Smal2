@@ -21,7 +21,7 @@ public class DeAuthenticateUserPresenterTest extends ABaseTest {
 	}
 
 	@Test
-	public void deauthenticateUserWithValidSessionMustReturnConfirmMessage() {
+	public void deauthenticateUserWithValidSessionIdMustReturnConfirmMessage() {
 		// Arrange
 		LoginUserResponse loginResponse = authService
 				.loginUser(new LoginUserRequest("registration", "password"));
@@ -29,18 +29,18 @@ public class DeAuthenticateUserPresenterTest extends ABaseTest {
 
 		// Act
 		new DeAuthUserPresenter(view, authService);
-		view.setRequest(loginResponse.getSession());
+		view.setRequest(loginResponse.getSession_id());
 		view.getCommand().execute();
 
 		// Assert
 		Assert.assertEquals("User deauthenticated successfully.",
 				view.getResponse());
 		User user = userRepository.getByRegistration("registration");
-		Assert.assertEquals(user.getSession(), null);
+		Assert.assertEquals(user.getSession_id(), null);
 	}
 
 	@Test
-	public void deauthenticateUserWithInvalidSessionMustShowErrorMessage() {
+	public void deauthenticateUserWithInvalidSessionIdMustShowErrorMessage() {
 		// Arrange
 		IDeAuthUserView view = new DeAuthUserViewMock();
 

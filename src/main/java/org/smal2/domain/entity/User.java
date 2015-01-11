@@ -31,7 +31,7 @@ public class User {
 	private String name;
 
 	@Column
-	private String session;
+	private String session_id;
 
 	@Column
 	private Date session_timestamp;
@@ -81,12 +81,12 @@ public class User {
 		return name;
 	}
 
-	public String getSession() {
-		return session;
+	public String getSession_id() {
+		return session_id;
 	}
 
-	public void setSession(String session) {
-		this.session = session;
+	public void setSession_id(String session_id) {
+		this.session_id = session_id;
 	}
 
 	public Date getSession_timestamp() {

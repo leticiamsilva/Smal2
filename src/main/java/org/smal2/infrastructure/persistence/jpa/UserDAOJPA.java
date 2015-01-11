@@ -55,21 +55,21 @@ public class UserDAOJPA extends GenericDAOJPA<User> implements IUserDAO {
 	}
 
 	@Override
-	public User getBySession(String session) {
+	public User getBySessionId(String session_id) {
 
 		StringBuilder query = new StringBuilder();
-		query.append("SELECT e FROM User e WHERE e.session = ?");
-		Object array[] = { session };
+		query.append("SELECT e FROM User e WHERE e.session_id = ?");
+		Object array[] = { session_id };
 
 		return super.getEntity(query.toString(), array);
 	}
 
 	@Override
-	public boolean existWithSession(String session) {
+	public boolean existWithSessionId(String session_id) {
 
 		StringBuilder query = new StringBuilder();
-		query.append("SELECT e FROM User e WHERE e.session = ?");
-		Object array[] = { session };
+		query.append("SELECT e FROM User e WHERE e.session_id = ?");
+		Object array[] = { session_id };
 
 		return super.hasEntity(query.toString(), array);
 	}
