@@ -73,19 +73,9 @@ public class UserService {
 		List<ListUsersResponseItem> users = new ArrayList<ListUsersResponseItem>();
 		ListUsersResponseItem item;
 
-		int type;
-
 		for (User user : repository.listAll()) {
-			if (user.getClass() == Administrator.class) {
-				type = 1;
-			} else if (user.getClass() == Technician.class) {
-				type = 2;
-			} else {
-				type = 0;
-			}
-
 			item = new ListUsersResponseItem(user.getRegistration(),
-					user.getName(), type);
+					user.getName(), user.getType());
 			users.add(item);
 		}
 

@@ -112,4 +112,14 @@ public class User {
 	public void setService_token_timestamp(Date service_token_timestamp) {
 		this.service_token_timestamp = service_token_timestamp;
 	}
+
+	public int getType() {
+		if (this.getClass() == Administrator.class) {
+			return 1;
+		} else if (this.getClass() == Technician.class) {
+			return 2;
+		} else {
+			return 0;
+		}
+	}
 }

@@ -85,7 +85,8 @@ public class AuthService {
 		user.setSession_timestamp(date);
 		userRepository.save(user);
 
-		return new LoginUserResponse(user.getSession(),
+		return new LoginUserResponse(user.getSession(), user.getRegistration(),
+				user.getName(), user.getType(),
 				"User authenticated successfully.");
 	}
 }
