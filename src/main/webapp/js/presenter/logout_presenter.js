@@ -1,20 +1,19 @@
-angular.module("ControllersModule").controller("RegisterSubTroublePresenter", [
+angular.module("ControllersModule").controller("LogoutPresenter", [
     "$scope",
     "$routeParams",
     "SessionService",
-    "SubTroubleService",
-    function($scope, $routeParams, SessionService, SubTroubleService)
+    "AuthService",
+    function($scope, $routeParams, SessionService, AuthService)
     {
         // private
-        var registerSubTrouble = function()
+        var logout = function()
         {
-            SubTroubleService.registerSubTrouble(
+            AuthService.logout(
                 SessionService.session.session_id,
-                $scope.name,
-                $scope.trouble_name,
                 function(data)
                 {
                     $scope.response = data;
+                    SessionService.session = null;
                 },
                 function(data) {
                     $scope.response = data;
@@ -25,9 +24,7 @@ angular.module("ControllersModule").controller("RegisterSubTroublePresenter", [
         // constructor
         {
             $scope.session = SessionService;
-            $scope.name = "";
-            $scope.trouble_name = $routeParams.trouble_name;
-            $scope.command = registerSubTrouble;
+            $scope.command = logout;
             $scope.response = "";
         };
     }

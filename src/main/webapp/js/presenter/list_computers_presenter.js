@@ -9,7 +9,7 @@ angular.module("ControllersModule").controller("ListComputersPresenter", [
         var listPositions = function()
         {
             ComputerService.getComputers(
-                SessionService.session_id,
+                SessionService.session.session_id,
                 $scope.laboratory_name,
                 function(data) // ComputerModels
                 {
@@ -50,6 +50,8 @@ angular.module("ControllersModule").controller("ListComputersPresenter", [
                     $scope.num_columns = num_columns;
                     $scope.col_size = parseInt(12 / num_columns); //[CMP] bootstrap magic number 12
                     $scope.positions = positions;
+
+                    $scope.response = "";
                 },
                 function(data) {
                     $scope.response = data;

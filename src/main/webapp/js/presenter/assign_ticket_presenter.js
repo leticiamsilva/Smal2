@@ -9,7 +9,7 @@ angular.module("ControllersModule").controller("AssignTicketPresenter", [
         var assignTicket = function()
         {
             TicketService.assignTicket(
-                SessionService.session_id,
+                SessionService.session.session_id,
                 $scope.protocol,
                 $scope.administrator,
                 $scope.technician,

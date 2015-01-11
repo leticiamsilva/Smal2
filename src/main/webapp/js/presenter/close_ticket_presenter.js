@@ -9,7 +9,7 @@ angular.module("ControllersModule").controller("CloseTicketPresenter", [
         var closeTicket = function()
         {
             TicketService.closeTicket(
-                SessionService.session_id,
+                SessionService.session.session_id,
                 $scope.protocol,
                 $scope.technician,
                 $scope.status,

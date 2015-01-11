@@ -9,7 +9,7 @@ angular.module("ControllersModule").controller("RegisterComputerPresenter", [
         var registerComputer = function()
         {
             ComputerService.registerComputer(
-                SessionService.session_id,
+                SessionService.session.session_id,
                 $scope.asset_code,
                 $scope.laboratory_name,
                 $scope.row_num,

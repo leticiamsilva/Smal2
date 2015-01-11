@@ -9,7 +9,7 @@ angular.module("ControllersModule").controller("OpenTicketPresenter", [
         var openTicket = function()
         {
             TicketService.openTicket(
-                SessionService.session_id,
+                SessionService.session.session_id,
                 $scope.registration,
                 $scope.asset_code,
                 $scope.trouble,

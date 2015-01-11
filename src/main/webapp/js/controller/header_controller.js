@@ -2,9 +2,8 @@ angular.module("ControllersModule").controller("HeaderController", [
     "$scope",
     "$location",
     "SessionService",
-    "AccountService",
-    "LaboratoryService",
-    function HeaderController($scope, $location, SessionService, AccountService, LaboratoryService)
+    "AuthService",
+    function HeaderController($scope, $location, SessionService, AuthService)
     {
         $scope.isActive = function(view_location)
         {
@@ -15,31 +14,20 @@ angular.module("ControllersModule").controller("HeaderController", [
         {
             $scope.session = SessionService;
 
-            SessionService.order_prop = "name";
-
-            if (typeof(SessionService.user) === "undefined")
+            /*
+            // Disabled code
+            // useful to restore previous saved session after reopen a closed logged browser
+            if (typeof(SessionService.session) === "undefined")
             {
                 var cookie_session = Util.getCookie("session");
 
                 if (cookie_session != "")
                 {
-                    AccountService.getSession(
+                    AuthService.getSession(
                         cookie_session,
                         function(data)
                         {
-                            SessionService.user = data;
-/*
-                            CartService.getCart(
-                                SessionService.user.session_id,
-                                function(data)
-                                {
-                                    SessionService.cart = data;
-                                    $location.url("/");
-                                },
-                                function(data) {
-                                    alert("ERROR on HeaderController.getSession():\nresponse: " + data);
-                            });
-*/
+                            SessionService.session = data;
                         },
                         function(data) {
                             alert("ERROR on HeaderController.getSession():\nresponse: " + data);
@@ -47,6 +35,7 @@ angular.module("ControllersModule").controller("HeaderController", [
                     );
                 }
             }
+            */
         }
     }
 ]);

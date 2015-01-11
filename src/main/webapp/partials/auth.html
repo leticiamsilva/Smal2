@@ -1,0 +1,55 @@
+<div data-ng-controller="AccountController">
+    <div class="container-fluid">
+        <div class="row-fluid" data-ng-switch="action">
+            <div data-ng-switch-when="login" data-ng-controller="LoginPresenter">
+                <h3>Autenticação</h3>
+                <hr/>
+                <!-- login -->
+                <!-- input form -->
+                <!--
+                    $scope.session = SessionService;
+                    $scope.registration = "";
+                    $scope.password = "";
+                    $scope.command = login;
+                    $scope.response = "";
+                -->
+                <form>
+                    <div>
+                        <label class="control-label">Matrícula: </label>
+                        <input type="text" data-ng-model="registration" data-ngRequired="true"/>
+                    </div>
+                    <div>
+                        <label class="control-label">Senha: </label>
+                        <input type="password" data-ng-model="password" data-ngRequired="true"/>
+                    </div>
+                    <button class="btn btn-primary" data-ng-click="command()">Entrar</button>
+                </form>
+
+                <!-- response message -->
+                <div data-ng-hide="!response">{{ response }}</div>
+            </div>
+            <div data-ng-switch-when="logout" data-ng-controller="LogoutPresenter">
+                <h3>Confirma a saída?</h3>
+                <hr/>
+                <!-- logout -->
+                <!-- input form -->
+                <!--
+                    $scope.session = SessionService;
+                    $scope.command = logout;
+                    $scope.response = "";
+                -->
+                <form>
+                    <button class="btn btn-primary" data-ng-click="command()">Sair</button>
+                </form>
+                <a href="#laboratory/list"><button>Lista laboratórios</button></a>
+
+                <!-- response message -->
+                <div data-ng-hide="!response">{{ response }}</div>
+            </div>
+            <!-- else -->
+            <div data-ng-switch-default="">
+                Ação inválida: '{{ action }}'.
+            </div>
+        </div>
+    </div>
+</div>

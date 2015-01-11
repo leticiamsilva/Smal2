@@ -9,11 +9,13 @@ angular.module("ControllersModule").controller("ListSubTroublesPresenter", [
         var listSubTroubles = function()
         {
             SubTroubleService.getSubTroubles(
-                SessionService.session_id,
+                SessionService.session.session_id,
                 $scope.trouble_name,
                 function(data)
                 {
                     $scope.subtroubles = data;
+
+                    $scope.response = "";
                 },
                 function(data) {
                     $scope.response = data;

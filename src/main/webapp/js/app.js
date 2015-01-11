@@ -27,95 +27,85 @@ appModule.config( [
     "$routeProvider",
     function($routeProvider)
     {
-        $routeProvider./*
-        when("/products",
+        $routeProvider.
+        when("/auth/:action*",
         {
-            templateUrl: "partials/product_list.html",
-            controller: "ProductListController"
-        }).
-        when("/products/:product_id*",
-        {
-            templateUrl: "partials/product_details.html",
-            controller: "ProductDetailController"
-        }).*/
-        when("/account/:action*",
-        {
-            templateUrl: "partials/account.html",
+            templateUrl: "partials/auth.html",
             auth_required: false
         }).
         when("/user/register",
         {
             templateUrl: "partials/register_user.html",
-            //auth_required: true //TODO [CMP] re-enable
+            auth_required: true
         }).
         when("/user/list",
         {
             templateUrl: "partials/list_users.html",
-            //auth_required: true //TODO [CMP] re-enable
+            auth_required: true
         }).
         when("/laboratory/register",
         {
             templateUrl: "partials/register_laboratory.html",
-            //auth_required: true //TODO [CMP] re-enable
+            auth_required: true
         }).
         when("/laboratory/list",
         {
             templateUrl: "partials/list_laboratories.html",
-            //auth_required: true //TODO [CMP] re-enable
+            auth_required: true
         }).
         when("/computer/register/:laboratory_name*",
         {
             templateUrl: "partials/register_computer.html",
-            //auth_required: true //TODO [CMP] re-enable
+            auth_required: true
         }).
         when("/computer/list/:laboratory_name*",
         {
             templateUrl: "partials/list_computers.html",
-            //auth_required: true //TODO [CMP] re-enable
+            auth_required: true
         }).
         when("/trouble/register",
         {
             templateUrl: "partials/register_trouble.html",
-            //auth_required: true //TODO [CMP] re-enable
+            auth_required: true
         }).
         when("/trouble/list",
         {
             templateUrl: "partials/list_troubles.html",
-            //auth_required: true //TODO [CMP] re-enable
+            auth_required: true
         }).
         when("/subtrouble/register/:trouble_name*",
         {
             templateUrl: "partials/register_subtrouble.html",
-            //auth_required: true //TODO [CMP] re-enable
+            auth_required: true
         }).
         when("/subtrouble/list/:trouble_name*",
         {
             templateUrl: "partials/list_subtroubles.html",
-            //auth_required: true //TODO [CMP] re-enable
+            auth_required: true
         }).
         when("/ticket/open/:computer_asset_code*",
         {
             templateUrl: "partials/open_ticket.html",
-            //auth_required: true //TODO [CMP] re-enable
+            auth_required: true
         }).
         when("/ticket/list",
         {
             templateUrl: "partials/list_tickets.html",
-            //auth_required: true //TODO [CMP] re-enable
+            auth_required: true
         }).
         when("/ticket/assign/:protocol*",
         {
             templateUrl: "partials/assign_ticket.html",
-            //auth_required: true //TODO [CMP] re-enable
+            auth_required: true
         }).
         when("/ticket/close/:protocol*",
         {
             templateUrl: "partials/close_ticket.html",
-            //auth_required: true //TODO [CMP] re-enable
+            auth_required: true
         }).
         otherwise(
         {
-            redirectTo: "/laboratory/list"
+            redirectTo: "/auth/login"
         });
     }
 ]);
@@ -134,10 +124,10 @@ appModule.run( [
         {
             if ((typeof(curr_route.auth_required) !== "undefined") &&
                 curr_route.auth_required &&
-                (typeof(SessionService.user) === "undefined"))
+                (typeof(SessionService.session) === "undefined"))
             {
                 // reload the login route
-                $location.url("/account/login");
+                $location.url("/auth/login");
             }
             /*
              * IMPORTANT:

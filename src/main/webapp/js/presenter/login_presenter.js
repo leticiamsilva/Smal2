@@ -1,23 +1,21 @@
-angular.module("ControllersModule").controller("RegisterUserPresenter", [
+angular.module("ControllersModule").controller("LoginPresenter", [
     "$scope",
     "$routeParams",
     "SessionService",
-    "UserService",
-    function($scope, $routeParams, SessionService, UserService)
+    "AuthService",
+    function($scope, $routeParams, SessionService, AuthService)
     {
         // private
-        var registerUser = function()
+        var login = function()
         {
-            UserService.registerUser(
-                SessionService.session.session_id,
+            AuthService.login(
                 $scope.registration,
                 $scope.password,
-                $scope.name,
-                $scope.email,
-                $scope.type,
                 function(data)
                 {
-                    $scope.response = data;
+                    SessionService.session = data;
+
+                    $scope.response = "";
                 },
                 function(data) {
                     $scope.response = data;
@@ -30,10 +28,7 @@ angular.module("ControllersModule").controller("RegisterUserPresenter", [
             $scope.session = SessionService;
             $scope.registration = "";
             $scope.password = "";
-            $scope.name = "";
-            $scope.email = "";
-            $scope.type = "";
-            $scope.command = registerUser;
+            $scope.command = login;
             $scope.response = "";
         };
     }

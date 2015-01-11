@@ -9,10 +9,12 @@ angular.module("ControllersModule").controller("ListTicketsPresenter", [
         var listTickets = function()
         {
             TicketService.getTickets(
-                SessionService.session_id,
+                SessionService.session.session_id,
                 function(data)
                 {
                     $scope.tickets = data;
+
+                    $scope.response = "";
                 },
                 function(data) {
                     $scope.response = data;

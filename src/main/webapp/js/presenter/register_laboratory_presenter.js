@@ -9,7 +9,7 @@ angular.module("ControllersModule").controller("RegisterLaboratoryPresenter", [
         var registerLaboratory = function()
         {
             LaboratoryService.registerLaboratory(
-                SessionService.session_id,
+                SessionService.session.session_id,
                 $scope.name,
                 function(data)
                 {

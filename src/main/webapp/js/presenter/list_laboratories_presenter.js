@@ -9,10 +9,12 @@ angular.module("ControllersModule").controller("ListLaboratoriesPresenter", [
         var listLaboratories = function()
         {
             LaboratoryService.getLaboratories(
-                SessionService.session_id,
+                SessionService.session.session_id,
                 function(data)
                 {
                     $scope.laboratories = data;
+
+                    $scope.response = "";
                 },
                 function(data) {
                     $scope.response = data;

@@ -9,10 +9,12 @@ angular.module("ControllersModule").controller("ListUsersPresenter", [
         var listUsers = function()
         {
             UserService.getUsers(
-                SessionService.session_id,
+                SessionService.session.session_id,
                 function(data)
                 {
                     $scope.users = data;
+
+                    $scope.response = "";
                 },
                 function(data) {
                     $scope.response = data;

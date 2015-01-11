@@ -100,21 +100,3 @@ filtersModule.filter("NameForComputer", [
         };
     }
 ]);
-
-
-
-filtersModule.filter("ReferenceURLFilter", [
-    "SessionService",
-    function (SessionService)
-    {
-        return function(product)
-        {
-            if(typeof(product) === "undefined")
-            {
-                return "";
-            }
-
-            return SessionService.getReferenceURLFromProduct(product);
-        };
-    }
-]);
