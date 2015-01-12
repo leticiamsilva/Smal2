@@ -3,16 +3,29 @@ package org.smal2.test.service;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.smal2.common.MD5Generator;
 import org.smal2.domain.entity.Computer;
 import org.smal2.domain.entity.Laboratory;
 import org.smal2.domain.entity.Position;
+import org.smal2.domain.entity.User;
+import org.smal2.service.auth.LoginUserRequest;
 import org.smal2.service.computer.RegisterComputerRequest;
 import org.smal2.test.testutil.ABaseTest;
 
 public class RegisterComputerServiceTest extends ABaseTest {
 
+	private String session_id;
+
 	@Before
 	public void before() {
+		userRepository.insert(new User("0000", MD5Generator.generate("pass"),
+				"Jhon", org.smal2.domain.entity.UserType.ADMINISTRATOR));
+
+		// Arrange
+		session_id = authService
+				.loginUser(new LoginUserRequest("0000", "pass"))
+				.getSession_id();
+
 		Laboratory lab = new Laboratory("lab01");
 		laboratoryRepository.insert(lab);
 
@@ -31,85 +44,85 @@ public class RegisterComputerServiceTest extends ABaseTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void registerNullComputerAssetCodeMustThrowException() {
 		// Act
-		computerService.registerComputer(new RegisterComputerRequest(null,
-				null, 1, 1));
+		computerService.registerComputer(new RegisterComputerRequest(
+				session_id, null, null, 1, 1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerEmptyComputerAssetCodeMustThrowException() {
 		// Act
-		computerService.registerComputer(new RegisterComputerRequest("", null,
-				1, 1));
+		computerService.registerComputer(new RegisterComputerRequest(
+				session_id, "", null, 1, 1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerExistentComputerAssetCodeMustThrowException() {
 		// Act
-		computerService.registerComputer(new RegisterComputerRequest("asset01",
-				null, 1, 1));
+		computerService.registerComputer(new RegisterComputerRequest(
+				session_id, "asset01", null, 1, 1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerNullComputerLaboratoryNameMustThrowException() {
 		// Act
-		computerService.registerComputer(new RegisterComputerRequest("asset02",
-				null, 1, 1));
+		computerService.registerComputer(new RegisterComputerRequest(
+				session_id, "asset02", null, 1, 1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerEmptyComputerLaboratoryNameMustThrowException() {
 		// Act
-		computerService.registerComputer(new RegisterComputerRequest("asset02",
-				"", 1, 1));
+		computerService.registerComputer(new RegisterComputerRequest(
+				session_id, "asset02", "", 1, 1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerNotExistentComputerLaboratoryNameMustThrowException() {
 		// Act
-		computerService.registerComputer(new RegisterComputerRequest("asset02",
-				"lab02", 1, 1));
+		computerService.registerComputer(new RegisterComputerRequest(
+				session_id, "asset02", "lab02", 1, 1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerComputerOnBusyPositionMustThrowException() {
 		// Act
-		computerService.registerComputer(new RegisterComputerRequest("asset02",
-				"lab01", 3, 3));
+		computerService.registerComputer(new RegisterComputerRequest(
+				session_id, "asset02", "lab01", 3, 3));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerComputerOnZeroRowPositionMustThrowException() {
 		// Act
-		computerService.registerComputer(new RegisterComputerRequest("asset02",
-				"lab01", 0, 1));
+		computerService.registerComputer(new RegisterComputerRequest(
+				session_id, "asset02", "lab01", 0, 1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerComputerOnZeroColumnPositionMustThrowException() {
 		// Act
-		computerService.registerComputer(new RegisterComputerRequest("asset02",
-				"lab01", 1, 0));
+		computerService.registerComputer(new RegisterComputerRequest(
+				session_id, "asset02", "lab01", 1, 0));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerComputerOnNegativeRowPositionMustThrowException() {
 		// Act
-		computerService.registerComputer(new RegisterComputerRequest("asset02",
-				"lab01", -1, 1));
+		computerService.registerComputer(new RegisterComputerRequest(
+				session_id, "asset02", "lab01", -1, 1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerComputerOnNegativeColumnPositionMustThrowException() {
 		// Act
-		computerService.registerComputer(new RegisterComputerRequest("asset02",
-				"lab01", 1, -1));
+		computerService.registerComputer(new RegisterComputerRequest(
+				session_id, "asset02", "lab01", 1, -1));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerComputerOnColumnPositionGreatherThen6MustThrowException() {
 		// Act
-		computerService.registerComputer(new RegisterComputerRequest("asset02",
-				"lab01", 1, 7));
+		computerService.registerComputer(new RegisterComputerRequest(
+				session_id, "asset02", "lab01", 1, 7));
 	}
 
 	@Test
@@ -121,8 +134,8 @@ public class RegisterComputerServiceTest extends ABaseTest {
 		int col_num = 6;
 
 		// Act
-		computerService.registerComputer(new RegisterComputerRequest(assetCode,
-				laboratory, row_num, col_num));
+		computerService.registerComputer(new RegisterComputerRequest(
+				session_id, assetCode, laboratory, row_num, col_num));
 
 		// Assert
 		Assert.assertEquals(assetCode, computerRepository.get(assetCode)
@@ -145,8 +158,8 @@ public class RegisterComputerServiceTest extends ABaseTest {
 		int col_num = 2;
 
 		// Act
-		computerService.registerComputer(new RegisterComputerRequest(assetCode,
-				laboratory, row_num, col_num));
+		computerService.registerComputer(new RegisterComputerRequest(
+				session_id, assetCode, laboratory, row_num, col_num));
 
 		// Assert
 		Assert.assertEquals(assetCode, computerRepository.get(assetCode)
@@ -169,8 +182,8 @@ public class RegisterComputerServiceTest extends ABaseTest {
 		int col_num = 1;
 
 		// Act
-		computerService.registerComputer(new RegisterComputerRequest(assetCode,
-				laboratory, row_num, col_num));
+		computerService.registerComputer(new RegisterComputerRequest(
+				session_id, assetCode, laboratory, row_num, col_num));
 
 		// Assert
 		Assert.assertEquals(assetCode, computerRepository.get(assetCode)

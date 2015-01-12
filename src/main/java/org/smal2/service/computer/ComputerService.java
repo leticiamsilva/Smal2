@@ -6,9 +6,12 @@ import java.util.List;
 import org.smal2.domain.entity.Computer;
 import org.smal2.domain.entity.Laboratory;
 import org.smal2.domain.entity.Position;
+import org.smal2.domain.entity.User;
+import org.smal2.domain.entity.UserType;
 import org.smal2.domain.repository.ComputerRepository;
 import org.smal2.domain.repository.LaboratoryRepository;
 import org.smal2.domain.repository.PositionRepository;
+import org.smal2.domain.repository.UserRepository;
 import org.smal2.service.computer.ListComputersResponse;
 import org.smal2.service.computer.ListComputersResponseItem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ComputerService {
+
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private ComputerRepository computerRepository;
@@ -30,6 +36,23 @@ public class ComputerService {
 
 		if (request == null) {
 			throw new IllegalArgumentException("Undefined request.");
+		}
+
+		if (request.getSession_id() == null
+				|| request.getSession_id().equals("")) {
+			throw new IllegalArgumentException("Undefined session identifier.");
+		}
+
+		if (!userRepository.existWithSessionId(request.getSession_id())) {
+			throw new IllegalArgumentException("Invalid session identifier");
+		}
+
+		User user = userRepository.getBySessionId(request.getSession_id());
+
+		if (user.getType() != UserType.ADMINISTRATOR
+				&& user.getType() != UserType.TECHNICIAN) {
+			throw new IllegalArgumentException(
+					"User must be at least a Technician to perform this operation.");
 		}
 
 		if (request.getAsset_code() == null
