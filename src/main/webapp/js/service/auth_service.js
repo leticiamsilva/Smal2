@@ -54,7 +54,9 @@ angular.module("ServicesModule").factory("AuthService", [
                 $http({
                     method: "POST",
                     url: "rest/auth/logout",
-                    data: { session_id: session_id, request : "" },
+                    data: {
+                        request : session_id
+                    },
                     cache: false,
                     responseType: "json"
                 }).

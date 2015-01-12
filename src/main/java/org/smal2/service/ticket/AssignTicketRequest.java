@@ -2,26 +2,26 @@ package org.smal2.service.ticket;
 
 public class AssignTicketRequest {
 
+	private String session_id;
 	private long protocol;
-	private String administrator;
 	private String technician;
 
 	public AssignTicketRequest() {
 	}
 
-	public AssignTicketRequest(long protocol, String administrator,
+	public AssignTicketRequest(String session_id, long protocol,
 			String technician) {
+		this.session_id = session_id;
 		this.protocol = protocol;
-		this.administrator = administrator;
 		this.technician = technician;
+	}
+
+	public String getSession_id() {
+		return session_id;
 	}
 
 	public long getProtocol() {
 		return protocol;
-	}
-
-	public String getAdministrator() {
-		return administrator;
 	}
 
 	public String getTechnician() {

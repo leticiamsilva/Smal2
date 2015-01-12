@@ -7,15 +7,14 @@ angular.module("ServicesModule").factory("TicketService", [
             var self = this;
 
             // return message
-            self.openTicket = function(session_id, registration, asset_code, trouble, sub_trouble, description, fn_success, fn_error)
+            self.openTicket = function(session_id, asset_code, trouble, sub_trouble, description, fn_success, fn_error)
             {
                 $http({
                     method: "POST",
                     url: "rest/ticket/open",
                     data: {
-                        session_id: session_id,
                         request : {
-                            registration : registration,
+                            session_id: session_id,
                             asset_code : asset_code,
                             trouble : trouble,
                             sub_trouble : sub_trouble,
@@ -94,16 +93,15 @@ angular.module("ServicesModule").factory("TicketService", [
             };
 
             // return message
-            self.assignTicket = function(session_id, protocol, administrator, technician, fn_success, fn_error)
+            self.assignTicket = function(session_id, protocol, technician, fn_success, fn_error)
             {
                 $http({
                     method: "POST",
                     url: "rest/ticket/assign",
                     data: {
-                        session_id: session_id,
                         request : {
+                            session_id: session_id,
                             protocol : protocol,
-                            administrator : administrator,
                             technician : technician
                         }
                     },
@@ -129,16 +127,15 @@ angular.module("ServicesModule").factory("TicketService", [
             };
 
             // return message
-            self.closeTicket = function(session_id, protocol, technician, status, fn_success, fn_error)
+            self.closeTicket = function(session_id, protocol, status, fn_success, fn_error)
             {
                 $http({
                     method: "POST",
                     url: "rest/ticket/close",
                     data: {
-                        session_id: session_id,
                         request : {
+                            session_id: session_id,
                             protocol : protocol,
-                            technician : technician,
                             status : status
                         }
                     },

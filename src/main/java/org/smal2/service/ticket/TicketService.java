@@ -37,9 +37,22 @@ public class TicketService {
 			throw new IllegalArgumentException("Undefined request.");
 		}
 
-		if (request.getRegistration() == null
-				|| request.getRegistration().equals("")) {
-			throw new IllegalArgumentException("Undefined user registration.");
+		if (request.getSession_id() == null
+				|| request.getSession_id().equals("")) {
+			throw new IllegalArgumentException("Undefined session identifier.");
+		}
+
+		if (!userRepository.existWithSessionId(request.getSession_id())) {
+			throw new IllegalArgumentException("Invalid session identifier");
+		}
+
+		User user = userRepository.getBySessionId(request.getSession_id());
+
+		if (user.getType() != UserType.ADMINISTRATOR
+				&& user.getType() != UserType.TECHNICIAN
+				&& user.getType() != UserType.STUDENT) {
+			throw new IllegalArgumentException(
+					"User must be at least a Student to perform this operation.");
 		}
 
 		if (request.getDescription() == null
@@ -57,10 +70,6 @@ public class TicketService {
 			throw new IllegalArgumentException("Undefined sub-t	rouble name.");
 		}
 
-		if (!userRepository.existWithRegistration(request.getRegistration())) {
-			throw new IllegalArgumentException("User must exist.");
-		}
-
 		if (!computerRepository.existWithAssetCode(request.getAsset_code())) {
 			throw new IllegalArgumentException("Computer must exist.");
 		}
@@ -68,8 +77,6 @@ public class TicketService {
 		if (!subTroubleRepository.existWithName(request.getSub_trouble())) {
 			throw new IllegalArgumentException("Sub-trouble must exist.");
 		}
-
-		User user = userRepository.getByRegistration(request.getRegistration());
 
 		Computer computer = computerRepository.get(request.getAsset_code());
 		SubTrouble subTrouble = subTroubleRepository.get(request
@@ -110,14 +117,20 @@ public class TicketService {
 			throw new IllegalArgumentException("Undefined request.");
 		}
 
-		if (request.getAdministrator() == null
-				|| request.getAdministrator().equals("")) {
-			throw new IllegalArgumentException(
-					"Undefined administrator registration.");
+		if (request.getSession_id() == null
+				|| request.getSession_id().equals("")) {
+			throw new IllegalArgumentException("Undefined session identifier.");
 		}
 
-		if (!userRepository.existWithRegistration(request.getAdministrator())) {
-			throw new IllegalArgumentException("Administrator must exist.");
+		if (!userRepository.existWithSessionId(request.getSession_id())) {
+			throw new IllegalArgumentException("Invalid session identifier");
+		}
+
+		User admin = userRepository.getBySessionId(request.getSession_id());
+
+		if (admin.getType() != UserType.ADMINISTRATOR) {
+			throw new IllegalArgumentException(
+					"Ticket cannot be assigned from a not administrator user.");
 		}
 
 		if (request.getTechnician() == null
@@ -132,14 +145,6 @@ public class TicketService {
 
 		if (!ticketRepository.existWithProtocol(request.getProtocol())) {
 			throw new IllegalArgumentException("Ticket must exist.");
-		}
-
-		User admin = userRepository.getByRegistration(request
-				.getAdministrator());
-
-		if (admin.getType() != UserType.ADMINISTRATOR) {
-			throw new IllegalArgumentException(
-					"Ticket cannot be assigned from a not administrator user.");
 		}
 
 		User tech = userRepository.getByRegistration(request.getTechnician());
@@ -163,26 +168,25 @@ public class TicketService {
 			throw new IllegalArgumentException("Undefined request.");
 		}
 
-		if (request.getTechnician() == null
-				|| request.getTechnician().equals("")) {
-			throw new IllegalArgumentException(
-					"Undefined technician registration.");
+		if (request.getSession_id() == null
+				|| request.getSession_id().equals("")) {
+			throw new IllegalArgumentException("Undefined session identifier.");
 		}
 
-		if (!userRepository.existWithRegistration(request.getTechnician())) {
-			throw new IllegalArgumentException("Technician must exist.");
+		if (!userRepository.existWithSessionId(request.getSession_id())) {
+			throw new IllegalArgumentException("Invalid session identifier");
+		}
+
+		User tech = userRepository.getBySessionId(request.getSession_id());
+
+		if (tech.getType() != UserType.ADMINISTRATOR
+				&& tech.getType() != UserType.TECHNICIAN) {
+			throw new IllegalArgumentException(
+					"Ticket cannot be closed by a not administrator and not technician user.");
 		}
 
 		if (!ticketRepository.existWithProtocol(request.getProtocol())) {
 			throw new IllegalArgumentException("Ticket must exist.");
-		}
-
-		User tech = userRepository.getByRegistration(request.getTechnician());
-
-		if (tech.getType() != UserType.TECHNICIAN
-				&& tech.getType() != UserType.ADMINISTRATOR) {
-			throw new IllegalArgumentException(
-					"Ticket cannot be closed by a not administrator and not technician user.");
 		}
 
 		Ticket ticket = ticketRepository.get(request.getProtocol());

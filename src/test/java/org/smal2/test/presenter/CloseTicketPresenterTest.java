@@ -18,6 +18,7 @@ import org.smal2.domain.entity.UserType;
 import org.smal2.presentation.presenter.CloseTicketPresenter;
 import org.smal2.presentation.view.ICloseTicketView;
 import org.smal2.presentation.view.basic.CloseTicketViewMock;
+import org.smal2.service.auth.LoginUserRequest;
 import org.smal2.service.ticket.CloseTicketRequest;
 import org.smal2.test.testutil.ABaseTest;
 
@@ -70,14 +71,18 @@ public class CloseTicketPresenterTest extends ABaseTest {
 	public void closeInProgressResolvedTicketAsTechnicianMustCloseTicketWithActualDate() {
 		// Arrange
 		long protocol = inProgressTicket.getProtocol();
-		String tech = "registration02";
 		Status status = Status.RESOLVED;
+
+		String tech_session_id = authService.loginUser(
+				new LoginUserRequest("registration02", "password"))
+				.getSession_id();
 
 		ICloseTicketView view = new CloseTicketViewMock();
 
 		// Act
 		new CloseTicketPresenter(view, ticketService);
-		view.setRequest(new CloseTicketRequest(protocol, tech, status));
+		view.setRequest(new CloseTicketRequest(tech_session_id, protocol,
+				status));
 		view.getCommand().execute();
 
 		// Assert
@@ -90,14 +95,18 @@ public class CloseTicketPresenterTest extends ABaseTest {
 	public void closeInProgressNotResolvedTicketAsTechnicianMustCloseTicketWithActualDate() {
 		// Arrange
 		long protocol = inProgressTicket.getProtocol();
-		String tech = "registration02";
 		Status status = Status.NOT_RESOLVED;
+
+		String tech_session_id = authService.loginUser(
+				new LoginUserRequest("registration02", "password"))
+				.getSession_id();
 
 		ICloseTicketView view = new CloseTicketViewMock();
 
 		// Act
 		new CloseTicketPresenter(view, ticketService);
-		view.setRequest(new CloseTicketRequest(protocol, tech, status));
+		view.setRequest(new CloseTicketRequest(tech_session_id, protocol,
+				status));
 		view.getCommand().execute();
 
 		// Assert
@@ -110,14 +119,18 @@ public class CloseTicketPresenterTest extends ABaseTest {
 	public void closeInProgressResolvedTicketAsAdministratorMustCloseTicketWithActualDate() {
 		// Arrange
 		long protocol = inProgressTicket.getProtocol();
-		String admin = "registration01";
 		Status status = Status.RESOLVED;
+
+		String admin_session_id = authService.loginUser(
+				new LoginUserRequest("registration01", "password"))
+				.getSession_id();
 
 		ICloseTicketView view = new CloseTicketViewMock();
 
 		// Act
 		new CloseTicketPresenter(view, ticketService);
-		view.setRequest(new CloseTicketRequest(protocol, admin, status));
+		view.setRequest(new CloseTicketRequest(admin_session_id, protocol,
+				status));
 		view.getCommand().execute();
 
 		// Assert
@@ -130,14 +143,18 @@ public class CloseTicketPresenterTest extends ABaseTest {
 	public void closeInProgressResolvedTicketAsNotTechnicianAndNotAdministratorMustShowError() {
 		// Arrange
 		long protocol = inProgressTicket.getProtocol();
-		String tech = "registration03";
 		Status status = Status.RESOLVED;
+
+		String tech_session_id = authService.loginUser(
+				new LoginUserRequest("registration03", "password"))
+				.getSession_id();
 
 		ICloseTicketView view = new CloseTicketViewMock();
 
 		// Act
 		new CloseTicketPresenter(view, ticketService);
-		view.setRequest(new CloseTicketRequest(protocol, tech, status));
+		view.setRequest(new CloseTicketRequest(tech_session_id, protocol,
+				status));
 		view.getCommand().execute();
 
 		// Assert
@@ -152,14 +169,18 @@ public class CloseTicketPresenterTest extends ABaseTest {
 	public void closeOpenResolvedTicketAsTechnicianMustShowError() {
 		// Arrange
 		long protocol = openTicket.getProtocol();
-		String tech = "registration02";
 		Status status = Status.RESOLVED;
+
+		String tech_session_id = authService.loginUser(
+				new LoginUserRequest("registration02", "password"))
+				.getSession_id();
 
 		ICloseTicketView view = new CloseTicketViewMock();
 
 		// Act
 		new CloseTicketPresenter(view, ticketService);
-		view.setRequest(new CloseTicketRequest(protocol, tech, status));
+		view.setRequest(new CloseTicketRequest(tech_session_id, protocol,
+				status));
 		view.getCommand().execute();
 
 		// Assert
@@ -174,14 +195,18 @@ public class CloseTicketPresenterTest extends ABaseTest {
 	public void closeInProgressOpenTicketAsTechnicianMustShowError() {
 		// Arrange
 		long protocol = inProgressTicket.getProtocol();
-		String tech = "registration02";
 		Status status = Status.OPEN;
+
+		String tech_session_id = authService.loginUser(
+				new LoginUserRequest("registration02", "password"))
+				.getSession_id();
 
 		ICloseTicketView view = new CloseTicketViewMock();
 
 		// Act
 		new CloseTicketPresenter(view, ticketService);
-		view.setRequest(new CloseTicketRequest(protocol, tech, status));
+		view.setRequest(new CloseTicketRequest(tech_session_id, protocol,
+				status));
 		view.getCommand().execute();
 
 		// Assert

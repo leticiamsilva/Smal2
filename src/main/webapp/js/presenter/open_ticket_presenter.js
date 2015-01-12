@@ -10,7 +10,6 @@ angular.module("ControllersModule").controller("OpenTicketPresenter", [
         {
             TicketService.openTicket(
                 SessionService.session.session_id,
-                $scope.registration,
                 $scope.asset_code,
                 $scope.trouble,
                 $scope.sub_trouble,
@@ -28,7 +27,6 @@ angular.module("ControllersModule").controller("OpenTicketPresenter", [
         // constructor
         {
             $scope.session = SessionService;
-            $scope.registration = "";
             $scope.asset_code = $routeParams.computer_asset_code;
             $scope.trouble = "";
             $scope.sub_trouble = "";

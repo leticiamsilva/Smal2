@@ -11,7 +11,6 @@ angular.module("ControllersModule").controller("CloseTicketPresenter", [
             TicketService.closeTicket(
                 SessionService.session.session_id,
                 $scope.protocol,
-                $scope.technician,
                 $scope.status,
                 function(data)
                 {
@@ -27,7 +26,6 @@ angular.module("ControllersModule").controller("CloseTicketPresenter", [
         {
             $scope.session = SessionService;
             $scope.protocol = $routeParams.protocol;
-            $scope.technician = "";
             $scope.status = "RESOLVED";
             $scope.command = closeTicket;
             $scope.response = "";

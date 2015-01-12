@@ -54,7 +54,7 @@ public class AuthUserViewJSON {
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)
 	@ResponseBody
 	public OperationResponse<String> logout(
-			@RequestBody OperationRequest<Object> request) {
+			@RequestBody OperationRequest<String> request) {
 		OperationResponse<String> response = new OperationResponse<String>();
 
 		try {
@@ -62,7 +62,7 @@ public class AuthUserViewJSON {
 			// so we can't implements IView because his properties are shared
 			IDeAuthUserView view = new DeAuthUserViewMock();
 
-			view.setRequest(request.getSession_id());
+			view.setRequest(request.getRequest());
 			new DeAuthUserPresenter(view, authService);
 			view.getCommand().execute();
 

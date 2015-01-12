@@ -18,6 +18,7 @@ import org.smal2.domain.entity.UserType;
 import org.smal2.presentation.presenter.AssignTicketPresenter;
 import org.smal2.presentation.view.IAssignTicketView;
 import org.smal2.presentation.view.basic.AssignTicketViewMock;
+import org.smal2.service.auth.LoginUserRequest;
 import org.smal2.service.ticket.AssignTicketRequest;
 import org.smal2.test.testutil.ABaseTest;
 
@@ -70,19 +71,23 @@ public class AssignTicketPresenterTest extends ABaseTest {
 	public void assignTicketMustAssignFromAdminstratorToTheInformedTechnicianWithStatusInProgress() {
 		// Arrange
 		long protocol = openTicket.getProtocol();
-		String admin = "registration01";
 		String tech = "registration02";
+
+		String admin_session_id = authService.loginUser(
+				new LoginUserRequest("registration01", "password"))
+				.getSession_id();
 
 		IAssignTicketView view = new AssignTicketViewMock();
 
 		// Act
 		new AssignTicketPresenter(view, ticketService);
-		view.setRequest(new AssignTicketRequest(protocol, admin, tech));
+		view.setRequest(new AssignTicketRequest(admin_session_id, protocol,
+				tech));
 		view.getCommand().execute();
 
 		// Assert
-		Assert.assertEquals(admin, openTicket.getAdministrator()
-				.getRegistration());
+		Assert.assertEquals(admin_session_id, openTicket.getAdministrator()
+				.getSession_id());
 		Assert.assertEquals(tech, openTicket.getTechnician().getRegistration());
 		Assert.assertEquals(Status.IN_PROGRESS, openTicket.getStatus());
 		Assert.assertEquals("Ticket assigned successfully.", view.getResponse());
@@ -92,15 +97,18 @@ public class AssignTicketPresenterTest extends ABaseTest {
 	public void assignTicketAsNotAdministratorMustShowError() {
 		// Arrange
 		long protocol = openTicket.getProtocol();
-		String admin = "registration03";
 		String tech = "registration02";
 		Status status = openTicket.getStatus();
+
+		String user_session_id = authService.loginUser(
+				new LoginUserRequest("registration02", "password"))
+				.getSession_id();
 
 		IAssignTicketView view = new AssignTicketViewMock();
 
 		// Act
 		new AssignTicketPresenter(view, ticketService);
-		view.setRequest(new AssignTicketRequest(protocol, admin, tech));
+		view.setRequest(new AssignTicketRequest(user_session_id, protocol, tech));
 		view.getCommand().execute();
 
 		// Assert
@@ -114,15 +122,19 @@ public class AssignTicketPresenterTest extends ABaseTest {
 	public void assignTicketToNotTechnicianUserMustShowError() {
 		// Arrange
 		long protocol = openTicket.getProtocol();
-		String admin = "registration01";
 		String tech = "registration03";
 		Status status = openTicket.getStatus();
+
+		String admin_session_id = authService.loginUser(
+				new LoginUserRequest("registration01", "password"))
+				.getSession_id();
 
 		IAssignTicketView view = new AssignTicketViewMock();
 
 		// Act
 		new AssignTicketPresenter(view, ticketService);
-		view.setRequest(new AssignTicketRequest(protocol, admin, tech));
+		view.setRequest(new AssignTicketRequest(admin_session_id, protocol,
+				tech));
 		view.getCommand().execute();
 
 		// Assert
@@ -136,15 +148,19 @@ public class AssignTicketPresenterTest extends ABaseTest {
 	public void assignAlreadyAssignedTicketMustShowError() {
 		// Arrange
 		long protocol = inProgressTicket.getProtocol();
-		String admin = "registration01";
 		String tech = "registration02";
 		Status status = inProgressTicket.getStatus();
+
+		String admin_session_id = authService.loginUser(
+				new LoginUserRequest("registration01", "password"))
+				.getSession_id();
 
 		IAssignTicketView view = new AssignTicketViewMock();
 
 		// Act
 		new AssignTicketPresenter(view, ticketService);
-		view.setRequest(new AssignTicketRequest(protocol, admin, tech));
+		view.setRequest(new AssignTicketRequest(admin_session_id, protocol,
+				tech));
 		view.getCommand().execute();
 
 		// Assert
@@ -158,15 +174,19 @@ public class AssignTicketPresenterTest extends ABaseTest {
 	public void assignTicketWithInvalidProtocolMustShowError() {
 		// Arrange
 		long protocol = 0;
-		String admin = "registration01";
 		String tech = "registration02";
 		Status status = openTicket.getStatus();
+
+		String admin_session_id = authService.loginUser(
+				new LoginUserRequest("registration01", "password"))
+				.getSession_id();
 
 		IAssignTicketView view = new AssignTicketViewMock();
 
 		// Act
 		new AssignTicketPresenter(view, ticketService);
-		view.setRequest(new AssignTicketRequest(protocol, admin, tech));
+		view.setRequest(new AssignTicketRequest(admin_session_id, protocol,
+				tech));
 		view.getCommand().execute();
 
 		// Assert
@@ -179,20 +199,22 @@ public class AssignTicketPresenterTest extends ABaseTest {
 	public void assignTicketWithInvalidAdministratorMustShowError() {
 		// Arrange
 		long protocol = openTicket.getProtocol();
-		String admin = "registration00";
 		String tech = "registration02";
 		Status status = openTicket.getStatus();
+		String admin_session_id = "0000";
 
 		IAssignTicketView view = new AssignTicketViewMock();
 
 		// Act
 		new AssignTicketPresenter(view, ticketService);
-		view.setRequest(new AssignTicketRequest(protocol, admin, tech));
+		view.setRequest(new AssignTicketRequest(admin_session_id, protocol,
+				tech));
 		view.getCommand().execute();
 
 		// Assert
 		Assert.assertEquals(status, openTicket.getStatus());
-		Assert.assertEquals("Assign ticket error:\nAdministrator must exist.",
+		Assert.assertEquals(
+				"Assign ticket error:\nInvalid session identifier",
 				view.getError());
 	}
 
@@ -200,15 +222,19 @@ public class AssignTicketPresenterTest extends ABaseTest {
 	public void assignTicketWithInvalidTechnicianMustShowError() {
 		// Arrange
 		long protocol = openTicket.getProtocol();
-		String admin = "registration01";
 		String tech = "registration00";
 		Status status = openTicket.getStatus();
+
+		String admin_session_id = authService.loginUser(
+				new LoginUserRequest("registration01", "password"))
+				.getSession_id();
 
 		IAssignTicketView view = new AssignTicketViewMock();
 
 		// Act
 		new AssignTicketPresenter(view, ticketService);
-		view.setRequest(new AssignTicketRequest(protocol, admin, tech));
+		view.setRequest(new AssignTicketRequest(admin_session_id, protocol,
+				tech));
 		view.getCommand().execute();
 
 		// Assert

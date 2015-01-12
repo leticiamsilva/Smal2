@@ -11,7 +11,6 @@ angular.module("ControllersModule").controller("AssignTicketPresenter", [
             TicketService.assignTicket(
                 SessionService.session.session_id,
                 $scope.protocol,
-                $scope.administrator,
                 $scope.technician,
                 function(data)
                 {
@@ -27,7 +26,6 @@ angular.module("ControllersModule").controller("AssignTicketPresenter", [
         {
             $scope.session = SessionService;
             $scope.protocol = $routeParams.protocol;
-            $scope.administrator = "";
             $scope.technician = "";
             $scope.command = assignTicket;
             $scope.response = "";

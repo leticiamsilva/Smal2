@@ -47,7 +47,7 @@ public class UserDAOMock extends AInMemoryDAO<User, Long> implements IUserDAO {
 	@Override
 	public boolean existWithEmail(String email) {
 		for (User user : readAll()) {
-			if (user.getRegistration().equals(email)) {
+			if (user.getEmail() != null && user.getEmail().equals(email)) {
 
 				return true;
 			}
@@ -59,7 +59,8 @@ public class UserDAOMock extends AInMemoryDAO<User, Long> implements IUserDAO {
 	@Override
 	public User getBySessionId(String session_id) {
 		for (User user : readAll()) {
-			if (user.getSession_id().equals(session_id)) {
+			if (user.getSession_id() != null
+					&& user.getSession_id().equals(session_id)) {
 
 				return user;
 			}

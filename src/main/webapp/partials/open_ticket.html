@@ -1,7 +1,6 @@
 <div data-ng-controller="OpenTicketPresenter">
     <!--
         $scope.session = SessionService;
-        $scope.registration = "";
         $scope.asset_code = $routeParams.computer_asset_code;
         $scope.trouble = "";
         $scope.sub_trouble = "";
@@ -16,10 +15,6 @@
         <div class="row-fluid">
             <!-- input form -->
             <form>
-                <div>
-                    <label class="control-label">Matrícula (temporário, será por sessão): </label>
-                    <input type="text" data-ng-model="registration" data-ngRequired="true"/>
-                </div>
                 <div>
                     <label class="control-label">Patrimonio: </label>
                     <input type="text" disabled data-ng-model="asset_code" data-ngRequired="true"/>
