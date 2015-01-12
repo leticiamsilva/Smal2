@@ -26,8 +26,6 @@ public class ListComputersViewJSON {
 			@RequestBody OperationRequest<String> request) {
 		OperationResponse<ListComputersResponse> response = new OperationResponse<ListComputersResponse>();
 
-		// TODO [CMP] verify request.getSessionId() permission
-
 		try {
 			// [CMP] spring controllers are singleton (as common servlet)
 			// so we can't implements IView because his properties are shared

@@ -26,8 +26,6 @@ public class AssignTicketViewJSON {
 			@RequestBody OperationRequest<AssignTicketRequest> request) {
 		OperationResponse<String> response = new OperationResponse<String>();
 
-		// TODO [CMP] verify request.getSessionId() permission
-
 		try {
 			// [CMP] spring controllers are singleton (as common servlet)
 			// so we can't implements IView because his properties are shared

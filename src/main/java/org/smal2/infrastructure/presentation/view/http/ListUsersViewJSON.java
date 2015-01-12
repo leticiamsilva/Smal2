@@ -23,8 +23,6 @@ public class ListUsersViewJSON {
 	public OperationResponse<ListUsersResponse> listUsers() {
 		OperationResponse<ListUsersResponse> response = new OperationResponse<ListUsersResponse>();
 
-		// TODO [CMP] verify request.getSessionId() permission
-
 		try {
 			// [CMP] spring controllers are singleton (as common servlet)
 			// so we can't implements IView because his properties are shared

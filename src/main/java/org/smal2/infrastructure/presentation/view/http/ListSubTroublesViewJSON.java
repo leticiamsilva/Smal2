@@ -26,8 +26,6 @@ public class ListSubTroublesViewJSON {
 			@RequestBody OperationRequest<String> request) {
 		OperationResponse<ListSubTroublesResponse> response = new OperationResponse<ListSubTroublesResponse>();
 
-		// TODO [CMP] verify request.getSessionId() permission
-
 		try {
 			// [CMP] spring controllers are singleton (as common servlet)
 			// so we can't implements IView because his properties are shared
