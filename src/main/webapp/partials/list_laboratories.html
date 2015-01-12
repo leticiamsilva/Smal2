@@ -8,7 +8,9 @@
 
     <div class="container-fluid">
         <h3>Laboratórios:</h3>
-        <a href="#/laboratory/register"><img data-ng-src="img/icon/plus32.png" class="img-responsive" alt="adicionar" title="Adicionar um laboratório."/></a>
+        <div data-ng-show="session.session.user.type == 'ADMINISTRATOR' || session.session.user.type == 'TECHNICIAN'">
+            <a href="#/laboratory/register"><img data-ng-src="img/icon/plus32.png" class="img-responsive" alt="adicionar" title="Adicionar um laboratório."/></a>
+        </div>
         <hr/>
         <div class="row-fluid">
             <!-- response message -->

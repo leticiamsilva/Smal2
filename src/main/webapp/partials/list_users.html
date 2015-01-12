@@ -8,7 +8,9 @@
 
     <div class="container-fluid">
         <h3>Usuários:</h3>
-        <a href="#/user/register"><img data-ng-src="img/icon/plus32.png" class="img-responsive" alt="adicionar" title="Adicionar um usuário."/></a>
+        <div data-ng-show="session.session.user.type == 'ADMINISTRATOR'">
+            <a href="#/user/register"><img data-ng-src="img/icon/plus32.png" class="img-responsive" alt="adicionar" title="Adicionar um usuário."/></a>
+        </div>
         <hr/>
         <div class="row-fluid">
             <!-- response message -->
@@ -25,7 +27,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-footer">Matrícula: {{ user.registration }}</div>
+                        <div class="panel-footer">Matrícula: {{ user.registration }}
+                        <div>
+                            <label class="control-label">Tipo: </label>
+                            <select data-ng-model="user.type" disabled>
+                                <option value="ADMINISTRATOR">Administrador</option>
+                                <option value="TECHNICIAN">Técnico</option>
+                                <option value="STUDENT">Studente</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div data-ng-if="$index != 0">

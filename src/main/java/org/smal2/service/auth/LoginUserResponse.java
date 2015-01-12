@@ -1,15 +1,17 @@
 package org.smal2.service.auth;
 
+import org.smal2.service.user.UserType;
+
 public class LoginUserResponse {
 
 	private String session_id;
 	private String registration;
 	private String name;
-	private int type;
+	private UserType type;
 	private String message;
 
 	public LoginUserResponse(String session_id, String registration,
-			String name, int type, String message) {
+			String name, UserType type, String message) {
 		this.session_id = session_id;
 		this.registration = registration;
 		this.name = name;
@@ -29,7 +31,7 @@ public class LoginUserResponse {
 		return name;
 	}
 
-	public int getType() {
+	public UserType getType() {
 		return type;
 	}
 

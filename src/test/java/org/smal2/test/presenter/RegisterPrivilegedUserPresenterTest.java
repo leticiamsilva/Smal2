@@ -37,11 +37,12 @@ public class RegisterPrivilegedUserPresenterTest extends ABaseTest {
 		view.getCommand().execute();
 
 		// Assert
+		String md5Pass = MD5Generator.generate("password");
 		Assert.assertEquals(4, userRepository.listAll().size());
 		Assert.assertEquals("0004", userRepository.getByRegistration("0004")
 				.getRegistration());
-		Assert.assertEquals("password", userRepository
-				.getByRegistration("0004").getPassword());
+		Assert.assertEquals(md5Pass, userRepository.getByRegistration("0004")
+				.getPassword());
 		Assert.assertEquals("Jessy", userRepository.getByRegistration("0004")
 				.getName());
 		Assert.assertEquals("admin@smal.org", ((Administrator) userRepository
@@ -62,7 +63,7 @@ public class RegisterPrivilegedUserPresenterTest extends ABaseTest {
 
 		// Assert
 		Assert.assertEquals(
-				"Register user error:\nUser type must be administrator or technichan.",
+				"Register user error:\nUser type must be administrator or technician.",
 				view.getError());
 	}
 }

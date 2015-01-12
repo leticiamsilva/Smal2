@@ -92,7 +92,7 @@ public class AuthenticateUserServiceTest extends ABaseTest {
 		Assert.assertEquals("remote_registration", user.getRegistration());
 		Assert.assertEquals(MD5Generator.generate("remote_password"),
 				user.getPassword());
-		Assert.assertEquals("Auto-registred unprivileged user", user.getName());
+		Assert.assertEquals("remote_registration user", user.getName());
 		Assert.assertEquals(user.getSession_id(), response.getSession_id());
 		Assert.assertEquals("User authenticated successfully.",
 				response.getMessage());

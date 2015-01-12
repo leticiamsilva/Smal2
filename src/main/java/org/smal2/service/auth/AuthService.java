@@ -7,6 +7,7 @@ import org.smal2.domain.entity.User;
 import org.smal2.domain.repository.AuthRepository;
 import org.smal2.domain.repository.SubTroubleRepository;
 import org.smal2.domain.repository.UserRepository;
+import org.smal2.service.user.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -57,7 +58,7 @@ public class AuthService {
 			// local registration
 			String md5Pass = MD5Generator.generate(request.getPassword());
 			User unprivilegedUser = new User(request.getRegistration(),
-					md5Pass, "Auto-registred unprivileged user");
+					md5Pass, request.getRegistration().concat(" user"));
 			unprivilegedUser.setService_token(response.getToken());
 			unprivilegedUser.setSession_timestamp(new Date());
 			userRepository.insert(unprivilegedUser);
@@ -85,8 +86,25 @@ public class AuthService {
 		user.setSession_timestamp(date);
 		userRepository.save(user);
 
+		UserType type;
+
+		switch (user.getType()) {
+		case 1:
+			type = UserType.STUDENT;
+			break;
+		case 2:
+			type = UserType.TECHNICIAN;
+			break;
+		case 3:
+			type = UserType.ADMINISTRATOR;
+			break;
+
+		default:
+			throw new IllegalStateException("Invalid user type.");
+		}
+
 		return new LoginUserResponse(user.getSession_id(),
-				user.getRegistration(), user.getName(), user.getType(),
+				user.getRegistration(), user.getName(), type,
 				"User authenticated successfully.");
 	}
 

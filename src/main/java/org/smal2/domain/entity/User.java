@@ -114,12 +114,14 @@ public class User {
 	}
 
 	public int getType() {
-		if (this.getClass() == Administrator.class) {
+		if (this.getClass() == User.class) {
 			return 1;
 		} else if (this.getClass() == Technician.class) {
 			return 2;
+		} else if (this.getClass() == Administrator.class) {
+			return 3;
 		} else {
-			return 0;
+			throw new IllegalStateException("Invalid user type.");
 		}
 	}
 }

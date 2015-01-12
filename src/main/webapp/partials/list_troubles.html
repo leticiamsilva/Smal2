@@ -8,7 +8,9 @@
 
     <div class="container-fluid">
         <h3>Problemas:</h3>
-        <a href="#/trouble/register"><img data-ng-src="img/icon/plus32.png" class="img-responsive" alt="adicionar" title="Adicionar um problema."/></a>
+        <div data-ng-show="session.session.user.type == 'ADMINISTRATOR'">
+            <a href="#/trouble/register"><img data-ng-src="img/icon/plus32.png" class="img-responsive" alt="adicionar" title="Adicionar um problema."/></a>
+        </div>
         <hr/>
         <div class="row-fluid">
             <!-- response message -->

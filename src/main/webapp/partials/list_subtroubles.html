@@ -9,7 +9,9 @@
 
     <div class="container-fluid">
         <h3>Subproblemas do problema {{ trouble_name }}:</h3>
-        <a href="#/subtrouble/register/{{ trouble_name }}"><img data-ng-src="img/icon/plus32.png" class="img-responsive"  alt="adicionar" title="Adicionar um sub-problema."/></a>
+        <div data-ng-show="session.session.user.type == 'ADMINISTRATOR'">
+            <a href="#/subtrouble/register/{{ trouble_name }}"><img data-ng-src="img/icon/plus32.png" class="img-responsive"  alt="adicionar" title="Adicionar um sub-problema."/></a>
+        </div>
         <hr/>
         <div class="row-fluid">
             <!-- response message -->

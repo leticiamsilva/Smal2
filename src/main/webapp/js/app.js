@@ -31,77 +31,76 @@ appModule.config( [
         when("/auth/:action*",
         {
             templateUrl: "partials/auth.html",
-            auth_required: false
         }).
         when("/user/register",
         {
             templateUrl: "partials/register_user.html",
-            auth_required: true
+            auth_required: ["ADMINISTRATOR"]
         }).
         when("/user/list",
         {
             templateUrl: "partials/list_users.html",
-            auth_required: true
+            auth_required: ["ADMINISTRATOR", "TECHNICIAN"]
         }).
         when("/laboratory/register",
         {
             templateUrl: "partials/register_laboratory.html",
-            auth_required: true
+            auth_required: ["ADMINISTRATOR", "TECHNICIAN"]
         }).
         when("/laboratory/list",
         {
             templateUrl: "partials/list_laboratories.html",
-            auth_required: true
+            auth_required: ["ADMINISTRATOR", "TECHNICIAN", "STUDENT"]
         }).
         when("/computer/register/:laboratory_name*",
         {
             templateUrl: "partials/register_computer.html",
-            auth_required: true
+            auth_required: ["ADMINISTRATOR", "TECHNICIAN"]
         }).
         when("/computer/list/:laboratory_name*",
         {
             templateUrl: "partials/list_computers.html",
-            auth_required: true
+            auth_required: ["ADMINISTRATOR", "TECHNICIAN", "STUDENT"]
         }).
         when("/trouble/register",
         {
             templateUrl: "partials/register_trouble.html",
-            auth_required: true
+            auth_required: ["ADMINISTRATOR"]
         }).
         when("/trouble/list",
         {
             templateUrl: "partials/list_troubles.html",
-            auth_required: true
+            auth_required: ["ADMINISTRATOR", "TECHNICIAN"]
         }).
         when("/subtrouble/register/:trouble_name*",
         {
             templateUrl: "partials/register_subtrouble.html",
-            auth_required: true
+            auth_required: ["ADMINISTRATOR"]
         }).
         when("/subtrouble/list/:trouble_name*",
         {
             templateUrl: "partials/list_subtroubles.html",
-            auth_required: true
+            auth_required: ["ADMINISTRATOR", "TECHNICIAN"]
         }).
         when("/ticket/open/:computer_asset_code*",
         {
             templateUrl: "partials/open_ticket.html",
-            auth_required: true
+            auth_required: ["ADMINISTRATOR", "TECHNICIAN", "STUDENT"]
         }).
         when("/ticket/list",
         {
             templateUrl: "partials/list_tickets.html",
-            auth_required: true
+            auth_required: ["ADMINISTRATOR", "TECHNICIAN"]
         }).
         when("/ticket/assign/:protocol*",
         {
             templateUrl: "partials/assign_ticket.html",
-            auth_required: true
+            auth_required: ["ADMINISTRATOR", "TECHNICIAN"]
         }).
         when("/ticket/close/:protocol*",
         {
             templateUrl: "partials/close_ticket.html",
-            auth_required: true
+            auth_required: ["ADMINISTRATOR", "TECHNICIAN"]
         }).
         otherwise(
         {
@@ -118,13 +117,16 @@ appModule.run( [
     "$rootScope",
     "$location",
     "SessionService",
-    function ($rootScope, $location, SessionService)
+    function($rootScope, $location, SessionService)
     {
         $rootScope.$on("$routeChangeStart", function(event, curr_route, prev_route)
         {
-            if ((typeof(curr_route.auth_required) !== "undefined") &&
-                curr_route.auth_required &&
-                (typeof(SessionService.session) === "undefined"))
+            if(typeof(curr_route.auth_required) !== "undefined" &&
+               (typeof(SessionService.session) === "undefined" ||
+                typeof(SessionService.session.user) === "undefined" ||
+                typeof(SessionService.session.user.type) === "undefined" ||
+                curr_route.auth_required.indexOf(SessionService.session.user.type) == -1
+               ))
             {
                 // reload the login route
                 $location.url("/auth/login");

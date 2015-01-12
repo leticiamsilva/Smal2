@@ -75,8 +75,9 @@ public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 
 		// Assert
 		User user = userRepository.getByRegistration(registration);
+		String md5Pass = MD5Generator.generate(password);
 		Assert.assertEquals(registration, user.getRegistration());
-		Assert.assertEquals(password, user.getPassword());
+		Assert.assertEquals(md5Pass, user.getPassword());
 		Assert.assertEquals(name, user.getName());
 		Assert.assertEquals(email, ((Administrator) user).getEmail());
 		Assert.assertEquals(4, userRepository.listAll().size());

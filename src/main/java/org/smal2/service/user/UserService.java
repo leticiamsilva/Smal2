@@ -3,6 +3,7 @@ package org.smal2.service.user;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.smal2.common.MD5Generator;
 import org.smal2.domain.entity.Administrator;
 import org.smal2.domain.entity.Technician;
 import org.smal2.domain.entity.User;
@@ -48,21 +49,22 @@ public class UserService {
 			throw new IllegalArgumentException("User email already exist.");
 		}
 
+		String md5Pass = MD5Generator.generate(request.getPassword());
+
 		switch (request.getType()) {
 		case ADMINISTRATOR:
 			repository.insert(new Administrator(request.getRegistration(),
-					request.getPassword(), request.getName(), request
-							.getEmail()));
+					md5Pass, request.getName(), request.getEmail()));
 			break;
 
-		case TECHNICHAN:
-			repository.insert(new Technician(request.getRegistration(), request
-					.getPassword(), request.getName(), request.getEmail()));
+		case TECHNICIAN:
+			repository.insert(new Technician(request.getRegistration(),
+					md5Pass, request.getName(), request.getEmail()));
 			break;
 
 		default:
 			throw new IllegalArgumentException(
-					"User type must be administrator or technichan.");
+					"User type must be administrator or technician.");
 		}
 
 		return "User registred successfully.";
@@ -73,9 +75,27 @@ public class UserService {
 		List<ListUsersResponseItem> users = new ArrayList<ListUsersResponseItem>();
 		ListUsersResponseItem item;
 
+		UserType type;
+
 		for (User user : repository.listAll()) {
+
+			switch (user.getType()) {
+			case 1:
+				type = UserType.STUDENT;
+				break;
+			case 2:
+				type = UserType.TECHNICIAN;
+				break;
+			case 3:
+				type = UserType.ADMINISTRATOR;
+				break;
+
+			default:
+				throw new IllegalStateException("Invalid user type.");
+			}
+
 			item = new ListUsersResponseItem(user.getRegistration(),
-					user.getName(), user.getType());
+					user.getName(), type);
 			users.add(item);
 		}
 

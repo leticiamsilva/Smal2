@@ -12,7 +12,9 @@
 
     <div class="container-fluid">
         <h3>Computadores do laboratório {{ laboratory_name }}:</h3>
-        <a href="#/computer/register/{{ laboratory_name }}"><img data-ng-src="img/icon/plus32.png" class="img-responsive" alt="adicionar" title="Adicionar um computador."/></a>
+        <div data-ng-show="session.session.user.type == 'ADMINISTRATOR' || session.session.user.type == 'TECHNICIAN'">
+            <a href="#/computer/register/{{ laboratory_name }}"><img data-ng-src="img/icon/plus32.png" class="img-responsive" alt="adicionar" title="Adicionar um computador."/></a>
+        </div>
         <hr/>
         <div class="row-fluid">
             <!-- response message -->
