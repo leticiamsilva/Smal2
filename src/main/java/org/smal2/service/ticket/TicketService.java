@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.smal2.domain.entity.Administrator;
 import org.smal2.domain.entity.Computer;
 import org.smal2.domain.entity.SubTrouble;
-import org.smal2.domain.entity.Technician;
 import org.smal2.domain.entity.Ticket;
 import org.smal2.domain.entity.User;
+import org.smal2.domain.entity.UserType;
 import org.smal2.domain.repository.ComputerRepository;
 import org.smal2.domain.repository.SubTroubleRepository;
 import org.smal2.domain.repository.TicketRepository;
@@ -138,21 +137,21 @@ public class TicketService {
 		User admin = userRepository.getByRegistration(request
 				.getAdministrator());
 
-		if (admin.getClass() != Administrator.class) {
+		if (admin.getType() != UserType.ADMINISTRATOR) {
 			throw new IllegalArgumentException(
 					"Ticket cannot be assigned from a not administrator user.");
 		}
 
 		User tech = userRepository.getByRegistration(request.getTechnician());
 
-		if (tech.getClass() != Technician.class
-				&& tech.getClass() != Administrator.class) {
+		if (tech.getType() != UserType.TECHNICIAN
+				&& tech.getType() != UserType.ADMINISTRATOR) {
 			throw new IllegalArgumentException(
 					"Ticket cannot be assigned to a not administrator and not technician user.");
 		}
 
 		Ticket ticket = ticketRepository.get(request.getProtocol());
-		ticket.assign((Administrator) admin, (Technician) tech);
+		ticket.assign(admin, tech);
 		ticketRepository.save(ticket);
 
 		return "Ticket assigned successfully.";
@@ -180,8 +179,8 @@ public class TicketService {
 
 		User tech = userRepository.getByRegistration(request.getTechnician());
 
-		if (tech.getClass() != Technician.class
-				&& tech.getClass() != Administrator.class) {
+		if (tech.getType() != UserType.TECHNICIAN
+				&& tech.getType() != UserType.ADMINISTRATOR) {
 			throw new IllegalArgumentException(
 					"Ticket cannot be closed by a not administrator and not technician user.");
 		}

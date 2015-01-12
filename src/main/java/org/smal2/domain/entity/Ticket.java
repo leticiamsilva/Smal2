@@ -32,10 +32,10 @@ public class Ticket {
 	private User user;
 
 	@ManyToOne(optional = true)
-	private Technician technician;
+	private User technician;
 
 	@ManyToOne(optional = true)
-	private Administrator administrator;
+	private User administrator;
 
 	@Enumerated(EnumType.ORDINAL)
 	@Column(nullable = false)
@@ -102,11 +102,11 @@ public class Ticket {
 		return user;
 	}
 
-	public Technician getTechnician() {
+	public User getTechnician() {
 		return technician;
 	}
 
-	public Administrator getAdministrator() {
+	public User getAdministrator() {
 		return administrator;
 	}
 
@@ -126,7 +126,7 @@ public class Ticket {
 		return computer;
 	}
 
-	public void assign(Administrator admin, Technician tech) {
+	public void assign(User admin, User tech) {
 
 		if (admin == null) {
 			throw new IllegalArgumentException("Administrator can not be null.");

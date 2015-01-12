@@ -31,6 +31,12 @@ public class User {
 	private String name;
 
 	@Column
+	private String email;
+
+	@Column(nullable = false)
+	private UserType type;
+
+	@Column
 	private String session_id;
 
 	@Column
@@ -42,10 +48,10 @@ public class User {
 	@Column
 	private Date service_token_timestamp;
 
-	protected User() {
+	private User() {
 	}
 
-	public User(String registration, String password, String name) {
+	public User(String registration, String password, String name, UserType type) {
 		this();
 
 		if (registration == null || registration.equals("")) {
@@ -63,6 +69,7 @@ public class User {
 		this.registration = registration;
 		this.password = password;
 		this.name = name;
+		this.type = type;
 	}
 
 	public long getId() {
@@ -79,6 +86,18 @@ public class User {
 
 	public String getName() {
 		return name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public UserType getType() {
+		return type;
 	}
 
 	public String getSession_id() {
@@ -111,17 +130,5 @@ public class User {
 
 	public void setService_token_timestamp(Date service_token_timestamp) {
 		this.service_token_timestamp = service_token_timestamp;
-	}
-
-	public int getType() {
-		if (this.getClass() == User.class) {
-			return 1;
-		} else if (this.getClass() == Technician.class) {
-			return 2;
-		} else if (this.getClass() == Administrator.class) {
-			return 3;
-		} else {
-			throw new IllegalStateException("Invalid user type.");
-		}
 	}
 }

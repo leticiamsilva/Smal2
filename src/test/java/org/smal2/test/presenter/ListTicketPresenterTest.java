@@ -7,6 +7,7 @@ import org.smal2.domain.entity.Position;
 import org.smal2.domain.entity.SubTrouble;
 import org.smal2.domain.entity.Trouble;
 import org.smal2.domain.entity.User;
+import org.smal2.domain.entity.UserType;
 import org.smal2.presentation.presenter.ListTicketsPresenter;
 import org.smal2.presentation.view.IListTicketsView;
 import org.smal2.presentation.view.basic.ListTicketsViewMock;
@@ -22,7 +23,7 @@ public class ListTicketPresenterTest extends ABaseTest {
 	public void before() {
 		String registration = "registration01";
 		User user = new User(registration, MD5Generator.generate("password"),
-				"user");
+				"user", UserType.STUDENT);
 		userRepository.insert(user);
 
 		Laboratory lab = new Laboratory("lab01");

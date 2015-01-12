@@ -1,8 +1,8 @@
 package org.smal2.test.service;
 
 import org.smal2.common.MD5Generator;
-import org.smal2.domain.entity.Administrator;
 import org.smal2.domain.entity.User;
+import org.smal2.domain.entity.UserType;
 import org.smal2.service.user.ListUsersResponse;
 import org.smal2.service.user.ListUsersResponseItem;
 import org.smal2.test.testutil.ABaseTest;
@@ -15,9 +15,9 @@ public class ListUsersServiceTest extends ABaseTest {
 	@Before
 	public void before() {
 		userRepository.insert(new User("0001", MD5Generator
-				.generate("password1"), "Jhon"));
-		userRepository.insert(new Administrator("0002", MD5Generator
-				.generate("password2"), "Jack", "admin@smal.org"));
+				.generate("password1"), "Jhon", UserType.STUDENT));
+		userRepository.insert(new User("0002", MD5Generator
+				.generate("password2"), "Jack", UserType.ADMINISTRATOR));
 	}
 
 	@Test

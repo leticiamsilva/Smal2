@@ -6,16 +6,15 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.smal2.common.MD5Generator;
-import org.smal2.domain.entity.Administrator;
 import org.smal2.domain.entity.Computer;
 import org.smal2.domain.entity.Laboratory;
 import org.smal2.domain.entity.Position;
 import org.smal2.domain.entity.Status;
 import org.smal2.domain.entity.SubTrouble;
-import org.smal2.domain.entity.Technician;
 import org.smal2.domain.entity.Ticket;
 import org.smal2.domain.entity.Trouble;
 import org.smal2.domain.entity.User;
+import org.smal2.domain.entity.UserType;
 import org.smal2.presentation.presenter.AssignTicketPresenter;
 import org.smal2.presentation.view.IAssignTicketView;
 import org.smal2.presentation.view.basic.AssignTicketViewMock;
@@ -29,16 +28,17 @@ public class AssignTicketPresenterTest extends ABaseTest {
 
 	@Before
 	public void before() {
-		Administrator admin = new Administrator("registration01",
-				MD5Generator.generate("password"), "admin", "admin@smal.org");
+		User admin = new User("registration01",
+				MD5Generator.generate("password"), "admin",
+				UserType.ADMINISTRATOR);
 		userRepository.insert(admin);
 
-		Technician tech = new Technician("registration02",
-				MD5Generator.generate("password"), "tech", "tech@smal.org");
+		User tech = new User("registration02",
+				MD5Generator.generate("password"), "tech", UserType.TECHNICIAN);
 		userRepository.insert(tech);
 
 		User user = new User("registration03",
-				MD5Generator.generate("password"), "user");
+				MD5Generator.generate("password"), "user", UserType.STUDENT);
 		userRepository.insert(user);
 
 		Laboratory lab = new Laboratory("lab01");

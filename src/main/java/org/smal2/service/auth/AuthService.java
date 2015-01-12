@@ -58,7 +58,8 @@ public class AuthService {
 			// local registration
 			String md5Pass = MD5Generator.generate(request.getPassword());
 			User unprivilegedUser = new User(request.getRegistration(),
-					md5Pass, request.getRegistration().concat(" user"));
+					md5Pass, request.getRegistration().concat(" user"),
+					org.smal2.domain.entity.UserType.STUDENT);
 			unprivilegedUser.setService_token(response.getToken());
 			unprivilegedUser.setSession_timestamp(new Date());
 			userRepository.insert(unprivilegedUser);
@@ -89,13 +90,13 @@ public class AuthService {
 		UserType type;
 
 		switch (user.getType()) {
-		case 1:
+		case STUDENT:
 			type = UserType.STUDENT;
 			break;
-		case 2:
+		case TECHNICIAN:
 			type = UserType.TECHNICIAN;
 			break;
-		case 3:
+		case ADMINISTRATOR:
 			type = UserType.ADMINISTRATOR;
 			break;
 

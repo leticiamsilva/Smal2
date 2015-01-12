@@ -2,6 +2,7 @@ package org.smal2.test.presenter;
 
 import org.smal2.common.MD5Generator;
 import org.smal2.domain.entity.User;
+import org.smal2.domain.entity.UserType;
 import org.smal2.presentation.presenter.ListUsersPresenter;
 import org.smal2.presentation.view.IListUsersView;
 import org.smal2.presentation.view.basic.ListUsersViewMock;
@@ -15,11 +16,11 @@ public class ListUsersPresenterTest extends ABaseTest {
 	@Before
 	public void before() {
 		userRepository.insert(new User("0001", MD5Generator.generate("pass"),
-				"Jhon"));
+				"Jhon", UserType.STUDENT));
 		userRepository.insert(new User("0002", MD5Generator.generate("pass"),
-				"Jack"));
+				"Jack", UserType.STUDENT));
 		userRepository.insert(new User("0003", MD5Generator.generate("pass"),
-				"Joe"));
+				"Joe", UserType.STUDENT));
 	}
 
 	@Test

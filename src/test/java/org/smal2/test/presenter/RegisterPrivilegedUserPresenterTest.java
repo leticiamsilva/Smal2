@@ -1,7 +1,6 @@
 package org.smal2.test.presenter;
 
 import org.smal2.common.MD5Generator;
-import org.smal2.domain.entity.Administrator;
 import org.smal2.domain.entity.User;
 import org.smal2.presentation.presenter.RegisterPrivilegedUserPresenter;
 import org.smal2.presentation.view.IRegisterPrivilegedUserView;
@@ -18,11 +17,11 @@ public class RegisterPrivilegedUserPresenterTest extends ABaseTest {
 	@Before
 	public void before() {
 		userRepository.insert(new User("0001", MD5Generator.generate("pass"),
-				"Jhon"));
+				"Jhon", org.smal2.domain.entity.UserType.STUDENT));
 		userRepository.insert(new User("0002", MD5Generator.generate("pass"),
-				"Jack"));
+				"Jack", org.smal2.domain.entity.UserType.STUDENT));
 		userRepository.insert(new User("0003", MD5Generator.generate("pass"),
-				"Joe"));
+				"Joe", org.smal2.domain.entity.UserType.STUDENT));
 	}
 
 	@Test
@@ -45,8 +44,8 @@ public class RegisterPrivilegedUserPresenterTest extends ABaseTest {
 				.getPassword());
 		Assert.assertEquals("Jessy", userRepository.getByRegistration("0004")
 				.getName());
-		Assert.assertEquals("admin@smal.org", ((Administrator) userRepository
-				.getByRegistration("0004")).getEmail());
+		Assert.assertEquals("admin@smal.org",
+				userRepository.getByRegistration("0004").getEmail());
 		Assert.assertEquals("User registred successfully.", view.getResponse());
 	}
 

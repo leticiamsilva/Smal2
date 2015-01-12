@@ -2,6 +2,7 @@ package org.smal2.test.presenter;
 
 import org.smal2.common.MD5Generator;
 import org.smal2.domain.entity.User;
+import org.smal2.domain.entity.UserType;
 import org.smal2.presentation.presenter.AuthUserPresenter;
 import org.smal2.presentation.view.IAuthUserView;
 import org.smal2.presentation.view.basic.AuthUserViewMock;
@@ -16,7 +17,7 @@ public class AuthenticateUserPresenterTest extends ABaseTest {
 	@Before
 	public void before() {
 		userRepository.insert(new User("registration", MD5Generator
-				.generate("password"), "name"));
+				.generate("password"), "name", UserType.STUDENT));
 	}
 
 	@Test
@@ -33,7 +34,8 @@ public class AuthenticateUserPresenterTest extends ABaseTest {
 		Assert.assertEquals("User authenticated successfully.", view
 				.getResponse().getMessage());
 		User user = userRepository.getByRegistration("registration");
-		Assert.assertEquals(user.getSession_id(), view.getResponse().getSession_id());
+		Assert.assertEquals(user.getSession_id(), view.getResponse()
+				.getSession_id());
 	}
 
 	@Test

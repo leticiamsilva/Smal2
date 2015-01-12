@@ -10,6 +10,7 @@ import org.smal2.domain.entity.Position;
 import org.smal2.domain.entity.SubTrouble;
 import org.smal2.domain.entity.Trouble;
 import org.smal2.domain.entity.User;
+import org.smal2.domain.entity.UserType;
 import org.smal2.presentation.presenter.OpenTicketPresenter;
 import org.smal2.presentation.view.IOpenTicketView;
 import org.smal2.presentation.view.basic.OpenTicketViewMock;
@@ -21,7 +22,7 @@ public class OpenTicketPresenterTest extends ABaseTest {
 	@Before
 	public void before() {
 		User user = new User("registration01", MD5Generator.generate("pass"),
-				"name01");
+				"name01", UserType.STUDENT);
 		userRepository.insert(user);
 
 		Laboratory lab = new Laboratory("lab01");

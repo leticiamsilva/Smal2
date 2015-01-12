@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.smal2.common.MD5Generator;
 import org.smal2.domain.entity.User;
+import org.smal2.domain.entity.UserType;
 import org.smal2.persistence.IAuthDAO;
 import org.smal2.service.auth.LoginUserRequest;
 import org.smal2.service.auth.LoginUserResponse;
@@ -20,7 +21,7 @@ public class AuthenticateUserServiceTest extends ABaseTest {
 	@Before
 	public void before() {
 		userRepository.insert(new User("local_registration", MD5Generator
-				.generate("local_password"), "local_name"));
+				.generate("local_password"), "local_name", UserType.STUDENT));
 		((AuthDAOMock) authDao)
 				.create("remote_registration", "remote_password");
 	}

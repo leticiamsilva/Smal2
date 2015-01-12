@@ -1,7 +1,6 @@
 package org.smal2.test.service;
 
 import org.smal2.common.MD5Generator;
-import org.smal2.domain.entity.Administrator;
 import org.smal2.domain.entity.User;
 import org.smal2.service.user.RegisterPrivilegedUserRequest;
 import org.smal2.service.user.UserType;
@@ -15,11 +14,14 @@ public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 	@Before
 	public void before() {
 		userRepository.insert(new User("0001", MD5Generator
-				.generate("password1"), "Jhon"));
+				.generate("password1"), "Jhon",
+				org.smal2.domain.entity.UserType.STUDENT));
 		userRepository.insert(new User("0002", MD5Generator
-				.generate("password2"), "Jack"));
+				.generate("password2"), "Jack",
+				org.smal2.domain.entity.UserType.STUDENT));
 		userRepository.insert(new User("0003", MD5Generator
-				.generate("password3"), "Joe"));
+				.generate("password3"), "Joe",
+				org.smal2.domain.entity.UserType.STUDENT));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -79,7 +81,7 @@ public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 		Assert.assertEquals(registration, user.getRegistration());
 		Assert.assertEquals(md5Pass, user.getPassword());
 		Assert.assertEquals(name, user.getName());
-		Assert.assertEquals(email, ((Administrator) user).getEmail());
+		Assert.assertEquals(email, user.getEmail());
 		Assert.assertEquals(4, userRepository.listAll().size());
 	}
 }

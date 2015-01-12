@@ -2,6 +2,7 @@ package org.smal2.test.presenter;
 
 import org.smal2.common.MD5Generator;
 import org.smal2.domain.entity.User;
+import org.smal2.domain.entity.UserType;
 import org.smal2.presentation.presenter.DeAuthUserPresenter;
 import org.smal2.presentation.view.IDeAuthUserView;
 import org.smal2.presentation.view.basic.DeAuthUserViewMock;
@@ -17,7 +18,7 @@ public class DeAuthenticateUserPresenterTest extends ABaseTest {
 	@Before
 	public void before() {
 		userRepository.insert(new User("registration", MD5Generator
-				.generate("password"), "name"));
+				.generate("password"), "name", UserType.STUDENT));
 	}
 
 	@Test

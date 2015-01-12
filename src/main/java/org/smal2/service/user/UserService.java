@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.smal2.common.MD5Generator;
-import org.smal2.domain.entity.Administrator;
-import org.smal2.domain.entity.Technician;
 import org.smal2.domain.entity.User;
 import org.smal2.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,21 +49,26 @@ public class UserService {
 
 		String md5Pass = MD5Generator.generate(request.getPassword());
 
+		org.smal2.domain.entity.UserType type;
+
 		switch (request.getType()) {
 		case ADMINISTRATOR:
-			repository.insert(new Administrator(request.getRegistration(),
-					md5Pass, request.getName(), request.getEmail()));
+			type = org.smal2.domain.entity.UserType.ADMINISTRATOR;
 			break;
 
 		case TECHNICIAN:
-			repository.insert(new Technician(request.getRegistration(),
-					md5Pass, request.getName(), request.getEmail()));
+			type = org.smal2.domain.entity.UserType.TECHNICIAN;
 			break;
 
 		default:
 			throw new IllegalArgumentException(
 					"User type must be administrator or technician.");
 		}
+
+		User user = new User(request.getRegistration(), md5Pass,
+				request.getName(), type);
+		user.setEmail(request.getEmail());
+		repository.insert(user);
 
 		return "User registred successfully.";
 	}
@@ -80,14 +83,14 @@ public class UserService {
 		for (User user : repository.listAll()) {
 
 			switch (user.getType()) {
-			case 1:
-				type = UserType.STUDENT;
+			case ADMINISTRATOR:
+				type = UserType.ADMINISTRATOR;
 				break;
-			case 2:
+			case TECHNICIAN:
 				type = UserType.TECHNICIAN;
 				break;
-			case 3:
-				type = UserType.ADMINISTRATOR;
+			case STUDENT:
+				type = UserType.STUDENT;
 				break;
 
 			default:
