@@ -2,21 +2,22 @@ package org.smal2.presentation.view.basic;
 
 import org.smal2.common.ICommand;
 import org.smal2.presentation.view.IRegisterLaboratoryView;
+import org.smal2.service.laboratory.RegisterLaboratoryRequest;
 
 public class RegisterLaboratoryViewMock implements IRegisterLaboratoryView {
 
-	private String request;
+	private RegisterLaboratoryRequest request;
 	private ICommand command;
 	private String error;
 	private String response;
 
 	@Override
-	public String getRequest() {
+	public RegisterLaboratoryRequest getRequest() {
 		return request;
 	}
 
 	@Override
-	public void setRequest(String request) {
+	public void setRequest(RegisterLaboratoryRequest request) {
 		this.request = request;
 	}
 

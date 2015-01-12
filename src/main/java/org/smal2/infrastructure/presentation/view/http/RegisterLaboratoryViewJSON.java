@@ -6,6 +6,7 @@ import org.smal2.presentation.presenter.RegisterLaboratoryPresenter;
 import org.smal2.presentation.view.IRegisterLaboratoryView;
 import org.smal2.presentation.view.basic.RegisterLaboratoryViewMock;
 import org.smal2.service.laboratory.LaboratoryService;
+import org.smal2.service.laboratory.RegisterLaboratoryRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +23,7 @@ public class RegisterLaboratoryViewJSON {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	public OperationResponse<String> registerLaboratory(
-			@RequestBody OperationRequest<String> request) {
+			@RequestBody OperationRequest<RegisterLaboratoryRequest> request) {
 		OperationResponse<String> response = new OperationResponse<String>();
 
 		try {
