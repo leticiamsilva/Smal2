@@ -147,7 +147,7 @@ public class TicketService {
 			throw new IllegalArgumentException("Ticket must exist.");
 		}
 
-		User tech = userRepository.getByRegistration(request.getTechnician());
+		User tech = userRepository.get(request.getTechnician());
 
 		if (tech.getType() != UserType.TECHNICIAN
 				&& tech.getType() != UserType.ADMINISTRATOR) {

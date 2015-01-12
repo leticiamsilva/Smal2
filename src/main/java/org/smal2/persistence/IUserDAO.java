@@ -5,17 +5,16 @@ import java.util.List;
 import org.smal2.domain.entity.User;
 
 public interface IUserDAO {
+
 	void create(User entity);
 
-	User read(Long id);
+	User read(String registration);
 
 	List<User> readAll();
 
 	void update(User entity);
 
-	void delete(Long id);
-
-	User getByRegistration(String registration);
+	void delete(String registration);
 
 	boolean existWithRegistration(String registration);
 

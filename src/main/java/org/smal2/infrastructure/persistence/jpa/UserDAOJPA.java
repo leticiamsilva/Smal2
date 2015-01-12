@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 public class UserDAOJPA extends GenericDAOJPA<User> implements IUserDAO {
 
 	@Override
-	public User read(Long id) {
-		return read(User.class, id);
+	public User read(String registration) {
+		return read(User.class, registration);
 	}
 
 	@Override
@@ -20,18 +20,8 @@ public class UserDAOJPA extends GenericDAOJPA<User> implements IUserDAO {
 	}
 
 	@Override
-	public void delete(Long id) {
-		delete(User.class, id);
-	}
-
-	@Override
-	public User getByRegistration(String registration) {
-
-		StringBuilder query = new StringBuilder();
-		query.append("SELECT e FROM User e WHERE e.registration = ?");
-		Object array[] = { registration };
-
-		return super.getEntity(query.toString(), array);
+	public void delete(String registration) {
+		delete(User.class, registration);
 	}
 
 	@Override

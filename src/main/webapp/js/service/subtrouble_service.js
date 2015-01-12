@@ -13,8 +13,8 @@ angular.module("ServicesModule").factory("SubTroubleService", [
                     method: "POST",
                     url: "rest/subtrouble/register",
                     data: {
-                        session_id: session_id,
                         request : {
+                            session_id: session_id,
                             name : name,
                             trouble_name : trouble_name
                         }
@@ -46,7 +46,12 @@ angular.module("ServicesModule").factory("SubTroubleService", [
                 $http({
                     method: "POST",
                     url: "rest/subtrouble/list",
-                    data: { session_id: session_id, request : trouble_name },
+                    data: {
+                        request : {
+                            session_id: session_id,
+                            trouble_name : trouble_name
+                        }
+                    },
                     cache: false,
                     responseType: "json"
                 }).

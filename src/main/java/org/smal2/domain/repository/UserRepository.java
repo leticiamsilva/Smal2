@@ -17,8 +17,8 @@ public class UserRepository {
 		dao.create(entity);
 	}
 
-	public User get(long id) {
-		return dao.read(id);
+	public User get(String registration) {
+		return dao.read(registration);
 	}
 
 	public List<User> listAll() {
@@ -29,12 +29,8 @@ public class UserRepository {
 		dao.update(entity);
 	}
 
-	public void remove(long id) {
-		dao.delete(id);
-	}
-
-	public User getByRegistration(String registration) {
-		return dao.getByRegistration(registration);
+	public void remove(String registration) {
+		dao.delete(registration);
 	}
 
 	public boolean existWithRegistration(String registration) {

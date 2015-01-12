@@ -33,7 +33,7 @@ public class AuthenticateUserPresenterTest extends ABaseTest {
 		// Assert
 		Assert.assertEquals("User authenticated successfully.", view
 				.getResponse().getMessage());
-		User user = userRepository.getByRegistration("registration");
+		User user = userRepository.get("registration");
 		Assert.assertEquals(user.getSession_id(), view.getResponse()
 				.getSession_id());
 	}

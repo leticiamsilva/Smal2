@@ -36,7 +36,7 @@ public class DeAuthenticateUserPresenterTest extends ABaseTest {
 		// Assert
 		Assert.assertEquals("User deauthenticated successfully.",
 				view.getResponse());
-		User user = userRepository.getByRegistration("registration");
+		User user = userRepository.get("registration");
 		Assert.assertEquals(user.getSession_id(), null);
 	}
 

@@ -48,7 +48,11 @@ angular.module("ServicesModule").factory("TicketService", [
                 $http({
                     method: "POST",
                     url: "rest/ticket/list",
-                    data: { session_id: session_id, request : null },
+                    data: {
+                        request : {
+                            session_id: session_id
+                        }
+                    },
                     cache: false,
                     responseType: "json"
                 }).

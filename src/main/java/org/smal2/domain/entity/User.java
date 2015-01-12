@@ -5,7 +5,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -18,10 +17,6 @@ import javax.persistence.Table;
 public class User {
 
 	@Id
-	@GeneratedValue
-	private long id;
-
-	@Column(unique = true, nullable = false)
 	private String registration;
 
 	@Column(nullable = false)
@@ -70,10 +65,6 @@ public class User {
 		this.password = password;
 		this.name = name;
 		this.type = type;
-	}
-
-	public long getId() {
-		return id;
 	}
 
 	public String getRegistration() {

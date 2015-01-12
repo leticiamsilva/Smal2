@@ -12,7 +12,12 @@ angular.module("ServicesModule").factory("TroubleService", [
                 $http({
                     method: "POST",
                     url: "rest/trouble/register",
-                    data: { session_id: session_id, request : name },
+                    data: {
+                        request : {
+                            session_id: session_id,
+                            name : name
+                        }
+                    },
                     cache: false,
                     responseType: "json"
                 }).
@@ -40,7 +45,11 @@ angular.module("ServicesModule").factory("TroubleService", [
                 $http({
                     method: "POST",
                     url: "rest/trouble/list",
-                    data: { session_id: session_id, request : null },
+                    data: {
+                        request : {
+                            session_id: session_id
+                        }
+                    },
                     cache: false,
                     responseType: "json"
                 }).

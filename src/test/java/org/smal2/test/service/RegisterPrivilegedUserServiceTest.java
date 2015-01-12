@@ -2,6 +2,7 @@ package org.smal2.test.service;
 
 import org.smal2.common.MD5Generator;
 import org.smal2.domain.entity.User;
+import org.smal2.service.auth.LoginUserRequest;
 import org.smal2.service.user.RegisterPrivilegedUserRequest;
 import org.smal2.service.user.UserType;
 import org.smal2.test.testutil.ABaseTest;
@@ -11,8 +12,16 @@ import org.junit.Test;
 
 public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 
+	private String session_id;
+
 	@Before
 	public void before() {
+		userRepository.insert(new User("0", MD5Generator.generate("pass"),
+				"Jhon", org.smal2.domain.entity.UserType.ADMINISTRATOR));
+
+		session_id = authService.loginUser(new LoginUserRequest("0", "pass"))
+				.getSession_id();
+
 		userRepository.insert(new User("0001", MD5Generator
 				.generate("password1"), "Jhon",
 				org.smal2.domain.entity.UserType.STUDENT));
@@ -34,7 +43,7 @@ public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 	public void registerNullUserRegistrationMustThrowException() {
 		// Act
 		userService.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
-				null, "password", "Jimmy", "admin@smal.org",
+				session_id, null, "password", "Jimmy", "admin@smal.org",
 				UserType.ADMINISTRATOR));
 	}
 
@@ -42,7 +51,7 @@ public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 	public void registerEmptyUserRegistrationMustThrowException() {
 		// Act
 		userService.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
-				"", "password", "Jimmy", "admin@smal.org",
+				session_id, "", "password", "Jimmy", "admin@smal.org",
 				UserType.ADMINISTRATOR));
 	}
 
@@ -50,7 +59,7 @@ public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 	public void registerExistentUserRegistrationMustThrowException() {
 		// Act
 		userService.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
-				"0001", "password", "Jimmy", "admin@smal.org",
+				session_id, "0001", "password", "Jimmy", "admin@smal.org",
 				UserType.ADMINISTRATOR));
 	}
 
@@ -58,7 +67,7 @@ public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 	public void registerStudentServiceMustThrowException() {
 		// Act
 		userService.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
-				"0004", "password", "Jimmy", "student@smal.org",
+				session_id, "0004", "password", "Jimmy", "student@smal.org",
 				UserType.STUDENT));
 	}
 
@@ -73,15 +82,15 @@ public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 
 		// Act
 		userService.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
-				registration, password, "Jimmy", email, type));
+				session_id, registration, password, "Jimmy", email, type));
 
 		// Assert
-		User user = userRepository.getByRegistration(registration);
+		User user = userRepository.get(registration);
 		String md5Pass = MD5Generator.generate(password);
 		Assert.assertEquals(registration, user.getRegistration());
 		Assert.assertEquals(md5Pass, user.getPassword());
 		Assert.assertEquals(name, user.getName());
 		Assert.assertEquals(email, user.getEmail());
-		Assert.assertEquals(4, userRepository.listAll().size());
+		Assert.assertEquals(5, userRepository.listAll().size());
 	}
 }

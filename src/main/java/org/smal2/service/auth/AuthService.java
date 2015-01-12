@@ -66,7 +66,7 @@ public class AuthService {
 		}
 
 		// local login
-		User user = userRepository.getByRegistration(request.getRegistration());
+		User user = userRepository.get(request.getRegistration());
 
 		String md5Pass = MD5Generator.generate(request.getPassword());
 
@@ -81,8 +81,8 @@ public class AuthService {
 
 		// generating session_id
 		Date date = new Date();
-		String session_id = MD5Generator.generate(String.valueOf(user.getId())
-				+ date.toString());
+		String session_id = MD5Generator.generate(String.valueOf(user
+				.getRegistration()) + date.toString());
 		user.setSession_id(session_id);
 		user.setSession_timestamp(date);
 		userRepository.save(user);

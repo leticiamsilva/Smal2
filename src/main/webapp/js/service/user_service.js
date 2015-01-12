@@ -13,8 +13,8 @@ angular.module("ServicesModule").factory("UserService", [
                     method: "POST",
                     url: "rest/user/register",
                     data: {
-                        session_id: session_id,
                         request : {
+                            session_id: session_id,
                             registration : registration,
                             password : password,
                             name : name,
@@ -49,7 +49,11 @@ angular.module("ServicesModule").factory("UserService", [
                 $http({
                     method: "POST",
                     url: "rest/user/list",
-                    data: { session_id: session_id, request : null },
+                    data: {
+                        request : {
+                            session_id: session_id
+                        }
+                    },
                     cache: false,
                     responseType: "json"
                 }).

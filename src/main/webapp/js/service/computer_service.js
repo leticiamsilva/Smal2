@@ -13,8 +13,8 @@ angular.module("ServicesModule").factory("ComputerService", [
                     method: "POST",
                     url: "rest/computer/register",
                     data: {
-                        session_id: session_id,
                         request : {
+                            session_id: session_id,
                             asset_code : asset_code,
                             laboratory_name : laboratory_name,
                             row_num : row_num,
@@ -48,7 +48,12 @@ angular.module("ServicesModule").factory("ComputerService", [
                 $http({
                     method: "POST",
                     url: "rest/computer/list",
-                    data: { session_id: session_id, request : laboratory_name },
+                    data: {
+                        request : {
+                            session_id: session_id,
+                            laboratory_name : laboratory_name
+                        }
+                    },
                     cache: false,
                     responseType: "json"
                 }).

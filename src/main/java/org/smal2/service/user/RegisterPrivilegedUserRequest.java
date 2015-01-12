@@ -2,6 +2,7 @@ package org.smal2.service.user;
 
 public class RegisterPrivilegedUserRequest {
 
+	private String session_id;
 	private String registration;
 	private String name;
 	private String password;
@@ -11,13 +12,19 @@ public class RegisterPrivilegedUserRequest {
 	public RegisterPrivilegedUserRequest() {
 	}
 
-	public RegisterPrivilegedUserRequest(String registration, String password,
-			String name, String email, UserType type) {
+	public RegisterPrivilegedUserRequest(String session_id,
+			String registration, String password, String name, String email,
+			UserType type) {
+		this.session_id = session_id;
 		this.registration = registration;
 		this.password = password;
 		this.name = name;
 		this.email = email;
 		this.type = type;
+	}
+
+	public String getSession_id() {
+		return session_id;
 	}
 
 	public String getRegistration() {

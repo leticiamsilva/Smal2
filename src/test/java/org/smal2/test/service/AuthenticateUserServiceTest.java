@@ -75,7 +75,7 @@ public class AuthenticateUserServiceTest extends ABaseTest {
 						"local_password"));
 
 		// Assert
-		User user = userRepository.getByRegistration("local_registration");
+		User user = userRepository.get("local_registration");
 		Assert.assertEquals(user.getSession_id(), response.getSession_id());
 		Assert.assertEquals("User authenticated successfully.",
 				response.getMessage());
@@ -89,7 +89,7 @@ public class AuthenticateUserServiceTest extends ABaseTest {
 						"remote_password"));
 
 		// Assert
-		User user = userRepository.getByRegistration("remote_registration");
+		User user = userRepository.get("remote_registration");
 		Assert.assertEquals("remote_registration", user.getRegistration());
 		Assert.assertEquals(MD5Generator.generate("remote_password"),
 				user.getPassword());
@@ -129,7 +129,7 @@ public class AuthenticateUserServiceTest extends ABaseTest {
 				.getSession_id());
 
 		// Assert
-		User user = userRepository.getByRegistration("local_registration");
+		User user = userRepository.get("local_registration");
 
 		Assert.assertEquals(user.getSession_id(), null);
 		Assert.assertEquals("User deauthenticated successfully.",
