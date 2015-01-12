@@ -5,8 +5,11 @@ import java.util.List;
 
 import org.smal2.domain.entity.SubTrouble;
 import org.smal2.domain.entity.Trouble;
+import org.smal2.domain.entity.User;
+import org.smal2.domain.entity.UserType;
 import org.smal2.domain.repository.SubTroubleRepository;
 import org.smal2.domain.repository.TroubleRepository;
+import org.smal2.domain.repository.UserRepository;
 import org.smal2.service.subtrouble.ListSubTroublesResponse;
 import org.smal2.service.subtrouble.ListSubTroublesResponseItem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SubTroubleService {
+
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private SubTroubleRepository subTroubleRepository;
@@ -25,6 +31,22 @@ public class SubTroubleService {
 
 		if (request == null) {
 			throw new IllegalArgumentException("Undefined request.");
+		}
+
+		if (request.getSession_id() == null
+				|| request.getSession_id().equals("")) {
+			throw new IllegalArgumentException("Undefined session identifier.");
+		}
+
+		if (!userRepository.existWithSessionId(request.getSession_id())) {
+			throw new IllegalArgumentException("Invalid session identifier");
+		}
+
+		User user = userRepository.getBySessionId(request.getSession_id());
+
+		if (user.getType() != UserType.ADMINISTRATOR) {
+			throw new IllegalArgumentException(
+					"Administators only can perform this operation.");
 		}
 
 		if (request.getName() == null || request.getName().equals("")) {

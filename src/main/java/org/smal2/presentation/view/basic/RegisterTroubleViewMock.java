@@ -2,21 +2,22 @@ package org.smal2.presentation.view.basic;
 
 import org.smal2.common.ICommand;
 import org.smal2.presentation.view.IRegisterTroubleView;
+import org.smal2.service.trouble.RegisterTroubleRequest;
 
 public class RegisterTroubleViewMock implements IRegisterTroubleView {
 
-	private String request;
+	private RegisterTroubleRequest request;
 	private ICommand command;
 	private String error;
 	private String response;
 
 	@Override
-	public String getRequest() {
+	public RegisterTroubleRequest getRequest() {
 		return request;
 	}
 
 	@Override
-	public void setRequest(String request) {
+	public void setRequest(RegisterTroubleRequest request) {
 		this.request = request;
 	}
 

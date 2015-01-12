@@ -5,6 +5,7 @@ import org.smal2.infrastructure.presentation.view.http.util.OperationResponse;
 import org.smal2.presentation.presenter.RegisterTroublePresenter;
 import org.smal2.presentation.view.IRegisterTroubleView;
 import org.smal2.presentation.view.basic.RegisterTroubleViewMock;
+import org.smal2.service.trouble.RegisterTroubleRequest;
 import org.smal2.service.trouble.TroubleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,7 +23,7 @@ public class RegisterTroubleViewJSON {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	public OperationResponse<String> registerTrouble(
-			@RequestBody OperationRequest<String> request) {
+			@RequestBody OperationRequest<RegisterTroubleRequest> request) {
 		OperationResponse<String> response = new OperationResponse<String>();
 
 		try {
