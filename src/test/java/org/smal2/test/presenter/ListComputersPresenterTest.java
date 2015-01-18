@@ -19,17 +19,15 @@ import org.junit.Test;
 
 public class ListComputersPresenterTest extends ABaseTest {
 
-	private String session_id;
+	private String student_session_id;
 
 	@Before
 	public void before() {
 		userRepository.insert(new User("0000", MD5Generator.generate("pass"),
-				"Jhon", org.smal2.domain.entity.UserType.ADMINISTRATOR));
+				"Jhon", org.smal2.domain.entity.UserType.STUDENT));
 
-		// Arrange
-		session_id = authService
-				.loginUser(new LoginUserRequest("0000", "pass"))
-				.getSession_id();
+		student_session_id = authService.loginUser(
+				new LoginUserRequest("0000", "pass")).getSession_id();
 
 		{
 			Laboratory lab = new Laboratory("lab01");
@@ -66,7 +64,7 @@ public class ListComputersPresenterTest extends ABaseTest {
 
 		// Act
 		new ListComputersPresenter(view, computerService);
-		view.setRequest(new ListComputersRequest(session_id, "lab01"));
+		view.setRequest(new ListComputersRequest(student_session_id, "lab01"));
 		view.getCommand().execute();
 
 		// Assert

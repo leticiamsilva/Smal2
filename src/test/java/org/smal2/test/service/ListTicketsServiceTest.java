@@ -21,7 +21,7 @@ import org.junit.Test;
 
 public class ListTicketsServiceTest extends ABaseTest {
 
-	private String session_id;
+	private String technician_session_id;
 
 	@Before
 	public void before() {
@@ -29,10 +29,8 @@ public class ListTicketsServiceTest extends ABaseTest {
 				org.smal2.domain.entity.UserType.TECHNICIAN);
 		userRepository.insert(user);
 
-		// Arrange
-		session_id = authService
-				.loginUser(new LoginUserRequest("0000", "pass"))
-				.getSession_id();
+		technician_session_id = authService.loginUser(
+				new LoginUserRequest("0000", "pass")).getSession_id();
 
 		Laboratory lab = new Laboratory("lab01");
 		laboratoryRepository.insert(lab);
@@ -59,7 +57,7 @@ public class ListTicketsServiceTest extends ABaseTest {
 	public void listMustReturnAllTickets() {
 		// Act
 		ListTicketsResponse response = ticketService
-				.listTickets(new ListTicketsRequest(session_id));
+				.listTickets(new ListTicketsRequest(technician_session_id));
 
 		// Assert
 		Assert.assertEquals(2, response.size());

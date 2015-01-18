@@ -14,16 +14,15 @@ import org.junit.Test;
 
 public class ListUsersServiceTest extends ABaseTest {
 
-	private String session_id;
+	private String technician_session_id;
 
 	@Before
 	public void before() {
 		userRepository.insert(new User("0000", MD5Generator.generate("pass"),
 				"Jhon", org.smal2.domain.entity.UserType.TECHNICIAN));
 
-		session_id = authService
-				.loginUser(new LoginUserRequest("0000", "pass"))
-				.getSession_id();
+		technician_session_id = authService.loginUser(
+				new LoginUserRequest("0000", "pass")).getSession_id();
 
 		userRepository.insert(new User("0001", MD5Generator
 				.generate("password1"), "Jhon", UserType.STUDENT));
@@ -35,7 +34,7 @@ public class ListUsersServiceTest extends ABaseTest {
 	public void listMustReturnAllUsers() {
 		// Act
 		ListUsersResponse response = userService
-				.listUsers(new ListUsersRequest(session_id));
+				.listUsers(new ListUsersRequest(technician_session_id));
 
 		// Assert
 		Assert.assertEquals(3, response.size());

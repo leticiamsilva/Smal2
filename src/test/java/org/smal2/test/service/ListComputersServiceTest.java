@@ -16,15 +16,14 @@ import org.junit.Test;
 
 public class ListComputersServiceTest extends ABaseTest {
 
-	private String session_id;
+	private String student_session_id;
 
 	@Before
 	public void before() {
 		userRepository.insert(new User("0000", MD5Generator.generate("pass"),
 				"Jhon", org.smal2.domain.entity.UserType.STUDENT));
 
-		// Arrange
-		session_id = authService
+		student_session_id = authService
 				.loginUser(new LoginUserRequest("0000", "pass"))
 				.getSession_id();
 
@@ -65,13 +64,13 @@ public class ListComputersServiceTest extends ABaseTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void listComputersOnEmptyLaboratoryNameMustThrowException() {
 		// Act
-		computerService.listComputers(new ListComputersRequest(session_id, ""));
+		computerService.listComputers(new ListComputersRequest(student_session_id, ""));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void listComputersOnNotExistentLaboratoryNameMustThrowException() {
 		// Act
-		computerService.listComputers(new ListComputersRequest(session_id,
+		computerService.listComputers(new ListComputersRequest(student_session_id,
 				"lab03"));
 	}
 
@@ -82,7 +81,7 @@ public class ListComputersServiceTest extends ABaseTest {
 
 		// Act
 		ListComputersResponse response = computerService
-				.listComputers(new ListComputersRequest(session_id, name));
+				.listComputers(new ListComputersRequest(student_session_id, name));
 
 		// Assert
 		Assert.assertEquals(2, response.size());

@@ -16,7 +16,7 @@ import org.junit.Test;
 
 public class ListSubTroublesPresenterTest extends ABaseTest {
 
-	private String session_id;
+	private String student_session_id;
 
 	@Before
 	public void before() {
@@ -24,10 +24,8 @@ public class ListSubTroublesPresenterTest extends ABaseTest {
 		userRepository.insert(new User("0000", MD5Generator.generate("pass"),
 				"Jhon", org.smal2.domain.entity.UserType.STUDENT));
 
-		// Arrange
-		session_id = authService
-				.loginUser(new LoginUserRequest("0000", "pass"))
-				.getSession_id();
+		student_session_id = authService.loginUser(
+				new LoginUserRequest("0000", "pass")).getSession_id();
 
 		Trouble trouble = new Trouble("trouble01");
 		troubleRepository.insert(trouble);
@@ -43,7 +41,8 @@ public class ListSubTroublesPresenterTest extends ABaseTest {
 
 		// Act
 		new ListSubTroublesPresenter(view, subTroubleService);
-		view.setRequest(new ListSubTroublesRequest(session_id, "trouble01"));
+		view.setRequest(new ListSubTroublesRequest(student_session_id,
+				"trouble01"));
 		view.getCommand().execute();
 
 		// Assert

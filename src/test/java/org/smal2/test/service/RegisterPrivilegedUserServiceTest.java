@@ -12,14 +12,14 @@ import org.junit.Test;
 
 public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 
-	private String session_id;
+	private String administrator_session_id;
 
 	@Before
 	public void before() {
 		userRepository.insert(new User("0", MD5Generator.generate("pass"),
 				"Jhon", org.smal2.domain.entity.UserType.ADMINISTRATOR));
 
-		session_id = authService.loginUser(new LoginUserRequest("0", "pass"))
+		administrator_session_id = authService.loginUser(new LoginUserRequest("0", "pass"))
 				.getSession_id();
 
 		userRepository.insert(new User("0001", MD5Generator
@@ -43,7 +43,7 @@ public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 	public void registerNullUserRegistrationMustThrowException() {
 		// Act
 		userService.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
-				session_id, null, "password", "Jimmy", "admin@smal.org",
+				administrator_session_id, null, "password", "Jimmy", "admin@smal.org",
 				UserType.ADMINISTRATOR));
 	}
 
@@ -51,7 +51,7 @@ public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 	public void registerEmptyUserRegistrationMustThrowException() {
 		// Act
 		userService.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
-				session_id, "", "password", "Jimmy", "admin@smal.org",
+				administrator_session_id, "", "password", "Jimmy", "admin@smal.org",
 				UserType.ADMINISTRATOR));
 	}
 
@@ -59,7 +59,7 @@ public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 	public void registerExistentUserRegistrationMustThrowException() {
 		// Act
 		userService.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
-				session_id, "0001", "password", "Jimmy", "admin@smal.org",
+				administrator_session_id, "0001", "password", "Jimmy", "admin@smal.org",
 				UserType.ADMINISTRATOR));
 	}
 
@@ -67,7 +67,7 @@ public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 	public void registerStudentServiceMustThrowException() {
 		// Act
 		userService.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
-				session_id, "0004", "password", "Jimmy", "student@smal.org",
+				administrator_session_id, "0004", "password", "Jimmy", "student@smal.org",
 				UserType.STUDENT));
 	}
 
@@ -82,7 +82,7 @@ public class RegisterPrivilegedUserServiceTest extends ABaseTest {
 
 		// Act
 		userService.registerPrivilegedUser(new RegisterPrivilegedUserRequest(
-				session_id, registration, password, "Jimmy", email, type));
+				administrator_session_id, registration, password, "Jimmy", email, type));
 
 		// Assert
 		User user = userRepository.get(registration);

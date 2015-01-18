@@ -14,15 +14,14 @@ import org.junit.Test;
 
 public class ListLaboratoriesServiceTest extends ABaseTest {
 
-	private String session_id;
+	private String student_session_id;
 
 	@Before
 	public void before() {
 		userRepository.insert(new User("0000", MD5Generator.generate("pass"),
 				"Jhon", org.smal2.domain.entity.UserType.STUDENT));
 
-		// Arrange
-		session_id = authService
+		student_session_id = authService
 				.loginUser(new LoginUserRequest("0000", "pass"))
 				.getSession_id();
 
@@ -34,7 +33,7 @@ public class ListLaboratoriesServiceTest extends ABaseTest {
 	public void listMustReturnAllLaboratories() {
 		// Act
 		ListLaboratoriesResponse response = laboratoryService
-				.listLaboratories(new ListLaboratoriesRequest(session_id));
+				.listLaboratories(new ListLaboratoriesRequest(student_session_id));
 
 		// Assert
 		Assert.assertEquals(2, response.size());

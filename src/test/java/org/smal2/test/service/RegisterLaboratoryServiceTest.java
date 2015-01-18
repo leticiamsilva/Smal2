@@ -12,10 +12,15 @@ import org.smal2.test.testutil.ABaseTest;
 
 public class RegisterLaboratoryServiceTest extends ABaseTest {
 
+	private String administrator_session_id;
+
 	@Before
 	public void before() {
 		userRepository.insert(new User("0000", MD5Generator.generate("pass"),
 				"Jhon", org.smal2.domain.entity.UserType.ADMINISTRATOR));
+
+		administrator_session_id = authService.loginUser(
+				new LoginUserRequest("0000", "pass")).getSession_id();
 
 		laboratoryRepository.insert(new Laboratory("lab01"));
 		laboratoryRepository.insert(new Laboratory("lab02"));
@@ -30,37 +35,26 @@ public class RegisterLaboratoryServiceTest extends ABaseTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerEmptyLaboratoryNameMustThrowException() {
-		// Arrange
-		String session_id = authService.loginUser(
-				new LoginUserRequest("0000", "pass")).getSession_id();
-
 		// Act
 		laboratoryService.registerLaboratory(new RegisterLaboratoryRequest(
-				session_id, ""));
+				administrator_session_id, ""));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void registerExistentLaboratoryNameMustThrowException() {
-		// Arrange
-		String session_id = authService.loginUser(
-				new LoginUserRequest("0000", "pass")).getSession_id();
-
 		// Act
 		laboratoryService.registerLaboratory(new RegisterLaboratoryRequest(
-				session_id, "lab01"));
+				administrator_session_id, "lab01"));
 	}
 
 	@Test
 	public void registerNewLaboratoryNameMustSaveLaboratory() {
 		// Arrange
-		String session_id = authService.loginUser(
-				new LoginUserRequest("0000", "pass")).getSession_id();
-
 		String name = "lab04";
 
 		// Act
 		laboratoryService.registerLaboratory(new RegisterLaboratoryRequest(
-				session_id, name));
+				administrator_session_id, name));
 
 		// Assert
 		Assert.assertEquals(name, laboratoryRepository.get(name).getName());

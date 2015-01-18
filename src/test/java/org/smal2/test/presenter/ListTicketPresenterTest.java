@@ -21,7 +21,7 @@ import org.junit.Test;
 
 public class ListTicketPresenterTest extends ABaseTest {
 
-	private String session_id;
+	private String technician_session_id;
 
 	@Before
 	public void before() {
@@ -31,7 +31,7 @@ public class ListTicketPresenterTest extends ABaseTest {
 				"user", UserType.TECHNICIAN);
 		userRepository.insert(user);
 
-		session_id = authService.loginUser(
+		technician_session_id = authService.loginUser(
 				new LoginUserRequest(registration, password)).getSession_id();
 
 		Laboratory lab = new Laboratory("lab01");
@@ -51,8 +51,10 @@ public class ListTicketPresenterTest extends ABaseTest {
 
 		String description = "descriptionEmpty";
 
-		ticketService.openTicket(new OpenTicketRequest(session_id, assetCode,
-				trouble.getName(), subTrouble.getName(), description));
+		ticketService
+				.openTicket(new OpenTicketRequest(technician_session_id,
+						assetCode, trouble.getName(), subTrouble.getName(),
+						description));
 	}
 
 	@Test
@@ -61,7 +63,7 @@ public class ListTicketPresenterTest extends ABaseTest {
 		IListTicketsView view = new ListTicketsViewMock();
 
 		// Act
-		view.setRequest(new ListTicketsRequest(session_id));
+		view.setRequest(new ListTicketsRequest(technician_session_id));
 		new ListTicketsPresenter(view, ticketService);
 		view.getCommand().execute();
 
