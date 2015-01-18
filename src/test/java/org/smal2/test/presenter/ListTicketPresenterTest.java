@@ -12,6 +12,7 @@ import org.smal2.presentation.presenter.ListTicketsPresenter;
 import org.smal2.presentation.view.IListTicketsView;
 import org.smal2.presentation.view.basic.ListTicketsViewMock;
 import org.smal2.service.auth.LoginUserRequest;
+import org.smal2.service.ticket.ListTicketsRequest;
 import org.smal2.service.ticket.OpenTicketRequest;
 import org.smal2.test.testutil.ABaseTest;
 import org.junit.Assert;
@@ -20,15 +21,17 @@ import org.junit.Test;
 
 public class ListTicketPresenterTest extends ABaseTest {
 
+	private String session_id;
+
 	@Before
 	public void before() {
 		String registration = "registration01";
 		String password = "password";
 		User user = new User(registration, MD5Generator.generate(password),
-				"user", UserType.STUDENT);
+				"user", UserType.TECHNICIAN);
 		userRepository.insert(user);
 
-		String session_id = authService.loginUser(
+		session_id = authService.loginUser(
 				new LoginUserRequest(registration, password)).getSession_id();
 
 		Laboratory lab = new Laboratory("lab01");
@@ -58,6 +61,7 @@ public class ListTicketPresenterTest extends ABaseTest {
 		IListTicketsView view = new ListTicketsViewMock();
 
 		// Act
+		view.setRequest(new ListTicketsRequest(session_id));
 		new ListTicketsPresenter(view, ticketService);
 		view.getCommand().execute();
 

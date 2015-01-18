@@ -88,7 +88,28 @@ public class TicketService {
 		return "Ticket open successfully.";
 	}
 
-	public ListTicketsResponse listTickets() {
+	public ListTicketsResponse listTickets(ListTicketsRequest request) {
+
+		if (request == null) {
+			throw new IllegalArgumentException("Undefined request.");
+		}
+
+		if (request.getSession_id() == null
+				|| request.getSession_id().equals("")) {
+			throw new IllegalArgumentException("Undefined session identifier.");
+		}
+
+		if (!userRepository.existWithSessionId(request.getSession_id())) {
+			throw new IllegalArgumentException("Invalid session identifier");
+		}
+
+		User user = userRepository.getBySessionId(request.getSession_id());
+
+		if (user.getType() != UserType.ADMINISTRATOR
+				&& user.getType() != UserType.TECHNICIAN) {
+			throw new IllegalArgumentException(
+					"User must be at least a Student to perform this operation.");
+		}
 
 		List<ListTicketsResponseItem> tickets = new ArrayList<ListTicketsResponseItem>();
 		ListTicketsResponseItem item;

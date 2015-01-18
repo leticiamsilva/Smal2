@@ -22,7 +22,7 @@ public class ListTicketsPresenter {
 
 	private void doListTickets() {
 		try {
-			view.setResponse(service.listTickets());
+			view.setResponse(service.listTickets(view.getRequest()));
 		} catch (Exception ex) {
 			view.setError("List tickets error:\n" + ex.getMessage());
 		}
