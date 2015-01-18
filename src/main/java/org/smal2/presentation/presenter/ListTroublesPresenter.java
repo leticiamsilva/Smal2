@@ -22,7 +22,7 @@ public class ListTroublesPresenter {
 
 	public void doListTroubles() {
 		try {
-			view.setResponse(service.listTroubles());
+			view.setResponse(service.listTroubles(view.getRequest()));
 		} catch (Exception ex) {
 			view.setError("List troubles error:\n" + ex.getMessage());
 		}
