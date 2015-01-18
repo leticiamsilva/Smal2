@@ -1,4 +1,3 @@
 * moodle configuration to expose token.php webservice
 * session timeout
 * password warning over http (shuld use https)
-* all list methods needs session_id management
