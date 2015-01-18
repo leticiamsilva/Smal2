@@ -1,11 +1,15 @@
 package org.smal2.test.presenter;
 
+import org.smal2.common.MD5Generator;
 import org.smal2.domain.entity.Computer;
 import org.smal2.domain.entity.Laboratory;
 import org.smal2.domain.entity.Position;
+import org.smal2.domain.entity.User;
 import org.smal2.presentation.presenter.ListComputersPresenter;
 import org.smal2.presentation.view.IListComputersView;
 import org.smal2.presentation.view.basic.ListComputersViewMock;
+import org.smal2.service.auth.LoginUserRequest;
+import org.smal2.service.computer.ListComputersRequest;
 import org.smal2.service.computer.ListComputersResponse;
 import org.smal2.service.computer.ListComputersResponseItem;
 import org.smal2.test.testutil.ABaseTest;
@@ -15,8 +19,18 @@ import org.junit.Test;
 
 public class ListComputersPresenterTest extends ABaseTest {
 
+	private String session_id;
+
 	@Before
 	public void before() {
+		userRepository.insert(new User("0000", MD5Generator.generate("pass"),
+				"Jhon", org.smal2.domain.entity.UserType.ADMINISTRATOR));
+
+		// Arrange
+		session_id = authService
+				.loginUser(new LoginUserRequest("0000", "pass"))
+				.getSession_id();
+
 		{
 			Laboratory lab = new Laboratory("lab01");
 			laboratoryRepository.insert(lab);
@@ -52,7 +66,7 @@ public class ListComputersPresenterTest extends ABaseTest {
 
 		// Act
 		new ListComputersPresenter(view, computerService);
-		view.setRequest("lab01");
+		view.setRequest(new ListComputersRequest(session_id, "lab01"));
 		view.getCommand().execute();
 
 		// Assert

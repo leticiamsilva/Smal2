@@ -114,13 +114,36 @@ public class ComputerService {
 		return "Computer registred successfully.";
 	}
 
-	public ListComputersResponse listComputers(String laboratoryName) {
+	public ListComputersResponse listComputers(ListComputersRequest request) {
 
-		if (laboratoryName == null || laboratoryName.equals("")) {
+		if (request == null) {
 			throw new IllegalArgumentException("Undefined request.");
 		}
 
-		if (!laboratoryRepository.existWithName(laboratoryName)) {
+		if (request.getSession_id() == null
+				|| request.getSession_id().equals("")) {
+			throw new IllegalArgumentException("Undefined session identifier.");
+		}
+
+		if (!userRepository.existWithSessionId(request.getSession_id())) {
+			throw new IllegalArgumentException("Invalid session identifier");
+		}
+
+		User user = userRepository.getBySessionId(request.getSession_id());
+
+		if (user.getType() != UserType.ADMINISTRATOR
+				&& user.getType() != UserType.TECHNICIAN
+				&& user.getType() != UserType.STUDENT) {
+			throw new IllegalArgumentException(
+					"User must be at least a Student to perform this operation.");
+		}
+
+		if (request.getLaboratory_name() == null
+				|| request.getLaboratory_name().equals("")) {
+			throw new IllegalArgumentException("Undefined laboratory name.");
+		}
+
+		if (!laboratoryRepository.existWithName(request.getLaboratory_name())) {
 			throw new IllegalArgumentException("Laboratory must exist.");
 		}
 
@@ -129,7 +152,7 @@ public class ComputerService {
 
 		for (Computer computer : computerRepository.listAll()) {
 			if (computer.getPosition().getLaboratory().getName()
-					.equals(laboratoryName)) {
+					.equals(request.getLaboratory_name())) {
 				item = new ListComputersResponseItem(computer.getAssetCode(),
 						computer.getPosition().getRowNum(), computer
 								.getPosition().getColumnNum());

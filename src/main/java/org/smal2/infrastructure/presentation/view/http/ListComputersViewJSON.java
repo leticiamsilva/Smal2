@@ -5,6 +5,7 @@ import org.smal2.infrastructure.presentation.view.http.util.OperationResponse;
 import org.smal2.presentation.presenter.ListComputersPresenter;
 import org.smal2.presentation.view.IListComputersView;
 import org.smal2.presentation.view.basic.ListComputersViewMock;
+import org.smal2.service.computer.ListComputersRequest;
 import org.smal2.service.computer.ListComputersResponse;
 import org.smal2.service.computer.ComputerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class ListComputersViewJSON {
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	@ResponseBody
 	public OperationResponse<ListComputersResponse> listComputers(
-			@RequestBody OperationRequest<String> request) {
+			@RequestBody OperationRequest<ListComputersRequest> request) {
 		OperationResponse<ListComputersResponse> response = new OperationResponse<ListComputersResponse>();
 
 		try {

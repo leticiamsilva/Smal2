@@ -2,22 +2,23 @@ package org.smal2.presentation.view.basic;
 
 import org.smal2.common.ICommand;
 import org.smal2.presentation.view.IListComputersView;
+import org.smal2.service.computer.ListComputersRequest;
 import org.smal2.service.computer.ListComputersResponse;
 
 public class ListComputersViewMock implements IListComputersView {
 
-	private String request;
+	private ListComputersRequest request;
 	private ICommand command;
 	private String error;
 	private ListComputersResponse response;
 
 	@Override
-	public String getRequest() {
+	public ListComputersRequest getRequest() {
 		return request;
 	}
 
 	@Override
-	public void setRequest(String request) {
+	public void setRequest(ListComputersRequest request) {
 		this.request = request;
 	}
 
