@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class UserService {
 
 	@Autowired
-	private UserRepository repository;
+	private UserRepository userRepository;
 
 	public String registerPrivilegedUser(RegisterPrivilegedUserRequest request) {
 
@@ -38,12 +38,12 @@ public class UserService {
 			throw new IllegalArgumentException("Undefined user name.");
 		}
 
-		if (repository.existWithRegistration(request.getRegistration())) {
+		if (userRepository.existWithRegistration(request.getRegistration())) {
 			throw new IllegalArgumentException(
 					"User registration already exist.");
 		}
 
-		if (repository.existWithEmail(request.getEmail())) {
+		if (userRepository.existWithEmail(request.getEmail())) {
 			throw new IllegalArgumentException("User email already exist.");
 		}
 
@@ -68,21 +68,42 @@ public class UserService {
 		User user = new User(request.getRegistration(), md5Pass,
 				request.getName(), type);
 		user.setEmail(request.getEmail());
-		repository.insert(user);
+		userRepository.insert(user);
 
 		return "User registred successfully.";
 	}
 
-	public ListUsersResponse listUsers() {
+	public ListUsersResponse listUsers(ListUsersRequest request) {
+
+		if (request == null) {
+			throw new IllegalArgumentException("Undefined request.");
+		}
+
+		if (request.getSession_id() == null
+				|| request.getSession_id().equals("")) {
+			throw new IllegalArgumentException("Undefined session identifier.");
+		}
+
+		if (!userRepository.existWithSessionId(request.getSession_id())) {
+			throw new IllegalArgumentException("Invalid session identifier");
+		}
+
+		User user = userRepository.getBySessionId(request.getSession_id());
+
+		if (user.getType() != org.smal2.domain.entity.UserType.ADMINISTRATOR
+				&& user.getType() != org.smal2.domain.entity.UserType.TECHNICIAN) {
+			throw new IllegalArgumentException(
+					"User must be at least a Student to perform this operation.");
+		}
 
 		List<ListUsersResponseItem> users = new ArrayList<ListUsersResponseItem>();
 		ListUsersResponseItem item;
 
 		UserType type;
 
-		for (User user : repository.listAll()) {
+		for (User user_tmp : userRepository.listAll()) {
 
-			switch (user.getType()) {
+			switch (user_tmp.getType()) {
 			case ADMINISTRATOR:
 				type = UserType.ADMINISTRATOR;
 				break;
@@ -97,8 +118,8 @@ public class UserService {
 				throw new IllegalStateException("Invalid user type.");
 			}
 
-			item = new ListUsersResponseItem(user.getRegistration(),
-					user.getName(), type);
+			item = new ListUsersResponseItem(user_tmp.getRegistration(),
+					user_tmp.getName(), type);
 			users.add(item);
 		}
 

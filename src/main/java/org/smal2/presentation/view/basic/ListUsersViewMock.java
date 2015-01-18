@@ -2,13 +2,25 @@ package org.smal2.presentation.view.basic;
 
 import org.smal2.common.ICommand;
 import org.smal2.presentation.view.IListUsersView;
+import org.smal2.service.user.ListUsersRequest;
 import org.smal2.service.user.ListUsersResponse;
 
 public class ListUsersViewMock implements IListUsersView {
 
+	private ListUsersRequest request;
 	private ICommand command;
 	private String error;
 	private ListUsersResponse response;
+
+	@Override
+	public ListUsersRequest getRequest() {
+		return request;
+	}
+
+	@Override
+	public void setRequest(ListUsersRequest request) {
+		this.request = request;
+	}
 
 	@Override
 	public ICommand getCommand() {

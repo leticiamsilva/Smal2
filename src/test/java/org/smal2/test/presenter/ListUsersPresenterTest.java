@@ -6,6 +6,8 @@ import org.smal2.domain.entity.UserType;
 import org.smal2.presentation.presenter.ListUsersPresenter;
 import org.smal2.presentation.view.IListUsersView;
 import org.smal2.presentation.view.basic.ListUsersViewMock;
+import org.smal2.service.auth.LoginUserRequest;
+import org.smal2.service.user.ListUsersRequest;
 import org.smal2.test.testutil.ABaseTest;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,8 +15,17 @@ import org.junit.Test;
 
 public class ListUsersPresenterTest extends ABaseTest {
 
+	private String session_id;
+
 	@Before
 	public void before() {
+		userRepository.insert(new User("0000", MD5Generator.generate("pass"),
+				"Jhon", org.smal2.domain.entity.UserType.TECHNICIAN));
+
+		session_id = authService
+				.loginUser(new LoginUserRequest("0000", "pass"))
+				.getSession_id();
+
 		userRepository.insert(new User("0001", MD5Generator.generate("pass"),
 				"Jhon", UserType.STUDENT));
 		userRepository.insert(new User("0002", MD5Generator.generate("pass"),
@@ -29,10 +40,11 @@ public class ListUsersPresenterTest extends ABaseTest {
 		IListUsersView view = new ListUsersViewMock();
 
 		// Act
+		view.setRequest(new ListUsersRequest(session_id));
 		new ListUsersPresenter(view, userService);
 		view.getCommand().execute();
 
 		// Assert
-		Assert.assertEquals(3, view.getResponse().size());
+		Assert.assertEquals(4, view.getResponse().size());
 	}
 }

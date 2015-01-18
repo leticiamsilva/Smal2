@@ -1,13 +1,16 @@
 package org.smal2.infrastructure.presentation.view.http;
 
+import org.smal2.infrastructure.presentation.view.http.util.OperationRequest;
 import org.smal2.infrastructure.presentation.view.http.util.OperationResponse;
 import org.smal2.presentation.presenter.ListUsersPresenter;
 import org.smal2.presentation.view.IListUsersView;
 import org.smal2.presentation.view.basic.ListUsersViewMock;
+import org.smal2.service.user.ListUsersRequest;
 import org.smal2.service.user.ListUsersResponse;
 import org.smal2.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,7 +23,8 @@ public class ListUsersViewJSON {
 
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	@ResponseBody
-	public OperationResponse<ListUsersResponse> listUsers() {
+	public OperationResponse<ListUsersResponse> listUsers(
+			@RequestBody OperationRequest<ListUsersRequest> request) {
 		OperationResponse<ListUsersResponse> response = new OperationResponse<ListUsersResponse>();
 
 		try {
@@ -28,6 +32,7 @@ public class ListUsersViewJSON {
 			// so we can't implements IView because his properties are shared
 			IListUsersView view = new ListUsersViewMock();
 
+			view.setRequest(request.getRequest());
 			new ListUsersPresenter(view, userService);
 			view.getCommand().execute();
 
