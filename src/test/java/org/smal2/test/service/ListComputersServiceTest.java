@@ -21,7 +21,7 @@ public class ListComputersServiceTest extends ABaseTest {
 	@Before
 	public void before() {
 		userRepository.insert(new User("0000", MD5Generator.generate("pass"),
-				"Jhon", org.smal2.domain.entity.UserType.ADMINISTRATOR));
+				"Jhon", org.smal2.domain.entity.UserType.STUDENT));
 
 		// Arrange
 		session_id = authService
