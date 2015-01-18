@@ -23,7 +23,7 @@ public class ListLaboratoriesPresenter {
 
 	public void doListLaboratories() {
 		try {
-			view.setResponse(service.listLaboratories());
+			view.setResponse(service.listLaboratories(view.getRequest()));
 		} catch (Exception ex) {
 			view.setError("List laboratories error:\n" + ex.getMessage());
 		}

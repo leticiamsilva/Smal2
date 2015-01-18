@@ -1,6 +1,10 @@
 package org.smal2.test.service;
 
+import org.smal2.common.MD5Generator;
 import org.smal2.domain.entity.Laboratory;
+import org.smal2.domain.entity.User;
+import org.smal2.service.auth.LoginUserRequest;
+import org.smal2.service.laboratory.ListLaboratoriesRequest;
 import org.smal2.service.laboratory.ListLaboratoriesResponse;
 import org.smal2.service.laboratory.ListLaboratoriesResponseItem;
 import org.smal2.test.testutil.ABaseTest;
@@ -10,8 +14,18 @@ import org.junit.Test;
 
 public class ListLaboratoriesServiceTest extends ABaseTest {
 
+	private String session_id;
+
 	@Before
 	public void before() {
+		userRepository.insert(new User("0000", MD5Generator.generate("pass"),
+				"Jhon", org.smal2.domain.entity.UserType.STUDENT));
+
+		// Arrange
+		session_id = authService
+				.loginUser(new LoginUserRequest("0000", "pass"))
+				.getSession_id();
+
 		laboratoryRepository.insert(new Laboratory("lab01"));
 		laboratoryRepository.insert(new Laboratory("lab02"));
 	}
@@ -20,7 +34,7 @@ public class ListLaboratoriesServiceTest extends ABaseTest {
 	public void listMustReturnAllLaboratories() {
 		// Act
 		ListLaboratoriesResponse response = laboratoryService
-				.listLaboratories();
+				.listLaboratories(new ListLaboratoriesRequest(session_id));
 
 		// Assert
 		Assert.assertEquals(2, response.size());

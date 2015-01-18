@@ -55,7 +55,30 @@ public class LaboratoryService {
 		return "Laboratory registred successfully.";
 	}
 
-	public ListLaboratoriesResponse listLaboratories() {
+	public ListLaboratoriesResponse listLaboratories(
+			ListLaboratoriesRequest request) {
+
+		if (request == null) {
+			throw new IllegalArgumentException("Undefined request.");
+		}
+
+		if (request.getSession_id() == null
+				|| request.getSession_id().equals("")) {
+			throw new IllegalArgumentException("Undefined session identifier.");
+		}
+
+		if (!userRepository.existWithSessionId(request.getSession_id())) {
+			throw new IllegalArgumentException("Invalid session identifier");
+		}
+
+		User user = userRepository.getBySessionId(request.getSession_id());
+
+		if (user.getType() != UserType.ADMINISTRATOR
+				&& user.getType() != UserType.TECHNICIAN
+				&& user.getType() != UserType.STUDENT) {
+			throw new IllegalArgumentException(
+					"User must be at least a Student to perform this operation.");
+		}
 
 		List<ListLaboratoriesResponseItem> laboratories = new ArrayList<ListLaboratoriesResponseItem>();
 		ListLaboratoriesResponseItem item;
