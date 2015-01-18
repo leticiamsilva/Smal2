@@ -2,22 +2,23 @@ package org.smal2.presentation.view.basic;
 
 import org.smal2.common.ICommand;
 import org.smal2.presentation.view.IListSubTroublesView;
+import org.smal2.service.subtrouble.ListSubTroublesRequest;
 import org.smal2.service.subtrouble.ListSubTroublesResponse;
 
 public class ListSubTroublesViewMock implements IListSubTroublesView {
 
-	private String request;
+	private ListSubTroublesRequest request;
 	private ICommand command;
 	private String error;
 	private ListSubTroublesResponse response;
 
 	@Override
-	public String getRequest() {
+	public ListSubTroublesRequest getRequest() {
 		return request;
 	}
 
 	@Override
-	public void setRequest(String request) {
+	public void setRequest(ListSubTroublesRequest request) {
 		this.request = request;
 	}
 

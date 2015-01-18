@@ -74,13 +74,37 @@ public class SubTroubleService {
 		return "Sub-trouble registred successfully.";
 	}
 
-	public ListSubTroublesResponse listSubTroubles(String troubleName) {
+	public ListSubTroublesResponse listSubTroubles(
+			ListSubTroublesRequest request) {
 
-		if (troubleName == null || troubleName.equals("")) {
+		if (request == null) {
 			throw new IllegalArgumentException("Undefined request.");
 		}
 
-		if (!troubleRepository.existWithName(troubleName)) {
+		if (request.getSession_id() == null
+				|| request.getSession_id().equals("")) {
+			throw new IllegalArgumentException("Undefined session identifier.");
+		}
+
+		if (!userRepository.existWithSessionId(request.getSession_id())) {
+			throw new IllegalArgumentException("Invalid session identifier");
+		}
+
+		User user = userRepository.getBySessionId(request.getSession_id());
+
+		if (user.getType() != UserType.ADMINISTRATOR
+				&& user.getType() != UserType.TECHNICIAN
+				&& user.getType() != UserType.STUDENT) {
+			throw new IllegalArgumentException(
+					"User must be at least a Student to perform this operation.");
+		}
+
+		if (request.getTrouble_name() == null
+				|| request.getTrouble_name().equals("")) {
+			throw new IllegalArgumentException("Undefined request.");
+		}
+
+		if (!troubleRepository.existWithName(request.getTrouble_name())) {
 			throw new IllegalArgumentException("Trouble must exist.");
 		}
 
@@ -88,7 +112,8 @@ public class SubTroubleService {
 		ListSubTroublesResponseItem item;
 
 		for (SubTrouble subTrouble : subTroubleRepository.listAll()) {
-			if (subTrouble.getTrouble().getName().equals(troubleName)) {
+			if (subTrouble.getTrouble().getName()
+					.equals(request.getTrouble_name())) {
 				item = new ListSubTroublesResponseItem(subTrouble.getName(),
 						subTrouble.getTrouble().getName());
 				subTroubles.add(item);

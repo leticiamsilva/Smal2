@@ -5,6 +5,7 @@ import org.smal2.infrastructure.presentation.view.http.util.OperationResponse;
 import org.smal2.presentation.presenter.ListSubTroublesPresenter;
 import org.smal2.presentation.view.IListSubTroublesView;
 import org.smal2.presentation.view.basic.ListSubTroublesViewMock;
+import org.smal2.service.subtrouble.ListSubTroublesRequest;
 import org.smal2.service.subtrouble.ListSubTroublesResponse;
 import org.smal2.service.subtrouble.SubTroubleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class ListSubTroublesViewJSON {
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	@ResponseBody
 	public OperationResponse<ListSubTroublesResponse> listSubTroubles(
-			@RequestBody OperationRequest<String> request) {
+			@RequestBody OperationRequest<ListSubTroublesRequest> request) {
 		OperationResponse<ListSubTroublesResponse> response = new OperationResponse<ListSubTroublesResponse>();
 
 		try {
