@@ -1,6 +1,10 @@
 package org.smal2.test.testutil.mock;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.smal2.domain.entity.User;
+import org.smal2.domain.entity.UserType;
 import org.smal2.infrastructure.persistence.jpa.DAOException;
 import org.smal2.persistence.IUserDAO;
 import org.springframework.stereotype.Component;
@@ -66,5 +70,19 @@ public class UserDAOMock extends AInMemoryDAO<User, String> implements IUserDAO 
 		}
 
 		return false;
+	}
+
+	@Override
+	public List<User> readAllPrivilegedUsers() {
+		ArrayList<User> privilegedUsers = new ArrayList<User>();
+
+		for (User user : readAll()) {
+			if (user.getType() == UserType.ADMINISTRATOR
+					|| user.getType() == UserType.TECHNICIAN) {
+				privilegedUsers.add(user);
+			}
+		}
+
+		return privilegedUsers;
 	}
 }

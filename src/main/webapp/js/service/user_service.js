@@ -88,6 +88,52 @@ angular.module("ServicesModule").factory("UserService", [
                 }).
                 error(function(data, status, headers, config) { fn_error("AJAX ERROR:\n" + config.method + ": " + config.url + "\nstatus: " + status + "\nresponse: " + angular.toJson(data, true)); });
             };
+
+            // return Array of Users
+            self.getPrivilegedUsers = function(session_id, fn_success, fn_error)
+            {
+                $http({
+                    method: "POST",
+                    url: "rest/user/list_privileged_users",
+                    data: {
+                        request : {
+                            session_id: session_id
+                        }
+                    },
+                    cache: false,
+                    responseType: "json"
+                }).
+                success(function(data, status, headers, config)
+                {
+                    if(data.error != null)
+                    {
+                        fn_error(data.error);
+                    }
+                    else if (data.response == null)
+                    {
+                        fn_error("NULL response.");
+                    }
+                    else
+                    {
+                        var users = [];
+
+                        if(data.response != null)
+                        {
+                            for(var i = 0; i < data.response.length; ++i)
+                            {
+                                users.push(new UserModel(
+                                    data.response[i].registration,
+                                    data.response[i].name,
+                                    data.response[i].type
+                                ));
+                            }
+                        }
+
+                        fn_success(users);
+                    }
+                }).
+                error(function(data, status, headers, config) { fn_error("AJAX ERROR:\n" + config.method + ": " + config.url + "\nstatus: " + status + "\nresponse: " + angular.toJson(data, true)); });
+            };
          }
 
          return new UserServiceObject();

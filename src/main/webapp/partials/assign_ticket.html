@@ -17,9 +17,18 @@
                     <label class="control-label">Protocolo: </label>
                     <input type="text" disabled data-ng-model="protocol" data-ngRequired="true"/>
                 </div>
-                <div>
+                <div data-ng-controller="ListPrivilegedUsersPresenter" data-ng-init="command();">
+                    <!--
+                        $scope.session = SessionService;
+                        $scope.command = listPrivilegedUsers;
+                        $scope.users = [];
+                        $scope.response = "";
+
+                        $scope.command();
+                    -->
                     <label class="control-label">Matrícula técnico: </label>
-                    <input type="text" data-ng-model="technician" data-ngRequired="true"/>
+                    <select data-ng-model="$parent.technician"
+                            data-ng-options="u.registration as u.registration for u in users"></select>
                 </div>
                 <button class="btn btn-primary" data-ng-click="command()">Designar</button>
             </form>

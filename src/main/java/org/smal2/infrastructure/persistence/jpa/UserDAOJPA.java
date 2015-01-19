@@ -3,6 +3,7 @@ package org.smal2.infrastructure.persistence.jpa;
 import java.util.List;
 
 import org.smal2.domain.entity.User;
+import org.smal2.domain.entity.UserType;
 import org.smal2.persistence.IUserDAO;
 import org.springframework.stereotype.Component;
 
@@ -62,5 +63,15 @@ public class UserDAOJPA extends GenericDAOJPA<User> implements IUserDAO {
 		Object array[] = { session_id };
 
 		return super.hasEntity(query.toString(), array);
+	}
+
+	@Override
+	public List<User> readAllPrivilegedUsers() {
+
+		StringBuilder query = new StringBuilder();
+		query.append("SELECT e FROM User e WHERE e.type = ? OR e.type = ?");
+		Object array[] = { UserType.ADMINISTRATOR, UserType.TECHNICIAN };
+
+		return super.getEntities(query.toString(), array);
 	}
 }

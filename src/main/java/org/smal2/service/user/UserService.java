@@ -115,7 +115,57 @@ public class UserService {
 				break;
 
 			default:
-				throw new IllegalStateException("Invalid user type.");
+				throw new IllegalStateException("Found invalid user type.");
+			}
+
+			item = new ListUsersResponseItem(user_tmp.getRegistration(),
+					user_tmp.getName(), type);
+			users.add(item);
+		}
+
+		return new ListUsersResponse(users);
+	}
+
+	public ListUsersResponse listPrivilegedUsers(ListUsersRequest request) {
+
+		if (request == null) {
+			throw new IllegalArgumentException("Undefined request.");
+		}
+
+		if (request.getSession_id() == null
+				|| request.getSession_id().equals("")) {
+			throw new IllegalArgumentException("Undefined session identifier.");
+		}
+
+		if (!userRepository.existWithSessionId(request.getSession_id())) {
+			throw new IllegalArgumentException("Invalid session identifier");
+		}
+
+		User user = userRepository.getBySessionId(request.getSession_id());
+
+		if (user.getType() != org.smal2.domain.entity.UserType.ADMINISTRATOR
+				&& user.getType() != org.smal2.domain.entity.UserType.TECHNICIAN) {
+			throw new IllegalArgumentException(
+					"User must be at least a Student to perform this operation.");
+		}
+
+		List<ListUsersResponseItem> users = new ArrayList<ListUsersResponseItem>();
+		ListUsersResponseItem item;
+
+		UserType type;
+
+		for (User user_tmp : userRepository.listAllPrivilegedUsers()) {
+
+			switch (user_tmp.getType()) {
+			case ADMINISTRATOR:
+				type = UserType.ADMINISTRATOR;
+				break;
+			case TECHNICIAN:
+				type = UserType.TECHNICIAN;
+				break;
+
+			default:
+				throw new IllegalStateException("Found invalid user type.");
 			}
 
 			item = new ListUsersResponseItem(user_tmp.getRegistration(),

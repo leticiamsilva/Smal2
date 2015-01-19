@@ -23,4 +23,6 @@ public interface IUserDAO {
 	User getBySessionId(String session_id);
 
 	boolean existWithSessionId(String session_id);
+
+	List<User> readAllPrivilegedUsers();
 }

@@ -48,4 +48,8 @@ public class UserRepository {
 	public boolean existWithSessionId(String session_id) {
 		return dao.existWithSessionId(session_id);
 	}
+
+	public List<User> listAllPrivilegedUsers() {
+		return dao.readAllPrivilegedUsers();
+	}
 }
