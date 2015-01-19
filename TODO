@@ -1,3 +1,10 @@
 * moodle configuration to expose token.php webservice
 * session timeout
 * password warning over http (shuld use https)
+* web interface date convertion from unix time to textual date
+* implement a redirection from completed login to laboratory list
+* implement a visible logout function
+* footer:
+ - define a copyleft
+ - write "about" page
+ - remover "angular app"
