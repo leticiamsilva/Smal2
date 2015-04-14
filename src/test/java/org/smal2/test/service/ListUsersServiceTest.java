@@ -1,5 +1,6 @@
 package org.smal2.test.service;
 
+import java.util.Collections;
 import java.util.Comparator;
 
 import org.smal2.common.MD5Generator;
@@ -41,7 +42,7 @@ public class ListUsersServiceTest extends ABaseTest {
 		// Assert
 		Assert.assertEquals(3, response.size());
 
-		response.sort(new Comparator<ListUsersResponseItem>() {
+		Collections.sort(response,new Comparator<ListUsersResponseItem>() {
 			public int compare(ListUsersResponseItem o1,
 					ListUsersResponseItem o2) {
 				return o1.getRegistration().compareTo(o2.getRegistration());
@@ -78,7 +79,7 @@ public class ListUsersServiceTest extends ABaseTest {
 		// Assert
 		Assert.assertEquals(2, response.size());
 
-		response.sort(new Comparator<ListUsersResponseItem>() {
+		Collections.sort(response,new Comparator<ListUsersResponseItem>() {
 			public int compare(ListUsersResponseItem o1,
 					ListUsersResponseItem o2) {
 				return o1.getRegistration().compareTo(o2.getRegistration());
