@@ -16,7 +16,7 @@ SMAL2
 ### Test and Run
 
 <pre>
-mvn clean compile test * to run test
+mvn clean compile test * # to run test
 mvn tomcat:run # to run web server on http://localhost:8080/smal/
 </pre>
 
